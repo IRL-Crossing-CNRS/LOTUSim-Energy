@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c509dbaa7b6f416409e3195321a2187e, type: 3}
+  m_Name: PaletteTextureIleEnnemie
+  m_EditorClassIdentifier: 
+  PaletteLayers:
+  - {fileID: 8574412962073106934, guid: 8cd8950f46feda7c5815b9c07dd9a4e7, type: 2}
+  - {fileID: 8574412962073106934, guid: 27dbe9158dd7cfbac919d391ca7a0516, type: 2}
+  - {fileID: 8574412962073106934, guid: 59b98ca43f27d8c4a89d4058d2a962e5, type: 2}
+  - {fileID: 8574412962073106934, guid: a75deed2a0306e1c38b9fbbb2a2c3b58, type: 2}
+  - {fileID: 8574412962073106934, guid: cccdfd607bfcafa718a0c63c658f3461, type: 2}
+  - {fileID: 8574412962073106934, guid: ed6237461a112bf6489d35d36281012c, type: 2}

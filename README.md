@@ -1,93 +1,186 @@
 # Unity Modules
 
+## Table of Contents
+- [Requirements / Setup](#requirements--setup)
+- [Get Started](#get-started)
+- [Start using the Leap Motion](#start-using-the-leap-motion)
+- [Start using the Tobbi Eye Tracker 5](#start-using-the-tobbi-eye-tracker-5)
+- [Packages / Assets available](#packages--assets-available)
+- [Scenes](#scenes)
+- [Scripts](#scripts)
+- [Executables](#executables)
 
 
-## Getting started
+## Requirements / Setup
+- **Unity** `2022.3.18f`  
+- **Multi-Users** `PUN2 - Photon Unity Networking 2` (already in the git) 
+- **Leap Motion** (works on Linux and Windows) An `Ultraleap Hand Tracking Camera` 
+You will need a computer that meets the [Tracking Requirements](https://www.ultraleap.com/gemini-downloads/?_gl=1*1p21y34*_ga*MjA3MTg2NzM3NS4xNzQ1ODk1Mjky*_ga_5G8B19JLWG*czE3NTAzOTQ1ODQkbzEwJGcwJHQxNzUwMzk0NTg0JGo2MCRsMCRoMA..) and have the `[Ultraleap Hand Tracking Software (V5.2+)]`(https://www.ultraleap.com/downloads/) installed (for this project, the **Leap Motion Controller** have been used) 
+- **Eye Tracker (only on Windows)** `Tobii Eye Tracker 5` device  
+Tobii Gaming | Download or Setup Eye Tracking Software and Drivers install the driver
+Then Tobii Ghost,
+Install the `Tobii Experience App` in the Microsoft Store  
+The `Tobii Experience Driver v1.133` (https://gaming.tobii.com/getstarted/?bundle=tobii-et5)  
+And the `Tobii Ghost v1.14.1` (https://gaming.tobii.com/getstarted/?bundle=tobii-et5)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+---
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Get Started
 
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
+1. **Get the Unity project**    
+Use this command :
+```bash
+git clone --recurse-submodules <git url>
 ```
-cd existing_repo
-git remote add origin https://developers.naval-group.com/gitlab/naval-group/naval-group-far-east/lotusim-opensource/unity/unity-modules.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+2. **Add & open the project on Unity Hub.**
+3. **Open one of the scenes**
+4. **Enjoy !  🎉**   
 
-- [ ] [Set up project integrations](https://developers.naval-group.com/gitlab/naval-group/naval-group-far-east/lotusim-opensource/unity/unity-modules/-/settings/integrations)
+## Start using the Leap Motion
 
-## Collaborate with your team
+1. Make sure you have the [requirements](#requirements/setup) installed for the Leap Motion with the device you have.
+2. Plug your Leap Motion and check by using the Leap Motion Software if it is active on your computer.
+3. Place the Leap in front of the user, with the **wire pointing left** (the Leap has been implemented to be Desktop mounted)
+4. Check that the Unity scene you are using have the GameObject `LeapMouvementController` activated (in Unity).
+> Note: in this repo, only the `defenseScenario` scene have been developped to work with the Leap Motion.
+5. If you see **red lights** on the cameras of the Leap, it is ready to be used!
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Start using the Tobbi Eye Tracker 5
 
-## Test and Deploy
+1. Plug the Eye Tracker, and make sure you have the [requirements](#requirements/setup) installed.
+2. Open the `Tobii Experience App` and callibrate your device by following the instructions.
+3. Open the `Tobii Ghost` app and play with the settings to display the gaze trace and more...
+4. You can start running your simulations and the Eye Tracker will track your gaze!
 
-Use the built-in continuous integration in GitLab.
+---
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Packages / Assets available
+- `CityPeople`: Unity asset available [here](https://assetstore.unity.com/packages/3d/characters/city-people-free-samples-260446) to have civilians models.
+- `HandPoses`: Recorded hand poses to move in the `defenseScenario` scene with hands gestures instead of using the keyboard for a more natural interaction.
+- `IslandTools`: Unity tools to build the environment.
+- `LowPolySolider_demo`: Unity asset available [here](https://assetstore.unity.com/packages/3d/characters/low-poly-soldiers-demo-73611) to have soldiers models. 
+- `Photon`: Photon Unity Networking ([PUN](https://doc.photonengine.com/pun/current/getting-started/pun-intro)) is a Unity package for multiplayer games. Flexible matchmaking gets your players into rooms where objects can be synced over the network.
 
-***
+---
 
-# Editing this README
+## Scenes
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### Unity Scenes Folder Overview
 
-## Suggestions for a good README
+The Unity project includes three main scene folders, each designed to support specific simulation and interaction features within the LOTUSim environment.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
-## Name
-Choose a self-explaining name for your project.
+### Defense
+This folder contains the **Defense Operational Scenario**, where the objective is to **rescue hostages stranded on an island**.  
+Using Unity, you can spawn different types of autonomous agents — **surface vehicles, underwater vehicles, aerial drones, or mines** — to build and test **collaborative mission scenarios**.  
+These simulations are designed to train operators and evaluate multi-domain coordination strategies.
+> **Notes:** If you want to use the Leap Motion in this scene to navigate through the scene using had gestures, simply activate in this scene the GameObject `LeapMouvementController`
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+### LeapMotion
+The **LeapMotion** folder includes scenes and assets used to **record and interpret hand poses** for controlling camera movement.  
+This provides a **more natural and immersive interaction**, replacing traditional keyboard controls.  
+To use it, simply **launch the scene** and **follow the on-screen instructions** to calibrate and test hand-based input.
+Here are the gestures implemented in this repo with the Leap Motion:
+![Leap Motion Gestures](Media/leap_control_gesture.png){width=70%}
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### MultiUser
+The **MultiUser** folder contains all scenes related to **multi-user functionality**.  
+It includes a **launcher scene** that allows users to **spawn a customizable Kyle robot** (editable via the *Kyle* scene) and enter a **shared two-player environment**.  
+This setup enables synchronized interactions and collaborative experiments, and it is **already integrated into certain scenes**, such as the **Defense** scenario.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+---
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Scripts
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+The project is organized into several script folders, each handling a specific aspect of the simulation and interaction system.
+The `Camera` folder contains scripts for managing and switching between different camera views across scenes.
+The folder `EditorEnvironment` manages real-time simulation parameters, including the display of the Real-Time Factor, computation of the FPS, and interactive controls like the wind slider. It also includes scripts that control environmental elements such as the sun and clouds.
+The `LeapMotion` folder handles hand-tracking interactions.
+The `MultiUser` folder enables multi-user connectivity and synchronization.
+Finally, the `XR-Controller` folder provides VR support, managing user input and interactions in immersive environments.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+#### Camera:
+- `CameraDynamicTargetsNavigator.cs` : Dynamically navigates the camera between scene objects by smoothly moving, rotating, and zooming. Supports arrow key navigation (← →) to cycle through targets.
+- `CameraKnownTargetsNavigator.cs` :  Handles smooth navigation between a predefined list of known scene targets.
+    - Moves the camera smoothly toward each target using configurable offsets.
+    - Performs smooth rotation to face each target.
+    - Smoothly adjusts the camera's field of view (zoom) per target.
+    - Navigation between targets is controlled using the Left and Right arrow keys.
+- `CameraManager.cs` :  Manages switching between multiple sets of Cinemachine virtual cameras in a scene.
+    - Each set (Front, Right, Left) represents a different viewpoint of the same scene target.
+     - Uses arrow key input to cycle through targets.
+- `CameraModeSwitcher.cs` : Switches between automatic target-following camera mode and free-fly spectator mode.
+     - Arrow keys (↑ ↓ ← →) enable Auto mode (entity navigation).
+     - Q, W, E, A, S, D keys enable Free-Fly mode (manual movement).
+- `CameraSensor.cs`:  Publishes RGB camera frames from Unity to ROS via the ROS–TCP Connector. Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
+- `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key.
+- `FPSLimiter.cs` : Controls the application's target frame rate to ensure consistent performance.
+-`FreeFlyCamera.cs` : Controls the camera for a free fly spectator. Camera movement by 'W','A','S','D','Q','E' and speed of the quick camera movement when holding the 'Left Shift' key.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+#### MultiUser:
+- `CameraWork.cs` : Used to deal with the Camera work to follow the player : Used to deal with the Camera work to follow the player  
+- `GameManager.cs` : Used to handle the game management so, instanciating players and cameras depending which user is being used  
+- `Launcher.cs` : Used to connect, and join/create room automatically on player or spectator mode  
+- `PlayerAnimatorManager.cs` : Used to deal with the networked player Animator Component controls.  
+- `PlayerManager.cs` : Used to deal with the networked player instance  
+- `PlayerNameInputField.cs` : Let the player input his name to be saved as the network player Name, viewed by alls players above each when in the same room.   
+- `PlayerUI.cs` : Used to deal with the networked player instance UI display tha follows a given player to show its health and name  
+- `SpectatorCamera.cs` : Used to set the spectator camera movements  
 
-## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### EditorEnvironment:
+- `AgentSpawner.cs` : Spawns multiple instances of a given model prefab at defined positions, optionally using CLI arguments.
+- `common.cs` : Utility for converting ROS/Gazebo coordinate system (right-handed) to Unity (left-handed) coordinate system.
+- `EnvironmentControlEditor.cs` : Scripts to control the sun and the rain in a scene.
+- `EnvironmentController.cs` : Scripts to control the sun and the rain in a scene.
+- `FpsTracker.cs`: Tracks FPS over the last 1000 frames and saves the results to a CSV file on application quit.
+- `InfiniteSeabed.cs` : Manages an infinite seabed using a 3x3 grid of tiles around the camera.
+- `InputLockManager.cs` :  Handles cursor locking/unlocking and enables or disables camera control accordingly. Useful for toggling between gameplay (mouse locked) and UI interaction (mouse free).
+- `LotusimConnectorEditor.cs` : Custom Unity Editor script for LotusimInterface that lets users select and update the interface type and namespace directly in the Inspector, automatically applying changes and triggering relevant callbacks.
+- `RTFLabelUpdate.cs` :  Displays the Real-Time Factor (RTF) from the ROS simulation as a percentage on a TMP label. Toggles visibility with the 'L' key.
+- `WindSliderController.cs` : Controls wind vector sliders along X, Y, Z axes and publishes their values to a ROS2 topic via TCP/IP.
+ Supports keyboard shortcuts for increment/decrement and reset.
+
+
+### LeapMotion:
+- `LeapMotionMovement.cs` :  Uses Leap Motion hand pose detection to control a CharacterController in 3D space. Supports movement in six directions: forward, back, left, right, up, and down.
+
+
+### lotusim_interface:
+- `commons.cs` : Utility class for converting poses between Gazebo and Unity coordinate systems.
+- `InterfaceFactory.cs` : Factory and driver for creating and updating Lotusim interfaces (ROS2, TCPIP, etc.)
+- `LotusimBaseInterface.cs` : Base abstract class for all interfaces in the Lotusim system. Interfaces populate pose, creation, destruction, and propeller data for vessels. 
+- `LotusimConnector.cs` : Main Unity interface for Lotusim. Wraps LotusimBaseInterface implementations (ROS2, TCPIP). Handles creation, destruction, and updating of vessels, transforms, and animations.
+- `ROSConnectionConfigurator.cs` : Reads ROS IP and port from PlayerPrefs and configures the ROSConnection singleton.
+
+
+### lotusim_interface/ROS2_interface:
+- `RosInterface.cs` :  Singleton interface for ROS2 communication in Lotusim. Handles vessel pose updates, renderer commands, dynamic vessel commands, and simulation stats.
+
+
+### lotusim_interface/Tcp_interface:
+- `TcpIpInterface.cs` :  Handles UDP/TCP communication with external clients for vessel updates and commands. Supports thread-safe data reception and processing, including vessel positions and commands.
+- `TCPIPInterfaceTypes.cs` : Contains data structures and JSON converters for vessel info and Unity commands used in TCP/IP communication in Lotusim.
+
+
+### xr_controller
+- `XR Controller.cs` : Handles movement of the XR camera in 3D space based on directional commands.
+
+
+
+---
+
+
+## Executables
+
+Executable for _Linux_ and _Windows_ of **LOTUSim** are available in the `lotusim-generic-scenario` repository.
+It includes the **DefenseScenario** and **Launcher** scenes already built and ready to run.  
+All build details and usage instructions are thoroughly explained in the **README** and **Wiki** of the `lotusim-generic-scenario` section and repository.
+
+>**Note:** If you wish to develop your own scenario or Unity scene, you can integrate it with LOTUSim-core (repo LOTUSim)using the same `lotusim-generic-scenario` framework.  
+Before doing so, make sure to **build your Unity scene** for the desired platform and follow the same **linking process** described in the `lotusim-generic-scenario` documentation to connect Unity with LOTUSim.
