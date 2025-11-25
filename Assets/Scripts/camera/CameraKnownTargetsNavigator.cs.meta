@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/camera/CameraKnownTargetsNavigator.cs.meta
+guid: 9c5db888fc7665841a39ce345af34d74
+========
+guid: 0bc9e4eacf91857498882007c6ab1738
+>>>>>>>> 7dea65998e19a05be3a276ec67254852a9659a00:Assets/Scripts/lotusim_interface/ROS2_interface/RosInterface.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
