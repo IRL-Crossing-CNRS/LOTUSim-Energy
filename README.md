@@ -35,6 +35,7 @@ git clone --recurse-submodules https://github.com/naval-group/LOTUSim-Unity-modu
 
 And after cloning:
 ```sh
+cd LOTUSim-Unity-modules
 git submodule update --remote --merge
 ```
 
