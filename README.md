@@ -1,4 +1,23 @@
-# Unity Modules
+# LOTUSim-Energy
+
+LOTUSim-Energy leverages the core simulation framework (https://github.com/naval-group/LOTUSim) and physics interface (https://github.com/naval-group/LOTUSim-Xdyn) provided by these repositories.
+
+<div style="display: flex; gap: 10px; align-items: flex-start;">
+  <img src="Media/wind_farm.png" alt="wind_farm" width="35%">
+  <img src="Media/bluerov_lrauv.png" alt="bluerov_lrauv" width="44%">
+</div>
+
+## Overview
+
+LOTUSim-Energy is a distributed, server–client simulation framework designed for multi-domain robotics. Gazebo serves as the central orchestrator for asset management and simulation timing (deterministic step scheduler), while separate client modules execute specific simulation tasks.
+
+The core simulation control module interfaces with three primary client modules:
+
+- Physics: LOTUSim-Xdyn as the physics interface
+- Agent Interaction: ROS 2 for inter-agent messaging and hardware-in-the-loop bridges
+- Rendering: Unity as the optional high-fidelity renderer for human–robot interaction (HRI)
+
+<img src="Media/lotusim_architecture.png" alt="architecture" width="30%">
 
 ## Table of Contents
 - [Requirements / Setup](#requirements--setup)
@@ -9,6 +28,7 @@
 - [Scenes](#scenes)
 - [Scripts](#scripts)
 - [Executables](#executables)
+- [Appendix](#appendix)
 
 
 ## Requirements / Setup
@@ -77,21 +97,10 @@ git submodule update --remote --merge
 The Unity project includes three main scene folders, each designed to support specific simulation and interaction features within the LOTUSim environment.
 
 
-### Defense
-This folder contains the **Defense Operational Scenario**, where the objective is to **rescue hostages stranded on an island**.  
-Using Unity, you can spawn different types of autonomous agents — **surface vehicles, underwater vehicles, aerial drones, or mines** — to build and test **collaborative mission scenarios**.  
-These simulations are designed to train operators and evaluate multi-domain coordination strategies.
-> **Notes:** If you want to use the Leap Motion in this scene to navigate through the scene using had gestures, simply activate in this scene the GameObject `LeapMouvementController`
-
-
 ### LeapMotion
 The **LeapMotion** folder includes scenes and assets used to **record and interpret hand poses** for controlling camera movement.  
 This provides a **more natural and immersive interaction**, replacing traditional keyboard controls.  
 To use it, simply **launch the scene** and **follow the on-screen instructions** to calibrate and test hand-based input.
-Here are the gestures implemented in this repo with the Leap Motion:
-![Leap Motion Gestures](Media/leap_control_gesture.png){width=70%}
-
-
 
 ### MultiUser
 The **MultiUser** folder contains all scenes related to **multi-user functionality**.  
@@ -190,3 +199,42 @@ All build details and usage instructions are thoroughly explained in the **READM
 
 >**Note:** If you wish to develop your own scenario or Unity scene, you can integrate it with LOTUSim-core (repo LOTUSim)using the same `lotusim-generic-scenario` framework.  
 Before doing so, make sure to **build your Unity scene** for the desired platform and follow the same **linking process** described in the `lotusim-generic-scenario` documentation to connect Unity with LOTUSim.
+
+
+## Appendix
+
+### Hydrodynamic Parameters
+
+Hydrodynamic parameters by agent (LRAUV values from the OSRF LRAUV Tethys model):
+
+| **Param** / **Agent** | **LRAUV** | **BlueROV** |
+| ------------------ | --------- | ----------- |
+| **Mass $m$ [kg]**  | 147.87    | 10          |
+| -------------------- | --------- | ----------- |
+| **Added mass**       | **LRAUV** | **BlueROV** |
+| $X_{\dot u}$ [kg]    | -4.8762   | 0           |
+| $Y_{\dot v}$ [kg]    | -126.3247 | 0           |
+| $Z_{\dot w}$ [kg]    | -126.3247 | 0           |
+| $M_{\dot q}$ [kg·m²] | -33.4631  | 0           |
+| $N_{\dot r}$ [kg·m²] | -33.4931  | 0           |
+| $M_{\dot w}$ [kg·m]  | +7.1178   | 0           |
+| $N_{\dot v}$ [kg·m]  | -7.1178   | 0           |
+| $Y_{\dot r}$ [kg·m]  | -7.1178   | 0           |
+| $Z_{\dot q}$ [kg·m]  | +7.1178   | 0           |
+| **Sensors** | Sparton AHRS-M2 Magnetometer + IMU + Additional sensors (see Table `lotusim_tasks`) | IMU + Additional sensors (see Table `lotusim_tasks`) |
+| ------------------------------- | --------- | ----------- |
+| **Linear damping coefficients** | **LRAUV** | **BlueROV** |
+| $X_u$ [N·s·m⁻¹]                 | 0         | 11.7391     |
+| $Y_v$ [N·s·m⁻¹]                 | 0         | 20          |
+| $Z_w$ [N·s·m⁻¹]                 | 0         | 31.87       |
+| $K_p$ [N·m·s]                   | 0         | 25          |
+| $M_q$ [N·m·s]                   | 0         | 44.91       |
+| $N_r$ [N·m·s]                   | 0         | 5           |
+| ------------------- | ------- | ------- |
+| **Quadratic damping coefficients** | **LRAUV** | **BlueROV**  |
+| $X_{\|u\|u}$ [kg·m⁻¹] | —       | 0       |
+| $Y_{\|v\|v}$ [kg·m⁻¹] | -601.27 | 0       |
+| $Z_{\|w\|w}$ [kg·m⁻¹] | -601.27 | 0       |
+| $K_{\|p\|p}$ [kg·m²]  | -0.19   | 0       |
+| $M_{\|q\|q}$ [kg·m²]  | -632.7  | 0       |
+| $N_{\|r\|r}$ [kg·m²]  | -632.7  | 0       |
