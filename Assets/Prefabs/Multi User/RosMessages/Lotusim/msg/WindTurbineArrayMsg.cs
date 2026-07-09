@@ -1,0 +1,63 @@
+// Hand-written to match wind_physics_msgs/WindTurbineArray ROS2 message definition.
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+using Unity.Robotics.ROSTCPConnector.MessageGeneration;
+
+namespace RosMessageTypes.WindPhysics
+{
+    [Serializable]
+    public class WindTurbineArrayMsg : Message
+    {
+        public const string k_RosMessageName = "wind_physics_msgs/WindTurbineArray";
+        public override string RosMessageName => k_RosMessageName;
+
+        public Std.HeaderMsg header;
+        public WindTurbineStateMsg[] turbines;
+
+        public WindTurbineArrayMsg()
+        {
+            this.header = new Std.HeaderMsg();
+            this.turbines = new WindTurbineStateMsg[0];
+        }
+
+        public WindTurbineArrayMsg(Std.HeaderMsg header, WindTurbineStateMsg[] turbines)
+        {
+            this.header = header;
+            this.turbines = turbines;
+        }
+
+        public static WindTurbineArrayMsg Deserialize(MessageDeserializer deserializer) => new WindTurbineArrayMsg(deserializer);
+
+        private WindTurbineArrayMsg(MessageDeserializer deserializer)
+        {
+            this.header = Std.HeaderMsg.Deserialize(deserializer);
+            deserializer.Read(out this.turbines, WindTurbineStateMsg.Deserialize, deserializer.ReadLength());
+        }
+
+        public override void SerializeTo(MessageSerializer serializer)
+        {
+            serializer.Write(this.header);
+            serializer.WriteLength(this.turbines);
+            serializer.Write(this.turbines);
+        }
+
+        public override string ToString()
+        {
+            return "WindTurbineArrayMsg: " +
+            "\nheader: " + header.ToString() +
+            "\nturbines: " + System.String.Join(", ", turbines.ToList());
+        }
+
+#if UNITY_EDITOR
+        [UnityEditor.InitializeOnLoadMethod]
+#else
+        [UnityEngine.RuntimeInitializeOnLoadMethod]
+#endif
+        public static void Register()
+        {
+            MessageRegistry.Register(k_RosMessageName, Deserialize);
+        }
+    }
+}

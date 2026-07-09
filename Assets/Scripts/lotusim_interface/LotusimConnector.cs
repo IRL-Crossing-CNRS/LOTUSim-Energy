@@ -49,6 +49,16 @@ namespace Lotusim
         // Mapping of Animation name to Animation.
         private Dictionary<string, Animator> m_animatorMap = new Dictionary<string, Animator>();
 
+        // Vessels whose Addressable load is in flight — prevents duplicate concurrent loads.
+        private HashSet<string> m_pendingLoads = new HashSet<string>();
+
+        // Vessels actually spawned by us (excludes pre-existing scene/environment roots
+        // that UpdateVesselsList registers into m_objectMap). Only these get wiped on disconnect.
+        private HashSet<string> m_spawnedVessels = new HashSet<string>();
+
+        // Transport health on the previous frame, for edge-triggered disconnect handling.
+        private bool m_wasConnected = false;
+
         public void OnNamespaceChanged()
         {
             Debug.Log("Handling namespace change: " + m_namespace);
@@ -78,9 +88,44 @@ namespace Lotusim
 
         private void Update()
         {
+            HandleConnectionState();
             m_interface.Update();
             UpdateVesselPoses();
             ProcessCommands();
+        }
+
+        /// <summary>
+        /// Detects the transport dropping (e.g. remote killed) and wipes everything we spawned,
+        /// flushing queued commands. Without this, killed agents would either freeze in the
+        /// hierarchy forever (no DELETE arrives on a hard kill) or thrash as reconnects replay
+        /// latched CREATE commands. We only destroy vessels we spawned — never scene geometry.
+        /// </summary>
+        private void HandleConnectionState()
+        {
+            bool connected = m_interface.IsHealthy;
+            if (m_wasConnected && !connected)
+            {
+                Debug.LogWarning("[LotusimInterface] ROS connection lost — wiping spawned agents and flushing command queues.");
+                WipeSpawnedAgents();
+            }
+            m_wasConnected = connected;
+        }
+
+        private void WipeSpawnedAgents()
+        {
+            // ToArray: DestroyObject mutates m_spawnedVessels while we iterate.
+            foreach (var vessel_name in m_spawnedVessels.ToArray())
+            {
+                DestroyObject(vessel_name);
+            }
+
+            // Drop any stale / replayed commands so reconnect starts from a clean slate.
+            m_interface.m_vesselToCreate.Clear();
+            m_interface.m_vesselsToDestroy.Clear();
+            m_interface.m_vesselsToExplode.Clear();
+            m_interface.m_propellerSpinRatios.Clear();
+            m_interface.m_vesselPoses.Clear();
+            m_pendingLoads.Clear();
         }
 
         private void ProcessCommands()
@@ -99,11 +144,12 @@ namespace Lotusim
                 string assetAddress = kvp.Value.Item1;
                 Pose pose = kvp.Value.Item2;
 
-                if (m_objectMap.ContainsKey(vesselName))
+                if (m_objectMap.ContainsKey(vesselName) || m_pendingLoads.Contains(vesselName))
                 {
                     continue;
                 }
 
+                m_pendingLoads.Add(vesselName);
                 Addressables.LoadAssetAsync<GameObject>(assetAddress).Completed += handle =>
                     OnFindAssetLocation(handle, vesselName, assetAddress, pose);
             }
@@ -117,9 +163,17 @@ namespace Lotusim
             Pose pose
         )
         {
+            m_pendingLoads.Remove(vesselName);
+
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
-                // Instantiate the prefab at the origin with no rotation
+                // A DELETE may have arrived while the load was in flight — discard.
+                if (m_objectMap.ContainsKey(vesselName))
+                {
+                    Debug.LogWarning($"[LotusimInterface] Discarding duplicate instantiation for '{vesselName}'.");
+                    return;
+                }
+
                 GameObject instantiatedObject = Instantiate(
                     handle.Result,
                     pose.position,
@@ -129,6 +183,7 @@ namespace Lotusim
 
                 m_objectMap.Add(vesselName, instantiatedObject);
                 m_transformMap.Add(vesselName, instantiatedObject.transform);
+                m_spawnedVessels.Add(vesselName);
 
                 Animator[] _animator = instantiatedObject.GetComponentsInChildren<Animator>();
                 foreach (Animator _a in _animator)
@@ -155,6 +210,9 @@ namespace Lotusim
 
         private void DestroyObject(string vessel_name)
         {
+            m_pendingLoads.Remove(vessel_name);
+            m_spawnedVessels.Remove(vessel_name);
+
             if (m_objectMap.ContainsKey(vessel_name))
             {
                 Animator[] _animator = m_objectMap[vessel_name].GetComponentsInChildren<Animator>();
@@ -255,8 +313,23 @@ namespace Lotusim
                         UpdateVesselsList();
                         continue;
                     }
-                    Pose poseUnityFrame = CoordinateSystemUtils.GzPoseToUnityPose(pose);
-                    InterpolateVesselPosition(transform, poseUnityFrame, interpolationRatio);
+
+                    // The GameObject may have been destroyed (e.g. host CTRL+C / DELETE
+                    // command) while its entry still lingers in the map. Unity's overloaded
+                    // '==' detects the destroyed native object; skip and refresh the map.
+                    if (transform == null)
+                    {
+                        UpdateVesselsList();
+                        continue;
+                    }
+
+                    // Only interpolate here if the vessel DOES NOT have the RendererPosesWaypointFollower
+                    // Otherwise they will fight for position control
+                    if (transform.GetComponent<RendererPosesWaypointFollower>() == null)
+                    {
+                        Pose poseUnityFrame = CoordinateSystemUtils.GzPoseToUnityPose(pose);
+                        InterpolateVesselPosition(transform, poseUnityFrame, interpolationRatio);
+                    }
                 }
             }
             else

@@ -86,6 +86,16 @@ namespace Lotusim
         #endregion
         // ---------------------------------------------------------------------------------
 
+        #region Public Properties
+
+        /// <summary>Current wind vector in Unity world space (X, Y, Z) as set by the sliders.</summary>
+        public Vector3 CurrentWindVector => sliderX != null
+            ? new Vector3(sliderX.value, sliderY.value, sliderZ.value)
+            : Vector3.zero;
+
+        #endregion
+        // ---------------------------------------------------------------------------------
+
         #region Unity Lifecycle
 
         private void Awake()
@@ -175,23 +185,23 @@ namespace Lotusim
             }
         }
 
-        /// <summary>
-        /// Handles keyboard input for adjusting slider values and reset.
-        /// </summary>
         private void HandleKeyboardInput()
         {
             bool updated = false;
+            // Scale increment by Time.deltaTime to make it framerate independent.
+            // Multiplied by 25f so an increment of 1 means ~25 units per second.
+            float step = increment * Time.deltaTime * 25f;
 
-            if (Input.GetKey(KeyCode.Alpha1)) { sliderX.value = Mathf.Max(sliderX.minValue, sliderX.value - increment); updated = true; }
-            if (Input.GetKey(KeyCode.Alpha2)) { sliderX.value = Mathf.Min(sliderX.maxValue, sliderX.value + increment); updated = true; }
+            if (Input.GetKey(KeyBindings.WindXDec)) { sliderX.value = Mathf.Max(sliderX.minValue, sliderX.value - step); updated = true; }
+            if (Input.GetKey(KeyBindings.WindXInc)) { sliderX.value = Mathf.Min(sliderX.maxValue, sliderX.value + step); updated = true; }
 
-            if (Input.GetKey(KeyCode.Alpha4)) { sliderY.value = Mathf.Max(sliderY.minValue, sliderY.value - increment); updated = true; }
-            if (Input.GetKey(KeyCode.Alpha5)) { sliderY.value = Mathf.Min(sliderY.maxValue, sliderY.value + increment); updated = true; }
+            if (Input.GetKey(KeyBindings.WindYDec)) { sliderY.value = Mathf.Max(sliderY.minValue, sliderY.value - step); updated = true; }
+            if (Input.GetKey(KeyBindings.WindYInc)) { sliderY.value = Mathf.Min(sliderY.maxValue, sliderY.value + step); updated = true; }
 
-            if (Input.GetKey(KeyCode.Alpha7)) { sliderZ.value = Mathf.Max(sliderZ.minValue, sliderZ.value - increment); updated = true; }
-            if (Input.GetKey(KeyCode.Alpha8)) { sliderZ.value = Mathf.Min(sliderZ.maxValue, sliderZ.value + increment); updated = true; }
+            if (Input.GetKey(KeyBindings.WindZDec)) { sliderZ.value = Mathf.Max(sliderZ.minValue, sliderZ.value - step); updated = true; }
+            if (Input.GetKey(KeyBindings.WindZInc)) { sliderZ.value = Mathf.Min(sliderZ.maxValue, sliderZ.value + step); updated = true; }
 
-            if (Input.GetKeyDown(KeyCode.Alpha0))
+            if (Input.GetKey(KeyBindings.WindReset))
             {
                 sliderX.value = 0f;
                 sliderY.value = 0f;
@@ -203,14 +213,13 @@ namespace Lotusim
             {
                 UpdateText();
                 PublishWind(sliderX.value, sliderY.value, sliderZ.value);
+                prevX = sliderX.value;
+                prevY = sliderY.value;
+                prevZ = sliderZ.value;
                 timeElapsed = 0f; // prevent double publish
             }
         }
 
-        /// <summary>
-        /// Callback when any slider value changes.
-        /// Updates text displays.
-        /// </summary>
         private void OnSliderChanged(float _)
         {
             UpdateText();
@@ -258,10 +267,20 @@ namespace Lotusim
                 return;
             }
 
+            // Gazebo WindPlugin optimization bug workaround:
+            // If the wind vector is exactly zero, Gazebo's plugin sleeps to save computation.
+            // If it jumps instantly from 20 to 0 (e.g. pressing the 0 reset button), it sleeps
+            // BEFORE broadcasting the new 0 speed. Unity gets stuck at 20 and the turbines keep spinning.
+            // By keeping it slightly non-zero, the plugin stays alive and broadcasts the drop.
+            if (Mathf.Approximately(x, 0f) && Mathf.Approximately(y, 0f) && Mathf.Approximately(z, 0f))
+            {
+                x = 0.001f;
+            }
+
             var msg = new WindMsg
             {
                 linear_velocity = new Vector3Msg(x, y, z),
-                enable_wind = (x != 0f || y != 0f || z != 0f)
+                enable_wind = true // Ensure the 0-vector is actively applied by the simulator
             };
 
             m_rosConnection.Publish(topicName, msg);

@@ -71,6 +71,14 @@ namespace Lotusim
         public abstract void Destroy();
 
         /// <summary>
+        /// True when the underlying transport is connected and error-free.
+        /// Used to detect connection loss so the scene can be wiped before stale
+        /// (e.g. latched/replayed) commands are acted upon. Defaults to always-healthy
+        /// for interfaces that have no live transport.
+        /// </summary>
+        public virtual bool IsHealthy => true;
+
+        /// <summary>
         /// Returns the simulation interpolation ratio between Unity and the source simulator (e.g., Gazebo).
         /// Ratio = 0 freezes Unity, ratio = 1 plays at normal speed.
         /// Can be overridden by derived interfaces if interpolation is needed.

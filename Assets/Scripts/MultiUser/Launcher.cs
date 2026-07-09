@@ -57,7 +57,23 @@ namespace Com.MyCompany.MyGame
         [SerializeField] private TMP_InputField rosPortInputField;
 
         [Tooltip("Name of the room to join/create (used both online and offline)")]
-        [SerializeField] private string roomName = "defenseScenario";
+        [SerializeField] private string roomName = "facetRoom";
+
+        [Tooltip("Scene to load after joining the room. Must be in Build Settings.")]
+#if UNITY_EDITOR
+        [SerializeField] private UnityEditor.SceneAsset targetSceneAsset;
+#endif
+        [SerializeField, HideInInspector] private string targetScene = "facet_waypoint";
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (targetSceneAsset != null)
+            {
+                targetScene = targetSceneAsset.name;
+            }
+        }
+#endif
 
         #endregion
 
@@ -291,10 +307,10 @@ namespace Com.MyCompany.MyGame
             isConnecting = false;
             controlPanel?.SetActive(true);
 
-            Debug.Log("Loading the 'defenseScenario' level (or your configured level).");
+            Debug.Log($"Loading the '{targetScene}' level.");
 
             // Load the Room Level (this will work both online and offline with Photon)
-            PhotonNetwork.LoadLevel("defenseScenario");
+            PhotonNetwork.LoadLevel(targetScene);
         }
 
         /// <summary>

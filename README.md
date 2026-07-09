@@ -28,6 +28,8 @@ The core simulation control module interfaces with three primary client modules:
 - [Scenes](#scenes)
 - [Scripts](#scripts)
 - [Executables](#executables)
+- [Video](#video)
+- [Relevant Publications](#relevant-publications)
 - [Appendix](#appendix)
 
 
@@ -200,6 +202,33 @@ All build details and usage instructions are thoroughly explained in the **READM
 >**Note:** If you wish to develop your own scenario or Unity scene, you can integrate it with LOTUSim-core (repo LOTUSim)using the same `lotusim-generic-scenario` framework.  
 Before doing so, make sure to **build your Unity scene** for the desired platform and follow the same **linking process** described in the `lotusim-generic-scenario` documentation to connect Unity with LOTUSim.
 
+
+## Video
+
+A demonstrative video of LOTUSim is available on YouTube:
+
+[![LOTUSim Video - IROS2026](https://img.youtube.com/vi/iXDz8ZqSpq4/0.jpg)](https://www.youtube.com/watch?v=iXDz8ZqSpq4)
+
+## Relevant Publications
+
+If you use [LOTUSim](https://github.com/naval-group/LOTUSim) in your research, or any of the repositories directly linked to LOTUSim
+- [LOTUSim-Xdyn](https://github.com/naval-group/LOTUSim-Xdyn),
+- [LOTUSim-generic-scenario](https://github.com/naval-group/LOTUSim-generic-scenario),
+- [LOTUSim-Unity-modules](https://github.com/naval-group/LOTUSim-Unity-modules),
+- [LOTUSim-UI-frontend](https://github.com/naval-group/LOTUSim-UI-frontend),
+- [LOTUSim-UI-backend](https://github.com/naval-group/LOTUSim-UI-backend),
+
+Please cite:
+
+```bibtex
+@inproceedings{LOTUSim26iros,
+  title     = {{LOTUSim}: Multi-Domain Simulator for Marine Robotics},
+  author    = {Buche, Cedric and Grosset, Juliette and Lechene, Helene and Dubromel, Marie and Havez-Bodivit, Pierig and Neo, Malcom and Prodhon, Julien},
+  booktitle = {2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year      = {2026},
+  publisher = {IEEE}
+}
+```
 
 ## Appendix
 

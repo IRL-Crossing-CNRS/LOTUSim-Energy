@@ -22,7 +22,9 @@ using System.Threading;
 using Newtonsoft.Json;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Lotusim;
+using RosMessageTypes.Sensor;
 using RosMessageTypes.Std;
+using RosMessageTypes.WindPhysics;
 using Unity.Robotics.ROSTCPConnector;
 using UnityEngine;
 
@@ -72,6 +74,13 @@ namespace Lotusim
         /// </summary>
         public bool IsConnected => m_rosConnection != null;
 
+        /// <summary>
+        /// True only while the TCP link to the ROS endpoint is established and error-free.
+        /// Goes false the moment the socket drops (e.g. remote killed), letting the
+        /// connector wipe spawned agents before reconnect replays latched commands.
+        /// </summary>
+        public override bool IsHealthy => m_rosConnection != null && !m_rosConnection.HasConnectionError;
+
         #endregion
 
         #region Private Fields
@@ -90,6 +99,45 @@ namespace Lotusim
 
         private SimStatsMsg m_sim_stats_msg;
         private Mutex m_sim_stats_mutex = new Mutex();
+
+        private WindTurbineArrayMsg m_wind_turbine_msg;
+        private Mutex m_wind_turbine_mutex = new Mutex();
+
+        // Inspection: image transport (Unity → remote) and detections (remote → Unity).
+        private readonly Dictionary<string, CompressedImageMsg> m_inspectionImageMsgs = new Dictionary<string, CompressedImageMsg>();
+        private readonly Dictionary<string, string> m_inspectionDetections = new Dictionary<string, string>();
+        private readonly HashSet<string> m_inspectionSubscribed = new HashSet<string>();
+        // Tracks which image publisher topics are currently registered with ROS TCP Connector, so we
+        // skip RegisterPublisher on re-spawn (avoids the "registered twice" warning). Entries are
+        // dropped in CleanupInspection, which also tears the publisher down on the endpoint.
+        private readonly HashSet<string> m_registeredImagePublishers = new HashSet<string>();
+        private Mutex m_inspection_mutex = new Mutex();
+
+        // --- Stale-command suppression (TRANSIENT_LOCAL safety) ----------------------------------
+        // renderer_cmd is a single persistent publisher, KEEP_LAST depth 10, TRANSIENT_LOCAL. So the
+        // broker re-delivers the last ~10 latched commands on every (re)subscribe — e.g. after the TCP
+        // link drops and ROS TCP Connector reconnects. Without a guard, a replayed CREATE that predates
+        // a DELETE resurrects an agent the simulator already removed.
+        //
+        // render_interface stamps DELETE/EXPLODE with its system clock (no use_sim_time → monotonic
+        // across sim restarts) and — once patched — stamps CREATE the same way. We then suppress a
+        // CREATE whose stamp is NOT newer than the most recent removal of that vessel: the latched
+        // pre-DELETE CREATE (older stamp) is dropped, while a genuine relaunch (newer wall-clock stamp)
+        // passes. Comparing stamps, not buffer position, is robust to the depth-10 ring evicting old
+        // entries. A CREATE with stamp 0 (publisher not yet patched) bypasses the guard so respawn
+        // still works — at the cost of not filtering replays until the host stamps CREATEs.
+        private readonly Dictionary<string, long> m_lastRemoveStampNs = new Dictionary<string, long>();
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Raised on the main thread the moment a DELETE/EXPLODE command for a vessel is processed,
+        /// so per-agent listeners (e.g. <see cref="AgentBatteryHUD"/>) can release their ROS
+        /// subscriptions immediately instead of waiting for their next discovery scan.
+        /// </summary>
+        public static event Action<string> VesselRemoved;
 
         #endregion
 
@@ -130,6 +178,12 @@ namespace Lotusim
                 OnSimStatsReceived
             );
 
+            // Subscribe to wind turbine simulation data (effective speed + power per turbine)
+            m_rosConnection.Subscribe<WindTurbineArrayMsg>(
+                $"{_namespace}/wind/turbines",
+                OnWindTurbinesReceived
+            );
+
             Debug.Log("[RosInterface] Subscribed to all ROS topics.");
         }
 
@@ -140,6 +194,7 @@ namespace Lotusim
             ProcessRenderCommands();
             UpdateVesselPoses();
             ProcessXdynCommands();
+            ProcessWindTurbines();
         }
 
         #endregion
@@ -175,6 +230,13 @@ namespace Lotusim
             m_sim_stats_mutex.WaitOne();
             m_sim_stats_msg = msg;
             m_sim_stats_mutex.ReleaseMutex();
+        }
+
+        private void OnWindTurbinesReceived(WindTurbineArrayMsg msg)
+        {
+            m_wind_turbine_mutex.WaitOne();
+            m_wind_turbine_msg = msg;
+            m_wind_turbine_mutex.ReleaseMutex();
         }
 
         #endregion
@@ -267,19 +329,36 @@ namespace Lotusim
 
             foreach (var command in m_render_commands)
             {
-                Debug.Log($"[RosInterface] HandleCommand: {command.cmd_type} {command.vessel_name}");
+                string vesselName = command.vessel_name;
+                long stampNs = StampNanos(command.header);
 
                 switch (command.cmd_type)
                 {
                     case (byte)RendererCmdMsg.CREATE_CMD:
+                        // Drop a latched CREATE that predates the vessel's removal (a TRANSIENT_LOCAL
+                        // replay on reconnect). A genuine relaunch carries a newer wall-clock stamp and
+                        // passes. stamp 0 = publisher not yet patched to stamp CREATEs → can't order, so
+                        // honor it (respawn keeps working; replays just aren't filtered yet).
+                        if (stampNs != 0 &&
+                            m_lastRemoveStampNs.TryGetValue(vesselName, out long removedAtNs) && stampNs <= removedAtNs)
+                        {
+                            Debug.Log($"[RosInterface] Ignoring stale CREATE for '{vesselName}' " +
+                                      $"(latched replay predating its removal; create {stampNs} <= remove {removedAtNs} ns).");
+                            break;
+                        }
+                        Debug.Log($"[RosInterface] HandleCommand: CREATE {vesselName}");
                         Pose poseUnity = CoordinateSystemUtils.GzPoseToUnityPose(PoseMsgToPose(command.vessel_position));
-                        m_vesselToCreate[command.vessel_name] = new Tuple<string, Pose>(command.renderer_obj_name, poseUnity);
+                        m_vesselToCreate[vesselName] = new Tuple<string, Pose>(command.renderer_obj_name, poseUnity);
                         break;
                     case (byte)RendererCmdMsg.DELETE_CMD:
-                        m_vesselsToDestroy.Add(command.vessel_name);
+                        Debug.Log($"[RosInterface] HandleCommand: DELETE {vesselName}");
+                        HandleVesselRemoved(vesselName, stampNs);
+                        m_vesselsToDestroy.Add(vesselName);
                         break;
                     case (byte)RendererCmdMsg.EXPLODE_CMD:
-                        m_vesselsToExplode.Add(command.vessel_name);
+                        Debug.Log($"[RosInterface] HandleCommand: EXPLODE {vesselName}");
+                        HandleVesselRemoved(vesselName, stampNs);
+                        m_vesselsToExplode.Add(vesselName);
                         break;
                     default:
                         Debug.LogError($"[RosInterface] Invalid command type {command.cmd_type}");
@@ -289,6 +368,28 @@ namespace Lotusim
 
             m_render_commands.Clear();
             m_render_commands_mutex.ReleaseMutex();
+        }
+
+        /// <summary>
+        /// Centralised bookkeeping when a vessel is removed (DELETE/EXPLODE): records the removal stamp
+        /// so an older latched CREATE can't resurrect it on a reconnect, and notifies per-agent listeners
+        /// (battery HUD, …) so they drop their subscriptions immediately rather than waiting for a
+        /// discovery scan. Inspection ROS resources are released by the agent's InspectionDetector.OnDestroy
+        /// (which carries the correctly-derived agent name) when the GameObject is destroyed this tick.
+        /// Main thread only.
+        /// </summary>
+        private void HandleVesselRemoved(string vesselName, long stampNs)
+        {
+            // Keep the newest removal stamp: a later DELETE must win over an earlier (possibly replayed) one.
+            if (!m_lastRemoveStampNs.TryGetValue(vesselName, out long prev) || stampNs > prev)
+                m_lastRemoveStampNs[vesselName] = stampNs;
+
+            VesselRemoved?.Invoke(vesselName);
+        }
+
+        private static long StampNanos(HeaderMsg header)
+        {
+            return (long)header.stamp.sec * 1_000_000_000L + header.stamp.nanosec;
         }
 
         #endregion
@@ -322,12 +423,169 @@ namespace Lotusim
         /// Thread-safe retrieval of the latest simulation statistics message.
         /// </summary>
         /// <returns>Latest <see cref="SimStatsMsg"/> or null if unavailable.</returns>
+        /// <summary>
+        /// Publishes a JPEG-encoded inspection frame for the given agent as a
+        /// sensor_msgs/CompressedImage on {namespace}/{agentName}/inspection/image.
+        /// The publisher and a reusable message object are registered lazily on first use.
+        /// Call from the main thread (publishing is not thread-safe in ROS TCP Connector).
+        /// </summary>
+        public void PublishInspectionImage(string agentName, byte[] jpgBytes)
+        {
+            m_inspection_mutex.WaitOne();
+            if (!m_inspectionImageMsgs.TryGetValue(agentName, out CompressedImageMsg msg))
+            {
+                string topic = $"{RosNamespace}/{agentName}/inspection/image";
+                if (m_registeredImagePublishers.Add(agentName))
+                {
+                    m_rosConnection.RegisterPublisher<CompressedImageMsg>(topic);
+                    Debug.Log($"[RosInterface] Registered inspection image publisher: {topic}");
+                }
+                msg = new CompressedImageMsg { format = "jpeg" };
+                msg.header.frame_id = agentName;
+                m_inspectionImageMsgs[agentName] = msg;
+            }
+            m_inspection_mutex.ReleaseMutex();
+
+            msg.data = jpgBytes;
+            m_rosConnection.Publish($"{RosNamespace}/{agentName}/inspection/image", msg);
+        }
+
+        /// <summary>
+        /// Registers a ROS subscription for the inspection detections of the given agent.
+        /// Idempotent. Topic: {namespace}/{agentName}/inspection/detections (std_msgs/String,
+        /// carrying the same JSON shape the Flask server used to return: {"detections":[...],"count":N}).
+        /// </summary>
+        public void RegisterInspectionDetectionsSubscription(string agentName)
+        {
+            m_inspection_mutex.WaitOne();
+            bool alreadySubscribed = !m_inspectionSubscribed.Add(agentName);
+            m_inspection_mutex.ReleaseMutex();
+
+            if (alreadySubscribed) return;
+
+            string topic = $"{RosNamespace}/{agentName}/inspection/detections";
+            m_rosConnection.Subscribe<StringMsg>(topic, msg =>
+            {
+                m_inspection_mutex.WaitOne();
+                m_inspectionDetections[agentName] = msg.data;
+                m_inspection_mutex.ReleaseMutex();
+            });
+
+            Debug.Log($"[RosInterface] Subscribed to {topic}");
+        }
+
+        /// Tears down a vessel's inspection ROS resources when it despawns: the detections
+        /// subscription and the image publisher (so neither topic lingers on the endpoint).
+        public void CleanupInspection(string agentName)
+        {
+            m_inspection_mutex.WaitOne();
+            bool wasSubscribed = m_inspectionSubscribed.Remove(agentName);
+            bool wasPublishing = m_registeredImagePublishers.Remove(agentName);
+            m_inspectionDetections.Remove(agentName);
+            m_inspectionImageMsgs.Remove(agentName);
+            m_inspection_mutex.ReleaseMutex();
+
+            if (wasSubscribed)
+                m_rosConnection.Unsubscribe($"{RosNamespace}/{agentName}/inspection/detections");
+
+            if (wasPublishing)
+                UnregisterPublisher($"{RosNamespace}/{agentName}/inspection/image");
+        }
+
+        // ROS TCP Connector exposes no public API to unregister a publisher, so a per-agent
+        // inspection/image topic would otherwise linger on the endpoint forever — and re-advertise on
+        // every reconnect — after the agent is deleted. We drive the connector's internal
+        // "__remove_publisher" path and drop the cached RosTopicState (so it isn't re-registered) by
+        // reflection. Reflection targets the pinned ros-tcp-connector package; failures are non-fatal.
+        private static System.Reflection.MethodInfo s_sendSysCommand;
+        private static System.Reflection.FieldInfo s_topicsField;
+
+        private void UnregisterPublisher(string topic)
+        {
+            if (m_rosConnection == null) return;
+            try
+            {
+                Type connType = m_rosConnection.GetType();
+                s_sendSysCommand ??= connType.GetMethod("SendSysCommand",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                s_topicsField ??= connType.GetField("m_Topics",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                // Tell the endpoint to destroy the ROS2 publisher.
+                s_sendSysCommand?.Invoke(m_rosConnection, new object[]
+                {
+                    Unity.Robotics.ROSTCPConnector.SysCommand.k_SysCommand_RemovePublisher,
+                    new Unity.Robotics.ROSTCPConnector.SysCommand_Topic { topic = topic },
+                    null
+                });
+
+                // Drop the local topic state so it isn't re-advertised on the next reconnect.
+                if (s_topicsField?.GetValue(m_rosConnection) is System.Collections.IDictionary topics)
+                {
+                    lock (topics) topics.Remove(topic);
+                }
+
+                Debug.Log($"[RosInterface] Unregistered inspection image publisher: {topic}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[RosInterface] Could not unregister publisher '{topic}': {e.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Returns the latest detections JSON received for the agent and clears it (consume-once),
+        /// or null if nothing new arrived since the last call.
+        /// </summary>
+        public string ConsumeInspectionDetections(string agentName)
+        {
+            m_inspection_mutex.WaitOne();
+            m_inspectionDetections.TryGetValue(agentName, out string json);
+            if (json != null) m_inspectionDetections.Remove(agentName);
+            m_inspection_mutex.ReleaseMutex();
+            return json;
+        }
+
         public SimStatsMsg GetSimStats()
         {
             m_sim_stats_mutex.WaitOne();
             var copy = m_sim_stats_msg;
             m_sim_stats_mutex.ReleaseMutex();
             return copy;
+        }
+
+        #endregion
+
+        #region Wind Turbine Handling
+
+        /// <summary>
+        /// Dispatches the latest wind turbine data to all WindTurbineController components in the scene.
+        /// Matches turbines by name field.
+        /// </summary>
+        private void ProcessWindTurbines()
+        {
+            m_wind_turbine_mutex.WaitOne();
+            var msg = m_wind_turbine_msg;
+            m_wind_turbine_msg = null; // consume
+            m_wind_turbine_mutex.ReleaseMutex();
+
+            if (msg == null || msg.turbines == null || msg.turbines.Length == 0)
+                return;
+
+            // Find all turbine controllers in the scene (cached implicitly by Unity)
+            WindTurbineController[] controllers = UnityEngine.Object.FindObjectsOfType<WindTurbineController>();
+
+            foreach (WindTurbineStateMsg turbineData in msg.turbines)
+            {
+                foreach (WindTurbineController ctrl in controllers)
+                {
+                    if (ctrl.TurbineName == turbineData.name)
+                    {
+                        ctrl.OnWindDataReceived(turbineData.effective_wind_speed, turbineData.power_w);
+                        break;
+                    }
+                }
+            }
         }
 
         #endregion

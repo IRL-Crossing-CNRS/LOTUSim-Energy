@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations.meta
 guid: e8b5fd607ab881b4c834922faec60534
+========
+guid: 73d1956718e15dff1a4165369a4d033e
+>>>>>>>> 370c0750f8c468e08150cbb30cd1c9d9a6a13eb5:Assets/Scripts/scenario.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -27,7 +27,7 @@ using UnityEngine;
 /// </list>
 /// This component automatically toggles between the two modes depending on user input.
 /// </summary>
- 
+
 [RequireComponent(typeof(Camera))]
 public class CameraModeSwitcher : MonoBehaviour
 {
@@ -86,9 +86,7 @@ public class CameraModeSwitcher : MonoBehaviour
     private bool IsArrowKeyPressed()
     {
         return Input.GetKeyDown(KeyCode.LeftArrow) ||
-               Input.GetKeyDown(KeyCode.RightArrow) ||
-               Input.GetKeyDown(KeyCode.UpArrow) ||
-               Input.GetKeyDown(KeyCode.DownArrow);
+               Input.GetKeyDown(KeyCode.RightArrow);
     }
 
     /// <summary>

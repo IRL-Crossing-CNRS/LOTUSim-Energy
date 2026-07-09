@@ -25,7 +25,7 @@ public class FPSLimiter : MonoBehaviour
     [Header("Performance Settings")]
     [Tooltip("Desired maximum frames per second (FPS) for the application.")]
     [Range(15, 240)]
-    public int targetFrameRate = 60;
+    public int targetFrameRate = 144;
 
     #endregion
     // -------------------------------------------------------------------------------------

@@ -14,8 +14,6 @@ public class cameraBehaviour : MonoBehaviour {
 
     public float yOffset = 5f;
 
-    private Vector3 velocity = new Vector3();
-
     KeyCode UP = KeyCode.Keypad8;
     KeyCode DW = KeyCode.Keypad2;
     KeyCode RI = KeyCode.Keypad6;

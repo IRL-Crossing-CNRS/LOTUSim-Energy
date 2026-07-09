@@ -98,8 +98,9 @@ namespace Lotusim
                 return;
             }
 
-            // Determine vessel name (from root GameObject)
-            vesselName = transform.root.name;
+            // Determine vessel name (from root GameObject), sanitized for ROS topic rules
+            // ROS topic names may only contain alphanumerics and '_'
+            vesselName = System.Text.RegularExpressions.Regex.Replace(transform.root.name, @"[^A-Za-z0-9_]", "_");
 
             // Retrieve ROS namespace
             string ns = RosInterface.Instance?.RosNamespace;
@@ -128,7 +129,10 @@ namespace Lotusim
                 rosConnection = rosInterface.RosInstance;
 
             if (!isRosInitialized)
+            {
                 InitializeRosPublisher();
+                return; // give the endpoint a frame to process the registration
+            }
 
             // Publish at defined rate
             timeElapsed += Time.deltaTime;

@@ -1,5 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Realistic Drone.meta
 guid: 1af944a7de40b65488b957ee8cbc58f7
+========
+<<<<<<< HEAD
+guid: e8b5fd607ab881b4c834922faec60534
+>>>>>>>> 370c0750f8c468e08150cbb30cd1c9d9a6a13eb5:Assets/Animations.meta
+=======
+guid: 856707d586699a64bb81c35488e0de72
+>>>>>>>> cf076172cf0f93ebb5fe78ec0e5deae1150fbf05:Assets/Scripts/Environment.meta
+>>>>>>> 370c0750f8c468e08150cbb30cd1c9d9a6a13eb5
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

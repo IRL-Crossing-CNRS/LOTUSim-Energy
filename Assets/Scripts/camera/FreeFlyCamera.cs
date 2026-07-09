@@ -39,7 +39,7 @@ public class FreeFlyCamera : MonoBehaviour
     [Space]
 
     [SerializeField]
-    [Tooltip("Camera movement by 'W','A','S','D','Q','E' keys is active")]
+    [Tooltip("Camera movement by keys is active")]
     private bool _enableMovement = true;
 
     [SerializeField]
@@ -54,13 +54,7 @@ public class FreeFlyCamera : MonoBehaviour
     [Tooltip("Boost speed")]
     private KeyCode _boostSpeed = KeyCode.LeftShift;
 
-    [SerializeField]
-    [Tooltip("Move up")]
-    private KeyCode _moveUp = KeyCode.E;
 
-    [SerializeField]
-    [Tooltip("Move down")]
-    private KeyCode _moveDown = KeyCode.Q;
 
     [Space]
 
@@ -167,22 +161,22 @@ public class FreeFlyCamera : MonoBehaviour
             if (Input.GetKey(_boostSpeed))
                 currentSpeed = _boostedSpeed;
 
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(Lotusim.KeyBindings.Forward))
                 deltaPosition += transform.forward;
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(Lotusim.KeyBindings.Backward))
                 deltaPosition -= transform.forward;
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(Lotusim.KeyBindings.Left))
                 deltaPosition -= transform.right;
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(Lotusim.KeyBindings.Right))
                 deltaPosition += transform.right;
 
-            if (Input.GetKey(_moveUp))
+            if (Input.GetKey(Lotusim.KeyBindings.Up))
                 deltaPosition += transform.up;
 
-            if (Input.GetKey(_moveDown))
+            if (Input.GetKey(Lotusim.KeyBindings.Down))
                 deltaPosition -= transform.up;
 
             // Calc acceleration

@@ -1,8 +1,8 @@
-[submodule "Submodules/ROS-TCP-Endpoint"]
-	path = Submodules/ROS-TCP-Endpoint
-	url = https://github.com/naval-group/LOTUSim-Unity-ros-tcp-endpoint
-	branch = main
 [submodule "Submodules/custom-hdrp"]
 	path = Submodules/custom-hdrp
-	url = https://github.com/naval-group/LOTUSim-Unity-custom-hdrp
+	url = https://developers.naval-group.com/gitlab/naval-group/naval-group-pacific/lotus/unity/LOTUSim-Unity-custom-hdrp
+	branch = main
+[submodule "Submodules/ROS-TCP-Endpoint"]
+	path = Submodules/ROS-TCP-Endpoint
+	url = https://github.com/IRL-Crossing-CNRS/LOTUSim-Unity-ros-tcp-endpoint
 	branch = main

@@ -19,6 +19,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Lotusim;
 
 /// <summary>
 /// Dynamically navigates between scene objects by smoothly moving, rotating, and zooming the camera.
@@ -250,11 +251,11 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyBindings.NextTarget))
         {
             NextTarget();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyBindings.PrevTarget))
         {
             PreviousTarget();
         }

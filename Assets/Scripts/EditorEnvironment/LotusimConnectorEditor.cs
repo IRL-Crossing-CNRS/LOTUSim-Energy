@@ -11,10 +11,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 //  LotusimConnectorEditor.cs
 // Description:
-// Custom Unity Editor script for LotusimInterface that lets users select and update the interface type 
+// Custom Unity Editor script for LotusimInterface that lets users select and update the interface type
 // and namespace directly in the Inspector, automatically applying changes and triggering relevant callbacks.
 // --------------------------------------------------------------------------------------------------------------------
 
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using Lotusim;
@@ -78,3 +79,4 @@ public class LotusimInterfaceEditor : Editor
         return LotusimInterfaceFactory.GetAvailableInterfaceTypes().ToList();
     }
 }
+#endif // UNITY_EDITOR

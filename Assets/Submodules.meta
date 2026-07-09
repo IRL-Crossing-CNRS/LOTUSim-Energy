@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Submodules.meta
 guid: e92c7d8c156967647bf99bb63f02df32
 folderAsset: yes
 DefaultImporter:
+========
+guid: 1f89a009e6b0427429c83ce787aebb53
+NativeFormatImporter:
+>>>>>>>> 370c0750f8c468e08150cbb30cd1c9d9a6a13eb5:Assets/Animations/propeller002_back_right_x500.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
