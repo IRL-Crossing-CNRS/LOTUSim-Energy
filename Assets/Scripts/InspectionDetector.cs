@@ -127,8 +127,12 @@ namespace Lotusim
                 return;
             }
 
-            // Pre-allocate textures to avoid Memory Allocation lag spikes
-            renderTex = new RenderTexture(imageWidth, imageHeight, 24);
+            // Pre-allocate textures to avoid Memory Allocation lag spikes.
+            // Explicit color format + Create() so the GPU resource exists before the
+            // first Render()/ReadPixels — an uninitialised RenderTexture is one more
+            // way to fault the Vulkan backend on the render thread.
+            renderTex = new RenderTexture(imageWidth, imageHeight, 24, RenderTextureFormat.ARGB32);
+            renderTex.Create();
             captureTex = new Texture2D(imageWidth, imageHeight, TextureFormat.RGB24, false);
 
             InitializeUI();
@@ -375,25 +379,39 @@ namespace Lotusim
         {
             isProcessing = true;
 
-            // 1. Render to our reusable RenderTexture
+            // ALL GPU work must happen at the END of the frame.
+            //
+            // Root cause of the historical SIGSEGV in Unity's "UnityGfxDeviceW" render
+            // thread (seen on both NVIDIA/Optimus and Mesa/Intel Vulkan): this capture
+            // ran inside Update(), mid-frame. Rendering the camera and reading its pixels
+            // back before the frame's own rendering had finished raced the render thread —
+            // ReadPixels touched a RenderTexture the GPU was still writing. It faults
+            // intermittently ("after a while"), and most reliably once DroneCameraHUD
+            // switches this camera to the active display, so Unity's auto-render and our
+            // manual Render() collide in the same frame.
+            //
+            // WaitForEndOfFrame moves the whole capture past the frame's normal rendering
+            // (including this camera's auto-render when it is the active HUD view), turning
+            // it into a clean, well-ordered second pass instead of a mid-frame injection.
+            // Switching async→sync ReadPixels alone (the previous attempted fix) did NOT
+            // help, because the bug was the *timing*, not the async path.
+            yield return new WaitForEndOfFrame();
+
+            // 1. Render to our reusable RenderTexture.
             // Disable every canvas that lives on this camera so nothing from the HUD
             // (InspectionDetector overlay or DroneCameraHUD switcher) is baked into
             // the frame published over ROS.  Unity's normal Game View rendering
             // is unaffected — the canvases are re-enabled immediately after.
             Canvas[] childCanvases = snapCam.GetComponentsInChildren<Canvas>(true);
             foreach (var c in childCanvases) c.enabled = false;
+            RenderTexture prevTarget = snapCam.targetTexture;
             snapCam.targetTexture = renderTex;
             snapCam.Render();
-            snapCam.targetTexture = null;
+            snapCam.targetTexture = prevTarget;
             foreach (var c in childCanvases) c.enabled = true;
 
-            // 2. Read the pixels back SYNCHRONOUSLY.
-            // AsyncGPUReadback.Request() crashes the NVIDIA Vulkan driver on Optimus
-            // laptops (SIGSEGV in Unity's "UnityGfxDeviceW" gfx thread, deep in
-            // libnvidia-glcore) — it faults even with -force-gfx-direct, and the build
-            // has no OpenGL fallback (-force-glcore won't start). A blocking ReadPixels
-            // avoids the async-readback path entirely. At this low publish rate
-            // (inferenceRate) the one-frame stall is negligible.
+            // 2. Read the pixels back SYNCHRONOUSLY. We are now at end-of-frame, so the
+            //    render above has completed and the RenderTexture is safe to read.
             RenderTexture prevActive = RenderTexture.active;
             RenderTexture.active = renderTex;
             captureTex.ReadPixels(new Rect(0, 0, imageWidth, imageHeight), 0, 0);
@@ -403,13 +421,12 @@ namespace Lotusim
             // 3. Encode to JPG on the main thread (requires Unity API)
             byte[] jpgBytes = captureTex.EncodeToJPG(75);
 
-            // 5. Publish over ROS as sensor_msgs/CompressedImage. Detections come back
+            // 4. Publish over ROS as sensor_msgs/CompressedImage. Detections come back
             //    asynchronously on {ns}/{agent}/inspection/detections and are consumed in Update().
             if (RosInterface.Instance.IsConnected)
                 RosInterface.Instance.PublishInspectionImage(resolvedAgentName, jpgBytes);
 
             isProcessing = false;
-            yield break; // capture is now fully synchronous; keeps this a valid coroutine
         }
 
         private void ParseDetections(string json)
