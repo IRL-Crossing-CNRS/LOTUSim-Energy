@@ -74,11 +74,17 @@ public class RendererPosesWaypointFollower : MonoBehaviour
 
                 // Add to buffer with the current Unity time
                 poseBuffer.Add(new PoseSnapshot { time = Time.time, position = newPos, rotation = unityPose.rotation });
-                
-                // Keep buffer clean (keep only the last few seconds of data)
-                if (poseBuffer.Count > 15)
+
+                // Prune by AGE, not count: at a high real-time factor poses arrive
+                // far faster than the native 10 Hz, so a fixed 15-entry cap would
+                // span less wall-time than interpolationDelay — renderTime then falls
+                // before the whole buffer and the vessel freezes. Keeping a fixed
+                // time window guarantees the buffer always brackets renderTime.
+                float minSpan = Mathf.Max(1f, interpolationDelay * 4f);
+                float cutoff = Time.time - minSpan;
+                while (poseBuffer.Count > 2 && poseBuffer[0].time < cutoff)
                     poseBuffer.RemoveAt(0);
-                    
+
                 break;
             }
         }
