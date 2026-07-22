@@ -24,7 +24,6 @@ using RosMessageTypes.Geometry;
 using RosMessageTypes.Lotusim;
 using RosMessageTypes.Sensor;
 using RosMessageTypes.Std;
-using RosMessageTypes.WindPhysics;
 using Unity.Robotics.ROSTCPConnector;
 using UnityEngine;
 

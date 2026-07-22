@@ -1,16 +1,16 @@
-// Hand-written to match wind_physics_msgs/WindTurbineState ROS2 message definition.
+// Hand-written to match lotusim_msgs/WindTurbineState ROS2 message definition.
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.WindPhysics
+namespace RosMessageTypes.Lotusim
 {
     [Serializable]
     public class WindTurbineStateMsg : Message
     {
-        public const string k_RosMessageName = "wind_physics_msgs/WindTurbineState";
+        public const string k_RosMessageName = "lotusim_msgs/WindTurbineState";
         public override string RosMessageName => k_RosMessageName;
 
         /// <summary>Turbine identifier — must match the GameObject name in the Unity scene.</summary>

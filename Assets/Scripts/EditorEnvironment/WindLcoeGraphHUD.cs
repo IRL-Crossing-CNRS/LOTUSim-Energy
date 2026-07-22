@@ -18,7 +18,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using RosMessageTypes.WindPhysics;
+using RosMessageTypes.Lotusim;
 using Unity.Robotics.ROSTCPConnector;
 
 namespace Lotusim

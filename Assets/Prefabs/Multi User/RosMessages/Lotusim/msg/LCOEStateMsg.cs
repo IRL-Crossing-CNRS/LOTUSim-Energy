@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.WindPhysics
+namespace RosMessageTypes.Lotusim
 {
     [Serializable]
     public class LCOEStateMsg : Message
     {
-        public const string k_RosMessageName = "wind_physics_msgs/LCOEState";
+        public const string k_RosMessageName = "lotusim_msgs/LCOEState";
         public override string RosMessageName => k_RosMessageName;
 
         public Std.HeaderMsg header;
