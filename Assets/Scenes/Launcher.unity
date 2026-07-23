@@ -1017,8 +1017,8 @@ MonoBehaviour:
   rosIpInputField: {fileID: 1217862828}
   rosPortInputField: {fileID: 235318841}
   roomName: SilentStormWithRos3domains
-  targetSceneAsset: {fileID: 102900000, guid: e34169635e7d64a449c78e988c577987, type: 3}
-  targetScene: energy
+  targetSceneAsset: {fileID: 102900000, guid: e5d4dc7f5f9854f4baeb4ffc3320ba2a, type: 3}
+  targetScene: demo_facet
   gameVersion: 1
 --- !u!1 &498603527
 GameObject:

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1898.3928, g: 2415.598, b: 4274.196, a: 1}
+  m_IndirectSpecularColor: {r: 1898.3752, g: 2415.5803, b: 4274.11, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6892,6 +6892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cruiser
       objectReference: {fileID: 0}
+    - target: {fileID: 366773926365901739, guid: 912565acf5b47ae8485a55baeb0719d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2433058609697219966, guid: 912565acf5b47ae8485a55baeb0719d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7278,6 +7283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pose Detector A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}
@@ -7766,6 +7776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pose Detector S
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}
@@ -11231,6 +11246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pose Detector E
       objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}
       propertyPath: poseToDetect
@@ -12213,6 +12233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pose Detector Q
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}
@@ -13424,6 +13449,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pose Detector W
       objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}
       propertyPath: poseToDetect
@@ -13864,6 +13894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pose Detector D
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571620627189813232, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e,
         type: 3}

@@ -549,10 +549,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3717283031354345182}
-    - targetCorrespondingSourceObject: {fileID: 1565759703542778175, guid: a9900afb81b41444295fb91abc16083a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2733290856456867966}
   m_SourcePrefab: {fileID: 100100000, guid: a9900afb81b41444295fb91abc16083a, type: 3}
 --- !u!1 &1552188848904662869 stripped
 GameObject:
@@ -679,24 +675,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &2733290856456867966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552188848904662869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b99dc2a1850794097756952fcccd20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trajectoryColor: {r: 1, g: 0.009498768, b: 0, a: 1}
-  lineWidth: 0.2
-  customMaterial: {fileID: 0}
-  trailLength: 100
-  minDistanceBetweenPoints: 0.5
-  maxPoints: 5000
 --- !u!4 &8334174540077074364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8329449537804902870, guid: a9900afb81b41444295fb91abc16083a,

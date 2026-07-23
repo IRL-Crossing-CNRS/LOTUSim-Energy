@@ -54,13 +54,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Energy/facet_VR.unity
     guid: 8e890bafcc0684c41bb72761c1079322
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Energy/demo_facet.unity
     guid: e5d4dc7f5f9854f4baeb4ffc3320ba2a
   - enabled: 0
     path: Assets/Scenes/Defense/defenseScenario.unity
     guid: a6f5b499b741ff344b18233d9aea8fe6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Energy/energy.unity
     guid: e34169635e7d64a449c78e988c577987
   m_configObjects:
