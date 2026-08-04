@@ -21,7 +21,6 @@
 //  3. Optionally adjust Arrow Grid Settings and Visual Settings in the Inspector.
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Lotusim
@@ -82,9 +81,7 @@ namespace Lotusim
 
         #region Private Fields
 
-        private readonly List<LineRenderer> m_arrowLines = new List<LineRenderer>();
-        private GameObject m_arrowRoot;
-        private Material m_sharedMaterial;
+        private WindArrowFieldRenderer m_arrowField;
 
         private Vector3 m_windVector = Vector3.zero;
         private Vector3 m_lastWindVector = new Vector3(float.NaN, float.NaN, float.NaN);
@@ -100,13 +97,16 @@ namespace Lotusim
 
         private void Awake()
         {
-            Shader shader = Shader.Find("HDRP/Unlit") ?? Shader.Find("Unlit/Color");
-            m_sharedMaterial = new Material(shader) { color = colorLow };
-
             if (autoFitToBounds) AutoFitToTurbines();
 
+            m_arrowField = new WindArrowFieldRenderer(
+                transform, "WindArrows",
+                arrowLengthScale, maxArrowLength,
+                arrowLineWidthMin, arrowLineWidthMax,
+                maxWindSpeedForColor);
+
             // Always build the grid so toggling ON is instant.
-            BuildArrowGrid();
+            m_arrowField.BuildGrid(arrowGridSize, new Vector2(arrowSpacing, arrowSpacing), transform.position, arrowHeight);
 
             // Honour the Inspector default for initial visibility.
             m_isVisible = showArrows;
@@ -141,11 +141,7 @@ namespace Lotusim
 
         private void OnDestroy()
         {
-            if (m_sharedMaterial != null)
-                Destroy(m_sharedMaterial);
-
-            if (m_arrowRoot != null)
-                Destroy(m_arrowRoot);
+            m_arrowField?.Dispose();
         }
 
         #endregion
@@ -159,9 +155,9 @@ namespace Lotusim
             {
                 m_windVector = windController.CurrentWindVector;
             }
-            // Wind vector from sliders: X = east/west, Z = north/south (ROS/Gazebo XZ plane).
-            // In Unity (Y-up): slider X -> world X, slider Z -> world Z (forward).
-            m_windMagnitude = new Vector3(m_windVector.x, 0f, m_windVector.z).magnitude;
+            // Wind vector from sliders is ENU: X = east/west, Y = north/south, Z = up/down (height).
+            // In Unity (Y-up): slider X -> world X, slider Z -> world Y (height), slider Y -> world Z (forward).
+            m_windMagnitude = m_windVector.magnitude;
         }
 
         /// <summary>
@@ -202,120 +198,16 @@ namespace Lotusim
 
         #region Arrow Grid
 
-        private void BuildArrowGrid()
-        {
-            m_arrowRoot = new GameObject("WindArrows");
-            m_arrowRoot.transform.SetParent(transform);
-            
-            int layerIndex = LayerMask.NameToLayer("Trajectories");
-            if (layerIndex > -1) m_arrowRoot.layer = layerIndex;
-
-            int cols = arrowGridSize.x;
-            int rows = arrowGridSize.y;
-            float offsetX = (cols - 1) * arrowSpacing * 0.5f;
-            float offsetZ = (rows - 1) * arrowSpacing * 0.5f;
-
-            for (int x = 0; x < cols; x++)
-            {
-                for (int z = 0; z < rows; z++)
-                {
-                    Vector3 origin = transform.position + new Vector3(
-                        x * arrowSpacing - offsetX,
-                        arrowHeight,
-                        z * arrowSpacing - offsetZ
-                    );
-
-                    // Two LineRenderers per arrow:
-                    //   shaft — constant-width segment from origin to the neck
-                    //   head  — wide-to-zero taper from neck to tip → filled triangle arrowhead
-                    LineRenderer shaft = CreateLine($"Arrow_{x}_{z}_shaft", 2);
-                    m_arrowLines.Add(shaft);
-
-                    LineRenderer head = CreateLine($"Arrow_{x}_{z}_head", 2);
-                    m_arrowLines.Add(head);
-
-                    shaft.SetPosition(0, origin);
-                    shaft.SetPosition(1, origin);
-                    head.SetPosition(0, origin);
-                    head.SetPosition(1, origin);
-                }
-            }
-        }
-
         private void UpdateArrows()
         {
-            if (m_arrowLines.Count == 0) return;
-
             float t = Mathf.Clamp01(m_windMagnitude / maxWindSpeedForColor);
             Color arrowColor = Color.Lerp(colorLow, colorHigh, t);
             arrowColor.a = Mathf.Lerp(0.3f, 1f, t);
 
-            Vector3 windDir = m_windMagnitude > 0.01f
-                ? new Vector3(m_windVector.x, 0f, m_windVector.z).normalized
-                : Vector3.forward;
+            // ENU -> Unity: slider X -> world X, slider Z (up/down) -> world Y, slider Y (north/south) -> world Z.
+            Vector3 windDir = new Vector3(m_windVector.x, m_windVector.z, m_windVector.y);
 
-            float rawLength = Mathf.Sqrt(m_windMagnitude) * arrowLengthScale;
-            float arrowLength = Mathf.Min(rawLength, maxArrowLength);
-
-            float lineWidth = Mathf.Lerp(arrowLineWidthMin, arrowLineWidthMax, t);
-
-            // Arrowhead is the last 30% of the arrow; its base is ~2.4x the shaft width
-            // so it visibly flares out before tapering to the tip.
-            const float kHeadFraction = 0.3f;
-            const float kHeadFlare    = 2.4f;
-            float headLen  = arrowLength * kHeadFraction;
-            float shaftLen = arrowLength - headLen;
-
-            if (m_sharedMaterial != null)
-            {
-                m_sharedMaterial.color = arrowColor;
-            }
-
-            for (int i = 0; i < m_arrowLines.Count; i += 2)
-            {
-                if (i + 1 >= m_arrowLines.Count) break;
-
-                LineRenderer shaft = m_arrowLines[i];
-                LineRenderer head  = m_arrowLines[i + 1];
-
-                Vector3 origin = shaft.GetPosition(0);
-                Vector3 neck   = origin + windDir * shaftLen;
-                Vector3 tip    = origin + windDir * arrowLength;
-
-                // Shaft: constant width from origin to neck
-                shaft.startWidth = lineWidth;
-                shaft.endWidth   = lineWidth;
-                shaft.SetPosition(1, neck);
-                shaft.startColor = arrowColor;
-                shaft.endColor   = arrowColor;
-
-                // Head: wide flare at the neck, tapers to a point — filled triangle
-                head.startWidth = lineWidth * kHeadFlare;
-                head.endWidth   = 0f;
-                head.SetPosition(0, neck);
-                head.SetPosition(1, tip);
-                head.startColor = arrowColor;
-                head.endColor   = arrowColor;
-            }
-        }
-
-        private LineRenderer CreateLine(string goName, int pointCount)
-        {
-            GameObject go = new GameObject(goName);
-            go.transform.SetParent(m_arrowRoot.transform);
-            
-            int layerIndex = LayerMask.NameToLayer("Trajectories");
-            if (layerIndex > -1) go.layer = layerIndex;
-
-            LineRenderer lr = go.AddComponent<LineRenderer>();
-            lr.positionCount = pointCount;
-            lr.startWidth = arrowLineWidthMin;
-            lr.endWidth = arrowLineWidthMin;
-            lr.useWorldSpace = true;
-
-            lr.sharedMaterial = m_sharedMaterial;
-
-            return lr;
+            m_arrowField.UpdateArrows(windDir, m_windMagnitude, arrowColor);
         }
 
         /// <summary>
@@ -323,8 +215,7 @@ namespace Lotusim
         /// </summary>
         private void SetFieldVisible(bool visible)
         {
-            if (m_arrowRoot != null)
-                m_arrowRoot.SetActive(visible);
+            m_arrowField?.SetVisible(visible);
         }
 
         #endregion

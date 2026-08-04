@@ -105,7 +105,7 @@ namespace Lotusim
 
             Vector3 wind = windController.CurrentWindVector;
             float wx = wind.x;
-            float wz = wind.z; // Slider Z = north/south -> Unity world Z
+            float wz = wind.y; // Slider Y = north/south (ENU) -> Unity world Z
 
             m_windMagnitude = Mathf.Sqrt(wx * wx + wz * wz);
 

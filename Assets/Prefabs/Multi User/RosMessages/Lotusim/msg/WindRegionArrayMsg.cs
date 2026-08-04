@@ -1,0 +1,57 @@
+// Hand-written to match lotusim_msgs/WindRegionArray ROS2 message definition.
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+using Unity.Robotics.ROSTCPConnector.MessageGeneration;
+
+namespace RosMessageTypes.Lotusim
+{
+    [Serializable]
+    public class WindRegionArrayMsg : Message
+    {
+        public const string k_RosMessageName = "lotusim_msgs/WindRegionArray";
+        public override string RosMessageName => k_RosMessageName;
+
+        public WindRegionMsg[] regions;
+
+        public WindRegionArrayMsg()
+        {
+            this.regions = new WindRegionMsg[0];
+        }
+
+        public WindRegionArrayMsg(WindRegionMsg[] regions)
+        {
+            this.regions = regions;
+        }
+
+        public static WindRegionArrayMsg Deserialize(MessageDeserializer deserializer) => new WindRegionArrayMsg(deserializer);
+
+        private WindRegionArrayMsg(MessageDeserializer deserializer)
+        {
+            deserializer.Read(out this.regions, WindRegionMsg.Deserialize, deserializer.ReadLength());
+        }
+
+        public override void SerializeTo(MessageSerializer serializer)
+        {
+            serializer.WriteLength(this.regions);
+            serializer.Write(this.regions);
+        }
+
+        public override string ToString()
+        {
+            return "WindRegionArrayMsg: " +
+            "\nregions: " + System.String.Join(", ", regions.ToList());
+        }
+
+#if UNITY_EDITOR
+        [UnityEditor.InitializeOnLoadMethod]
+#else
+        [UnityEngine.RuntimeInitializeOnLoadMethod]
+#endif
+        public static void Register()
+        {
+            MessageRegistry.Register(k_RosMessageName, Deserialize);
+        }
+    }
+}

@@ -13,6 +13,8 @@
 //
 //  Description:
 //  Controls wind vector sliders along X, Y, Z axes and publishes their values to a ROS2 topic via TCP/IP.
+//  Also subscribes to that same topic, so wind changes published by another machine (or another
+//  Unity client) update the local sliders and, transitively, the wind field visualizer/HUD.
 //  Supports keyboard shortcuts for increment/decrement and reset.
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +29,8 @@ using Unity.Robotics.ROSTCPConnector;
 namespace Lotusim
 {
     /// <summary>
-    /// Handles UI sliders for wind control and sends <see cref="WindMsg"/> messages to a ROS2 topic.
+    /// Handles UI sliders for wind control, publishing and subscribing to <see cref="WindMsg"/>
+    /// messages on a ROS2 topic so local input and remote wind changes stay in sync.
     /// </summary>
     /// <remarks>
     /// - X-axis: keys 1 (decrease) / 2 (increase)<br/>
@@ -45,10 +48,10 @@ namespace Lotusim
         [Tooltip("Slider controlling the X-axis wind component.")]
         [SerializeField] private Slider sliderX;
 
-        [Tooltip("Slider controlling the Y-axis wind component.")]
+        [Tooltip("Slider controlling the Y-axis wind component (ENU north/south, surface plane).")]
         [SerializeField] private Slider sliderY;
 
-        [Tooltip("Slider controlling the Z-axis wind component.")]
+        [Tooltip("Slider controlling the Z-axis wind component (ENU up/down, height).")]
         [SerializeField] private Slider sliderZ;
 
         [Header("Text Displays")]
@@ -88,7 +91,10 @@ namespace Lotusim
 
         #region Public Properties
 
-        /// <summary>Current wind vector in Unity world space (X, Y, Z) as set by the sliders.</summary>
+        /// <summary>
+        /// Current wind vector in ENU space (X = east/west, Y = north/south, Z = up/down) as set by the sliders.
+        /// Note: this is NOT Unity world space — Unity is Y-up, so consumers must swap Y/Z to get Unity world coords.
+        /// </summary>
         public Vector3 CurrentWindVector => sliderX != null
             ? new Vector3(sliderX.value, sliderY.value, sliderZ.value)
             : Vector3.zero;
@@ -172,7 +178,8 @@ namespace Lotusim
             if (!isRosInitialized)
             {
                 m_rosConnection.RegisterPublisher<WindMsg>(topicName);
-                Debug.Log($"[WindSliderController] Registered WindMsg publisher on {topicName}.");
+                rosInterface.RegisterWindSubscription(topicName);
+                Debug.Log($"[WindSliderController] Registered WindMsg publisher/subscriber on {topicName}.");
 
                 // Send initial state
                 PublishWind(sliderX.value, sliderY.value, sliderZ.value);
@@ -183,6 +190,41 @@ namespace Lotusim
 
                 isRosInitialized = true;
             }
+        }
+
+        /// <summary>
+        /// Applies a <see cref="WindMsg"/> received from ROS2 (e.g. published by another machine)
+        /// to the local sliders, so every client stays in sync with the shared wind state.
+        /// Called by <see cref="RosInterface"/>, which owns the actual ROS subscription.
+        /// </summary>
+        public void OnWindMsgReceived(WindMsg msg)
+        {
+            if (sliderX == null || sliderY == null || sliderZ == null) return;
+
+            float x = (float)msg.linear_velocity.x;
+            float y = (float)msg.linear_velocity.y;
+            float z = (float)msg.linear_velocity.z;
+
+            // Snap away the Gazebo keep-alive epsilon (see PublishWind) so a reset-to-zero
+            // doesn't echo back as a barely-nonzero vector and leave a stray arrow rendered.
+            if (Mathf.Abs(x) < 0.01f && Mathf.Abs(y) < 0.01f && Mathf.Abs(z) < 0.01f)
+            {
+                x = 0f;
+                y = 0f;
+                z = 0f;
+            }
+
+            sliderX.value = x;
+            sliderY.value = y;
+            sliderZ.value = z;
+
+            // Record as already in sync so the next publish tick doesn't echo
+            // this value straight back onto the topic.
+            prevX = sliderX.value;
+            prevY = sliderY.value;
+            prevZ = sliderZ.value;
+
+            UpdateText();
         }
 
         private void HandleKeyboardInput()

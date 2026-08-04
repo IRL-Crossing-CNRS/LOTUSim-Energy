@@ -102,6 +102,16 @@ namespace Lotusim
         private WindTurbineArrayMsg m_wind_turbine_msg;
         private Mutex m_wind_turbine_mutex = new Mutex();
 
+        // Wind vector: subscribed lazily per-topic (WindSliderController may use a custom topic
+        // name), same idempotent-registration pattern as the inspection detections subscription.
+        private WindMsg m_wind_msg;
+        private Mutex m_wind_mutex = new Mutex();
+        private readonly HashSet<string> m_windSubscribedTopics = new HashSet<string>();
+
+        // Wind regions: fixed topic, broadcast by the simulator core (like wind turbines).
+        private WindRegionArrayMsg m_wind_region_msg;
+        private Mutex m_wind_region_mutex = new Mutex();
+
         // Inspection: image transport (Unity → remote) and detections (remote → Unity).
         private readonly Dictionary<string, CompressedImageMsg> m_inspectionImageMsgs = new Dictionary<string, CompressedImageMsg>();
         private readonly Dictionary<string, string> m_inspectionDetections = new Dictionary<string, string>();
@@ -183,6 +193,15 @@ namespace Lotusim
                 OnWindTurbinesReceived
             );
 
+            // Subscribe to wind regions (localized wind boxes, distinct from the ambient Wind slider).
+            // Not namespaced under _namespace: like WindSliderController's ambient WindMsg topic
+            // ("/aerialWorld/wind"), wind regions are a global environment concept published on a
+            // fixed absolute topic, not scoped to this scene's vessel namespace ("energy", etc.).
+            m_rosConnection.Subscribe<WindRegionArrayMsg>(
+                "/aerialWorld/wind/regions",
+                OnWindRegionsReceived
+            );
+
             Debug.Log("[RosInterface] Subscribed to all ROS topics.");
         }
 
@@ -194,6 +213,8 @@ namespace Lotusim
             UpdateVesselPoses();
             ProcessXdynCommands();
             ProcessWindTurbines();
+            ProcessWind();
+            ProcessWindRegions();
         }
 
         #endregion
@@ -236,6 +257,13 @@ namespace Lotusim
             m_wind_turbine_mutex.WaitOne();
             m_wind_turbine_msg = msg;
             m_wind_turbine_mutex.ReleaseMutex();
+        }
+
+        private void OnWindRegionsReceived(WindRegionArrayMsg msg)
+        {
+            m_wind_region_mutex.WaitOne();
+            m_wind_region_msg = msg;
+            m_wind_region_mutex.ReleaseMutex();
         }
 
         #endregion
@@ -584,6 +612,72 @@ namespace Lotusim
                         break;
                     }
                 }
+            }
+        }
+
+        #endregion
+
+        #region Wind Vector Handling
+
+        /// <summary>
+        /// Subscribes to the given wind topic if not already subscribed. Idempotent, so every
+        /// <see cref="WindSliderController"/> instance can call this on its own topic without
+        /// duplicating the subscription.
+        /// </summary>
+        public void RegisterWindSubscription(string topicName)
+        {
+            if (!m_windSubscribedTopics.Add(topicName)) return;
+
+            m_rosConnection.Subscribe<WindMsg>(topicName, msg =>
+            {
+                m_wind_mutex.WaitOne();
+                m_wind_msg = msg;
+                m_wind_mutex.ReleaseMutex();
+            });
+
+            Debug.Log($"[RosInterface] Subscribed to wind topic: {topicName}");
+        }
+
+        /// <summary>
+        /// Dispatches the latest received wind vector to all WindSliderController components in the scene.
+        /// </summary>
+        private void ProcessWind()
+        {
+            m_wind_mutex.WaitOne();
+            var msg = m_wind_msg;
+            m_wind_msg = null; // consume
+            m_wind_mutex.ReleaseMutex();
+
+            if (msg == null) return;
+
+            WindSliderController[] controllers = UnityEngine.Object.FindObjectsOfType<WindSliderController>();
+            foreach (WindSliderController ctrl in controllers)
+            {
+                ctrl.OnWindMsgReceived(msg);
+            }
+        }
+
+        #endregion
+
+        #region Wind Region Handling
+
+        /// <summary>
+        /// Dispatches the latest received wind region array to all WindRegionVisualizer
+        /// components in the scene (there is typically just one, acting as a manager).
+        /// </summary>
+        private void ProcessWindRegions()
+        {
+            m_wind_region_mutex.WaitOne();
+            var msg = m_wind_region_msg;
+            m_wind_region_msg = null; // consume
+            m_wind_region_mutex.ReleaseMutex();
+
+            if (msg == null) return;
+
+            WindRegionVisualizer[] visualizers = UnityEngine.Object.FindObjectsOfType<WindRegionVisualizer>();
+            foreach (WindRegionVisualizer visualizer in visualizers)
+            {
+                visualizer.OnWindRegionsReceived(msg);
             }
         }
 
