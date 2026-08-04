@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1900.6995, g: 2419.3499, b: 4285.309, a: 1}
+  m_IndirectSpecularColor: {r: 1898.3752, g: 2415.5588, b: 4274.1177, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   showLabels: 1
   labelHeightOffset: 6
   labelFontSize: 10
-  staleTimeoutSeconds: 5
+  staleTimeoutSeconds: 60
   boxShape:
     groundHeight: 0
     wallHeight: 95
@@ -11833,9 +11833,10 @@ Transform:
   - {fileID: 1707203001}
   - {fileID: 2039377672}
   - {fileID: 112131758}
-  - {fileID: 1202726714}
   - {fileID: 19755112}
   - {fileID: 181867024}
+  - {fileID: 1202726714}
+  - {fileID: 2066769443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424321110
@@ -14575,6 +14576,62 @@ MonoBehaviour:
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_FadeFactor: 1
   m_Version: 2
+--- !u!1 &2066769442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066769443}
+  - component: {fileID: 2066769444}
+  m_Layer: 0
+  m_Name: OceanCurrentVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2066769443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066769442}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1414520700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066769444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066769442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6bc57d08a8ff7499900b49923f4620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoFitToBounds: 1
+  showArrows: 1
+  arrowGridSize: {x: 6, y: 6}
+  arrowSpacing: 100
+  arrowDepth: -20
+  arrowLengthScale: 4
+  maxArrowLength: 50
+  arrowLineWidthMin: 0.5
+  arrowLineWidthMax: 4
+  colorLow: {r: 0.2, g: 0.6, b: 0.9, a: 0.4}
+  colorHigh: {r: 0.1, g: 0.2, b: 0.8, a: 0.8}
+  maxCurrentSpeedForColor: 3
 --- !u!1 &2070737197
 GameObject:
   m_ObjectHideFlags: 0

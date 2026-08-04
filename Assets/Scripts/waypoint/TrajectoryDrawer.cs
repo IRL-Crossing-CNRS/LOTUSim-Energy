@@ -29,21 +29,34 @@ namespace Lotusim
         private LineRenderer lineRenderer;
         private Vector3 lastSavedPoint;
 
+        // True when we created the default material ourselves (HDRP/Unlit) rather than the caller
+        // supplying customMaterial — only then do we know it's safe to push color to the material
+        // directly and to route it into HDRP's After-Post-Process queue (see Awake()).
+        private bool m_usingDefaultMaterial;
+
         private void Awake()
         {
             lineRenderer = GetComponent<LineRenderer>();
-            
+
             // Basic LineRenderer configuration for proper display
             if (customMaterial != null)
             {
                 lineRenderer.material = customMaterial;
+                // Not nudged into the After-Post-Process queue: unlike our own HDRP/Unlit default
+                // below, an arbitrary caller-supplied shader (e.g. HDRP/Lit) may not support that
+                // pass at all and would silently stop rendering entirely if forced into it.
             }
             else if (lineRenderer.sharedMaterial == null)
             {
-                // The "Sprites/Default" shader works on almost all pipelines
-                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+                // HDRP/Unlit, not "Sprites/Default": the latter has no HDRP-specific pass tags, so
+                // forcing it into the After-Post-Process queue below made it match zero draw passes
+                // and vanish completely instead of just losing the underwater-visibility fix.
+                Material mat = new Material(Shader.Find("HDRP/Unlit"));
+                WindVisualUtils.ConfigureTransparent(mat, trajectoryColor);
+                lineRenderer.material = mat;
+                m_usingDefaultMaterial = true;
             }
-            
+
             lineRenderer.useWorldSpace = true; // IMPORTANT: The line attaches to the world, not the drone
             
             // Configuration for nice rendering (rounded)
@@ -71,6 +84,10 @@ namespace Lotusim
             lineRenderer.endColor = trajectoryColor;
             lineRenderer.startWidth = lineWidth;
             lineRenderer.endWidth = lineWidth;
+
+            // HDRP/Unlit doesn't read the LineRenderer's per-vertex colors above, so push the
+            // color to the material directly to keep real-time Inspector tweaks + HDR glow working.
+            if (m_usingDefaultMaterial) WindVisualUtils.SetColor(lineRenderer.material, trajectoryColor);
 
             // If the drone has traveled enough distance, we validate the point and create a new one
             if (Vector3.Distance(transform.position, lastSavedPoint) >= minDistanceBetweenPoints)

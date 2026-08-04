@@ -104,6 +104,9 @@ namespace Lotusim
         [KeyDescription("Visualization", "Toggle Wind Regions")]
         public static KeyCode ToggleWindRegions = KeyCode.Alpha3;
 
+        [KeyDescription("Visualization", "Toggle Ocean Current Field")]
+        public static KeyCode ToggleOceanCurrentField = KeyCode.Alpha6;
+
         // Display Switching
         [KeyDescription("Display Switching", "Main Camera")]
         public static KeyCode DisplayMain = KeyCode.Keypad1;

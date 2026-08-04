@@ -36,9 +36,25 @@ namespace Lotusim
             if (mat.HasProperty("_BlendMode")) mat.SetFloat("_BlendMode", 0f);     // Alpha blend
             if (mat.HasProperty("_CullMode")) mat.SetFloat("_CullMode", 0f);       // 0 = double-sided
             if (mat.HasProperty("_ZWrite")) mat.SetFloat("_ZWrite", 0f);
-            mat.renderQueue = 3000;
+            RenderAfterPostProcess(mat);
 
             SetColor(mat, initialColor);
+        }
+
+        /// <summary>
+        /// Routes the material into HDRP's After-Post-Process transparent render queue, so it
+        /// composites after the water surface's own refraction/absorption pass instead of being
+        /// darkened/tinted by it (the water surface applies Beer-Lambert absorption to whatever
+        /// transparent geometry sits behind it in the normal transparent draw order — that's why
+        /// underwater arrows/trails were only visible looking up at them from below the water,
+        /// never looking down from above). Still depth-tested against opaque geometry, so real
+        /// solids can still occlude it; only the water's own compositing pass is skipped.
+        /// See HDRenderQueue.Priority.AfterPostprocessTransparent (queue range 3600-3800).
+        /// </summary>
+        public static void RenderAfterPostProcess(Material mat)
+        {
+            if (mat == null) return;
+            mat.renderQueue = 3700;
         }
 
         /// <summary>

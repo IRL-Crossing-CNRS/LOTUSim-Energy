@@ -112,6 +112,15 @@ namespace Lotusim
         private WindRegionArrayMsg m_wind_region_msg;
         private Mutex m_wind_region_mutex = new Mutex();
 
+        // Ocean current: single latched 2-axis (ENU x/y) vector, scoped under this scene's
+        // vessel namespace (unlike wind, which is a fixed-topic global aerial concept).
+        // enable_current is the scenario's explicit on/off signal — generic_scenario publishes
+        // enable_current=false on teardown (ctrl+c / agent delete), which is how the visualizer
+        // knows to hide the field instead of relying on a stale-data timeout (this topic is
+        // latched and, in practice, only ever published once at scenario start).
+        private OceanCurrentMsg m_ocean_current_msg;
+        private Mutex m_ocean_current_mutex = new Mutex();
+
         // Inspection: image transport (Unity → remote) and detections (remote → Unity).
         private readonly Dictionary<string, CompressedImageMsg> m_inspectionImageMsgs = new Dictionary<string, CompressedImageMsg>();
         private readonly Dictionary<string, string> m_inspectionDetections = new Dictionary<string, string>();
@@ -202,6 +211,14 @@ namespace Lotusim
                 OnWindRegionsReceived
             );
 
+            // Subscribe to ocean current (latched, single fixed vector for now, 2-axis ENU).
+            // Namespaced under this scene, unlike wind, since current is specific to this
+            // vessel/world's underwater environment rather than a shared aerial-world concept.
+            m_rosConnection.Subscribe<OceanCurrentMsg>(
+                $"{_namespace}/ocean_current",
+                OnOceanCurrentReceived
+            );
+
             Debug.Log("[RosInterface] Subscribed to all ROS topics.");
         }
 
@@ -215,6 +232,7 @@ namespace Lotusim
             ProcessWindTurbines();
             ProcessWind();
             ProcessWindRegions();
+            ProcessOceanCurrent();
         }
 
         #endregion
@@ -678,6 +696,40 @@ namespace Lotusim
             foreach (WindRegionVisualizer visualizer in visualizers)
             {
                 visualizer.OnWindRegionsReceived(msg);
+            }
+        }
+
+        #endregion
+
+        #region Ocean Current Handling
+
+        /// <summary>
+        /// Latches the most recent ocean current message (called on the ROS receive thread).
+        /// </summary>
+        private void OnOceanCurrentReceived(OceanCurrentMsg msg)
+        {
+            m_ocean_current_mutex.WaitOne();
+            m_ocean_current_msg = msg;
+            m_ocean_current_mutex.ReleaseMutex();
+        }
+
+        /// <summary>
+        /// Dispatches the latest received ocean current vector to all OceanCurrentVisualizer
+        /// components in the scene.
+        /// </summary>
+        private void ProcessOceanCurrent()
+        {
+            m_ocean_current_mutex.WaitOne();
+            var msg = m_ocean_current_msg;
+            m_ocean_current_msg = null; // consume
+            m_ocean_current_mutex.ReleaseMutex();
+
+            if (msg == null) return;
+
+            OceanCurrentVisualizer[] visualizers = UnityEngine.Object.FindObjectsOfType<OceanCurrentVisualizer>();
+            foreach (OceanCurrentVisualizer visualizer in visualizers)
+            {
+                visualizer.OnOceanCurrentReceived(msg);
             }
         }
 
