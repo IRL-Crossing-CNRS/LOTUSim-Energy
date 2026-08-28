@@ -64,7 +64,7 @@ public class FreeFlyCamera : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Rate which is applied during camera movement")]
-    private float _speedAccelerationFactor = 1.5f;
+    private float _speedAccelerationFactor = 2f;
 
     [Space]
 
@@ -133,6 +133,8 @@ public class FreeFlyCamera : MonoBehaviour
         }
 
         _currentIncreaseMem += Time.deltaTime * (_speedAccelerationFactor - 1);
+        _currentIncreaseMem = Mathf.Clamp(_currentIncreaseMem, 0f, 3f);
+
         _currentIncrease = Time.deltaTime + Mathf.Pow(_currentIncreaseMem, 3) * Time.deltaTime;
     }
 

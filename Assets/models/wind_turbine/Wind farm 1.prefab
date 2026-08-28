@@ -1,0 +1,5926 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &307995014585611167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3706453490827996584}
+  - component: {fileID: 4900572577596882015}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3706453490827996584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307995014585611167}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.893991, y: -0.42588052, z: 0.02677872, w: 0.13670683}
+  m_LocalPosition: {x: 24.095634, y: -14.475934, z: 20.403532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 15.5, y: 184.08, z: 231.5}
+--- !u!114 &4900572577596882015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307995014585611167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 36e1d5b960f85de4185efb6579cde033, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &314563919101673162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671694770819429172}
+  - component: {fileID: 4389307250435873033}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671694770819429172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314563919101673162}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.098476075, y: 0.70021605, z: -0.70021605, w: -0.098476075}
+  m_LocalPosition: {x: 20.085754, y: -26.00002, z: 22.506071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4389307250435873033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314563919101673162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &515290283132754891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5236671023521000632}
+  - component: {fileID: 3492059702903182538}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5236671023521000632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515290283132754891}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.34817675, y: -0.6154454, z: 0.6154454, w: -0.34817675}
+  m_LocalPosition: {x: 21.37825, y: -26.00002, z: 4.263212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3492059702903182538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515290283132754891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &652434981676391150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4174817563129926166}
+  - component: {fileID: 4238220512570071495}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4174817563129926166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652434981676391150}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.09767036, y: 0.00837417, z: 0.98388505, w: -0.14953458}
+  m_LocalPosition: {x: 0.2784691, y: 71.089005, z: -1.8207496}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4238220512570071495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652434981676391150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1015867999442139768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6569079941244396113}
+  - component: {fileID: 3021639063292942152}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6569079941244396113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015867999442139768}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.33782074, y: -0.62119013, z: 0.62119013, w: -0.33782074}
+  m_LocalPosition: {x: -21.95636, y: -26.000021, z: 5.623945}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3021639063292942152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015867999442139768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1245031205959882072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9041542789632986681}
+  - component: {fileID: 9048959496347352904}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9041542789632986681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245031205959882072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.38585597, y: 0.40095407, z: -0.009148566, w: 0.8308233}
+  m_LocalPosition: {x: -15.641617, y: -28.478617, z: -2.9527762}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9048959496347352904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245031205959882072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1389428691800599034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2492339470499126653}
+  - component: {fileID: 5486467170850596309}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2492339470499126653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389428691800599034}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.2689408, y: -0.96304435, z: 0.009370025, w: 0.011340733}
+  m_LocalPosition: {x: -0.34103394, y: 16.142271, z: 2.5718548}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5486467170850596309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389428691800599034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.1, y: 3.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1719165867913092277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4914554678327675278}
+  - component: {fileID: 5495727602924558378}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4914554678327675278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719165867913092277}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6790136, y: -0.45380315, z: 0.5761172, w: 0.03304821}
+  m_LocalPosition: {x: -13.920734, y: -12.825334, z: 8.844512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5495727602924558378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719165867913092277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1811851549077012439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8318083842058046297}
+  - component: {fileID: 6284901851855892120}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8318083842058046297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811851549077012439}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.8662715, y: -0.48381203, z: -0.108693026, w: -0.0607078}
+  m_LocalPosition: {x: 23.852814, y: -13.273036, z: 20.348875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6284901851855892120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811851549077012439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &1874029224943939235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8520318548603423782}
+  - component: {fileID: 6603432119410555303}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8520318548603423782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874029224943939235}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3378217, y: -0.93998325, z: 0.01640167, w: 0.045156483}
+  m_LocalPosition: {x: 0.4528656, y: -19.17782, z: 3.2440171}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6603432119410555303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874029224943939235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2476273772570814059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876672456388774342}
+  - component: {fileID: 4263738973029282161}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876672456388774342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476273772570814059}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.4974636, y: 0.46133476, z: 0.56904966, w: -0.4646317}
+  m_LocalPosition: {x: 0.6208954, y: -14.19691, z: -16.038225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4263738973029282161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476273772570814059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2487082159150604349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6076385507728398645}
+  - component: {fileID: 7450534664931392212}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6076385507728398645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487082159150604349}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.94191176, y: 0.26298591, z: 0.20887817, w: 0.0032521414}
+  m_LocalPosition: {x: -7.4697266, y: -21.84016, z: 5.383269}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7450534664931392212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487082159150604349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2585134316569753326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8916948727769282002}
+  - component: {fileID: 1558985754611178900}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8916948727769282002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585134316569753326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43034464, y: -0.15126038, z: 0.8405592, w: -0.2922056}
+  m_LocalPosition: {x: -2.6379242, y: -10.710822, z: -1.8552254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558985754611178900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585134316569753326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2727377681852140098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493576977105186409}
+  - component: {fileID: 325079108798611826}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1493576977105186409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727377681852140098}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.2524212, y: -0.54272133, z: 0.34760725, w: 0.72173846}
+  m_LocalPosition: {x: 1.7912712, y: 67.79474, z: -0.56542456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &325079108798611826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727377681852140098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2797554018122903795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5801746182162631799}
+  - component: {fileID: 6444474561294615950}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5801746182162631799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797554018122903795}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.030341554, y: 0.9983844, z: 0.0012967987, w: -0.048024863}
+  m_LocalPosition: {x: 0.50971985, y: -31.230005, z: 3.242475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6444474561294615950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797554018122903795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2846603748338020902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7830106944500474973}
+  - component: {fileID: 7688487652126231354}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7830106944500474973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846603748338020902}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.8130529, y: -0.46912223, z: 0.29901123, w: 0.17164384}
+  m_LocalPosition: {x: 29.031027, y: -7.576841, z: 18.886703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7688487652126231354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846603748338020902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2917915154729522877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5176980614003771537}
+  - component: {fileID: 6217071859792845217}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5176980614003771537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917915154729522877}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.69184256, y: 0.14612974, z: -0.14612974, w: -0.69184256}
+  m_LocalPosition: {x: -20.760727, y: -26.00002, z: 21.443998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6217071859792845217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917915154729522877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2963916168918608409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103759728933686980}
+  - component: {fileID: 7046582728705027434}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2103759728933686980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963916168918608409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5132482, y: 0.07135931, z: 0.7153144, w: 0.46883854}
+  m_LocalPosition: {x: -4.258789, y: -1.7597979, z: -22.981293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7046582728705027434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963916168918608409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &2973863624654393898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6906671290138024046}
+  - component: {fileID: 9124057654722825635}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6906671290138024046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973863624654393898}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.73434585, y: 0.6609, z: 0.11074676, w: -0.108085714}
+  m_LocalPosition: {x: 0.6085739, y: 36.299175, z: 2.2541683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9124057654722825635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973863624654393898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1.5, z: 1.64}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3045264757452197367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932220378430003788}
+  - component: {fileID: 138787294856772720}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &932220378430003788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045264757452197367}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7020392, y: 0.6247259, z: -0.25379953, w: 0.22900753}
+  m_LocalPosition: {x: -33.207245, y: -27.398447, z: 23.235167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &138787294856772720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045264757452197367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3095840334646406432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5768359313804237827}
+  - component: {fileID: 4892114583931926778}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5768359313804237827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095840334646406432}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6481921, y: 0.41602695, z: -0.58507603, w: 0.2538791}
+  m_LocalPosition: {x: -0.8829956, y: -22.404797, z: -8.416582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4892114583931926778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095840334646406432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3125513635674995617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8108573263947148314}
+  - component: {fileID: 285714293742955854}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8108573263947148314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125513635674995617}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.33337745, y: 0.91716367, z: 0.120456606, w: -0.18210009}
+  m_LocalPosition: {x: -14.857391, y: -12.271089, z: 9.7368}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285714293742955854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125513635674995617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3130044665506879638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3991793257193175522}
+  - component: {fileID: 5597493190053219117}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3991793257193175522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130044665506879638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.39608595, y: -0.037663575, z: 0.91344875, w: -0.08549221}
+  m_LocalPosition: {x: -29.276863, y: -15.623421, z: 10.250182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5597493190053219117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130044665506879638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3147510656363911433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386563507254560180}
+  - component: {fileID: 8025303785785891894}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386563507254560180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147510656363911433}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7411517, y: 0.60060877, z: 0.23345163, w: -0.18831815}
+  m_LocalPosition: {x: 28.385223, y: -10.311759, z: 19.4133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8025303785785891894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147510656363911433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3160709399749365490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8701236549502499270}
+  - component: {fileID: 2657242264107829938}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8701236549502499270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160709399749365490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.97459406, y: -0.18893021, z: -0.11671779, w: 0.029135909}
+  m_LocalPosition: {x: 0.47498703, y: 38.484264, z: 2.2595396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 179.273, y: 13.800003, z: 22.03}
+--- !u!114 &2657242264107829938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160709399749365490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b75e6243ed483a14a86e7709abb0a87e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 0.19, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3391905523467162748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7813913875092765564}
+  - component: {fileID: 4758086004281488331}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7813913875092765564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3391905523467162748}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.014592655, y: -0.5181342, z: 0.3423574, w: 0.7836552}
+  m_LocalPosition: {x: 16.443665, y: -28.589058, z: -1.7171042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4758086004281488331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3391905523467162748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3507386575837446115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9109631487744579894}
+  - component: {fileID: 7543383918380121572}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9109631487744579894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507386575837446115}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.04717013, y: 0.8497664, z: -0.027871579, w: 0.5243046}
+  m_LocalPosition: {x: -3.040512, y: -22.559002, z: 1.2072127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7543383918380121572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507386575837446115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &3931772654154729288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2410239535462528240}
+  - component: {fileID: 6038980824767532710}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2410239535462528240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3931772654154729288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.45171958, y: -0.0609701, z: 0.88171595, w: -0.12169223}
+  m_LocalPosition: {x: -9.275787, y: -27.532593, z: -36.452457}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6038980824767532710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3931772654154729288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4058676803141046929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5844181626737092362}
+  m_Layer: 0
+  m_Name: Wind farm 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5844181626737092362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058676803141046929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2228.124, y: -154.17543, z: 191.01353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7802854652147975537}
+  - {fileID: 5155260682497664476}
+  - {fileID: 6847047386939333923}
+  - {fileID: 3845010551172119334}
+  - {fileID: 2184267144593966116}
+  - {fileID: 8469875550728964545}
+  - {fileID: 3166132375529159117}
+  - {fileID: 6873850104086102145}
+  - {fileID: 2718725596849764160}
+  - {fileID: 5305282632720209890}
+  - {fileID: 5087157294857600850}
+  - {fileID: 977265286948777760}
+  - {fileID: 6419552750527949892}
+  - {fileID: 232616496843696765}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4109668530480738086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032459099196264766}
+  - component: {fileID: 7352747723101857824}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032459099196264766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109668530480738086}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.081815764, y: -0.18467653, z: 0.3987308, w: -0.8945471}
+  m_LocalPosition: {x: -27.627716, y: -8.636219, z: 9.073424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7352747723101857824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109668530480738086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6, y: 1.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4189093222014012993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086136201152459763}
+  - component: {fileID: 6980410194129746442}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1086136201152459763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189093222014012993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.19196919, y: -0.22355244, z: 0.62261707, w: -0.7249277}
+  m_LocalPosition: {x: -3.4367065, y: -10.946867, z: -33.735382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6980410194129746442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189093222014012993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4299891858630049937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7589693704083497759}
+  - component: {fileID: 1754470225612280653}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7589693704083497759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299891858630049937}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5095059, y: 0.28554428, z: 0.81148547, w: 0.018965283}
+  m_LocalPosition: {x: 11.766647, y: -17.985023, z: 5.8550553}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754470225612280653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299891858630049937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4760805358335067147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954918858931029376}
+  - component: {fileID: 4864946962310722011}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &954918858931029376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760805358335067147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.99484915, y: 0.07679501, z: -0.065992, w: 0.004783857}
+  m_LocalPosition: {x: -0.8844452, y: -7.806108, z: 3.1707911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4864946962310722011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760805358335067147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4825828145540328305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7897809102147577939}
+  - component: {fileID: 3598110127307531191}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7897809102147577939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825828145540328305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.35669914, y: 0.9213133, z: -0.06165857, w: -0.14193612}
+  m_LocalPosition: {x: 0.6270447, y: 39.398483, z: 2.2080107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 179.292, y: 17.791, z: -137.56}
+--- !u!114 &3598110127307531191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825828145540328305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 75cfa3e7995abff4c825d1b41791773e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 1
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.83, y: 1.83, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &4855753159724414934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5004679848237285911}
+  - component: {fileID: 237518650605581900}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5004679848237285911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4855753159724414934}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.42840967, y: -0.88562506, z: -0.08195267, w: -0.15942785}
+  m_LocalPosition: {x: -4.5132904, y: -26.99522, z: -17.705782}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &237518650605581900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4855753159724414934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5012632504429363116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6486212863979481324}
+  - component: {fileID: 4166709715136746273}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6486212863979481324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012632504429363116}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.39163086, y: 0.58874893, z: -0.58874893, w: -0.39163086}
+  m_LocalPosition: {x: -3.005066, y: -26.00002, z: -20.217012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4166709715136746273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012632504429363116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5078699761488458558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951778181737799026}
+  - component: {fileID: 3765850968321003701}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951778181737799026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078699761488458558}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.30267656, y: 0.9138686, z: 0.14640139, w: -0.22759114}
+  m_LocalPosition: {x: -6.365429, y: -2.0951958, z: 4.723007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3765850968321003701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078699761488458558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5138051721281558012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4706818218510979977}
+  - component: {fileID: 6296289303356734310}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4706818218510979977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138051721281558012}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6446129, y: 0.29064453, z: -0.29064453, w: -0.6446129}
+  m_LocalPosition: {x: 2.9528046, y: -26.00002, z: -37.91556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6296289303356734310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138051721281558012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5150198524763862523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922996160928907956}
+  - component: {fileID: 7682740075509040737}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922996160928907956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150198524763862523}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.027041959, y: -0.9808199, z: -0.0047805426, w: -0.19297215}
+  m_LocalPosition: {x: -26.988373, y: -12.673632, z: 20.133284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7682740075509040737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150198524763862523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5179596900882139928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730405750010028820}
+  - component: {fileID: 5003836939350319890}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1730405750010028820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179596900882139928}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.47620085, y: -0.30566627, z: -0.6950482, w: -0.44351888}
+  m_LocalPosition: {x: -2.9053802, y: -16.101288, z: -1.3858044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5003836939350319890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179596900882139928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2, y: 0.2, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5420378501468785657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2668614677405513959}
+  - component: {fileID: 211766426626810389}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2668614677405513959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420378501468785657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.32226172, y: 0.16551378, z: 0.8213214, w: 0.44066277}
+  m_LocalPosition: {x: -1.4097481, y: 53.470036, z: -1.4891317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211766426626810389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420378501468785657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5456613609800345402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266063053057503489}
+  - component: {fileID: 6929988801349693649}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266063053057503489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456613609800345402}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.04548744, y: 0.7056422, z: -0.7056422, w: -0.04548744}
+  m_LocalPosition: {x: 32.370377, y: -26.00002, z: 11.965757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6929988801349693649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456613609800345402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5474941750749124936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7257511272177124843}
+  - component: {fileID: 5715331701992881757}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7257511272177124843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474941750749124936}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.020324295, y: 0.94341415, z: 0.007948107, w: -0.33089802}
+  m_LocalPosition: {x: 32.279434, y: -28.881271, z: 23.987516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5715331701992881757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474941750749124936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5774161520323033167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113609504089422657}
+  - component: {fileID: 1934174148372579638}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113609504089422657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774161520323033167}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9001331, y: 0.09417424, z: -0.04361674, w: -0.42307118}
+  m_LocalPosition: {x: -7.6927185, y: -28.441032, z: 15.050001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1934174148372579638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774161520323033167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5794072628727407582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6101214792427782922}
+  - component: {fileID: 2633243520423210203}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6101214792427782922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794072628727407582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.79030997, y: -0.61193424, z: -0.020052155, w: -0.023335379}
+  m_LocalPosition: {x: -0.22521591, y: 60.577858, z: 2.0240219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2633243520423210203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794072628727407582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 1.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5816059504539832068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5743435317783063363}
+  - component: {fileID: 3778026343296622295}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5743435317783063363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816059504539832068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43582347, y: -0.24753848, z: 0.7941067, w: -0.34376907}
+  m_LocalPosition: {x: -11.360336, y: -1.899123, z: -10.758316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3778026343296622295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816059504539832068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6, y: 1.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5896739993259446854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8155147155540589571}
+  - component: {fileID: 3119060256811979850}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8155147155540589571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5896739993259446854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.8236468, y: -0.5415999, z: -0.15196392, w: 0.07198985}
+  m_LocalPosition: {x: 14.787598, y: -13.253492, z: 9.192565}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3119060256811979850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5896739993259446854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &5978754283348790773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3215951753161502659}
+  - component: {fileID: 3601441720925614534}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3215951753161502659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5978754283348790773}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.99351096, y: -0.04179558, z: 0.0017005699, w: -0.10576541}
+  m_LocalPosition: {x: 8.118164, y: -28.659492, z: 15.196974}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3601441720925614534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5978754283348790773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6026814657302690560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7522813378279951338}
+  - component: {fileID: 4385760687567264379}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7522813378279951338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026814657302690560}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.8334347, y: -0.5299039, z: 0.13184705, w: 0.08488118}
+  m_LocalPosition: {x: 0.8911171, y: -10.128476, z: 3.1738884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4385760687567264379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026814657302690560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6077562924478486786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6321261454781752266}
+  - component: {fileID: 5919320311538463481}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6321261454781752266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077562924478486786}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3136119, y: 0.16521874, z: 0.91442, w: -0.1954135}
+  m_LocalPosition: {x: 7.1844177, y: -23.586288, z: 3.1982253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5919320311538463481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077562924478486786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6159730540430324593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9100298321811447621}
+  - component: {fileID: 4523146921243212923}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9100298321811447621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159730540430324593}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.083039835, y: -0.9579989, z: -0.024368081, w: -0.27340242}
+  m_LocalPosition: {x: -31.350319, y: -29.891115, z: 24.63783}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4523146921243212923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159730540430324593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6185803292196528119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6946623268298679775}
+  - component: {fileID: 5887274066919005748}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6946623268298679775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185803292196528119}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.013983956, y: 0.9990665, z: 0.00024904133, w: 0.04087173}
+  m_LocalPosition: {x: 23.966, y: -13.244, z: 20.395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: -0.094, y: 175.316, z: -1.6}
+--- !u!114 &5887274066919005748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185803292196528119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 6f3a9b7f1d8c7704dbe6b69775ab3dc8, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.7, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6225240164817918889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3842687462603079400}
+  - component: {fileID: 3615206453209621730}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3842687462603079400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225240164817918889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.22083084, y: 0.47024238, z: -0.0150835095, w: 0.8543292}
+  m_LocalPosition: {x: -12.938446, y: -28.745111, z: -7.9593987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3615206453209621730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225240164817918889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2, y: 0.2, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6250237709647817228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95426540695130732}
+  - component: {fileID: 6356317534387270494}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &95426540695130732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250237709647817228}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.98651546, y: -0.15756483, z: 0.043676008, w: 0.0072811134}
+  m_LocalPosition: {x: 25.155582, y: -13.853537, z: 20.454115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6356317534387270494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250237709647817228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 1.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6383830033431056774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6325747832908928330}
+  - component: {fileID: 6960134456012442652}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6325747832908928330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383830033431056774}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5753056, y: 0.14055438, z: 0.7827979, w: -0.19103797}
+  m_LocalPosition: {x: 3.1876526, y: -20.248392, z: -0.56076205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6960134456012442652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383830033431056774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6411154188377922936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8633483490794321192}
+  - component: {fileID: 4426864082511775333}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8633483490794321192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411154188377922936}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.18016784, y: 0.98349154, z: -0.003081961, w: -0.016567314}
+  m_LocalPosition: {x: 0.11362839, y: 40.794243, z: 2.2635834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4426864082511775333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411154188377922936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 0580213d871d8854c8af436d596d3e6b, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.53, y: 0.31, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6523418642104636288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388118947579455464}
+  - component: {fileID: 7791238390619801310}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1388118947579455464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523418642104636288}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9169122, y: 0.37220407, z: -0.13312031, w: 0.05491097}
+  m_LocalPosition: {x: 22.730923, y: -13.705082, z: 20.032042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7791238390619801310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523418642104636288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b8e28bab9de45434d9d0b2691384bebf, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 1.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6594512055398835872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128928001999272603}
+  - component: {fileID: 522126140422218132}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128928001999272603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594512055398835872}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.30128717, y: 0.4591394, z: -0.116541095, w: 0.8275477}
+  m_LocalPosition: {x: -11.198776, y: -28.584436, z: -10.800173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &522126140422218132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594512055398835872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8, y: 0.8, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6724741438120256792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1208756302231807353}
+  - component: {fileID: 1997896883744177131}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1208756302231807353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724741438120256792}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.55764645, y: 0.101628244, z: -0.81032676, w: 0.1485693}
+  m_LocalPosition: {x: -2.7520752, y: -26.11318, z: -1.7397786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997896883744177131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724741438120256792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2, y: 0.2, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6961514586918772876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3754630713093531605}
+  - component: {fileID: 2165626369362833656}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3754630713093531605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961514586918772876}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7642605, y: -0.6327852, z: 0.11154884, w: 0.055187766}
+  m_LocalPosition: {x: 4.0333786, y: -12.433899, z: 3.4447193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8003921704232577368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2165626369362833656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961514586918772876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &6990871696579946450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3420759706833894387}
+  - component: {fileID: 1624255745002906250}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3420759706833894387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6990871696579946450}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31110027, y: 0.91287684, z: -0.085788, w: 0.25002593}
+  m_LocalPosition: {x: 21.632544, y: -16.882742, z: 19.42726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624255745002906250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6990871696579946450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &7323866241317163179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150097954256823175}
+  - component: {fileID: 3885203855100321868}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150097954256823175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323866241317163179}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6680364, y: 0.23179181, z: -0.23179181, w: -0.6680364}
+  m_LocalPosition: {x: 4.8209076, y: -26.00002, z: -20.725054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3885203855100321868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323866241317163179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6, y: 1.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &7325594972014180906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7536215153777689521}
+  - component: {fileID: 6861981315597442497}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7536215153777689521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325594972014180906}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.32678226, y: 0.93741196, z: 0.03351314, w: -0.11553829}
+  m_LocalPosition: {x: 0.57182693, y: 37.54091, z: 2.2480803}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6861981315597442497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325594972014180906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 4f2f2812503b58243b1d75b41fbac59a, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.86, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &7461532167815612692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3127921515383972074}
+  - component: {fileID: 4301750510103693639}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3127921515383972074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461532167815612692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.2677079, y: 0.6255762, z: 0.28643873, w: -0.67449224}
+  m_LocalPosition: {x: 11.965775, y: -28.416344, z: -29.368532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4301750510103693639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461532167815612692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6, y: 1.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &7772055828397446198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7945328355483974302}
+  - component: {fileID: 4036940103231039344}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7945328355483974302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772055828397446198}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.37684566, y: 0.92416584, z: 0.023229849, w: -0.05801064}
+  m_LocalPosition: {x: -24.158607, y: -11.905588, z: 20.375366}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4036940103231039344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772055828397446198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &7912531715257531917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3070260808296542339}
+  - component: {fileID: 3794356838585719934}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3070260808296542339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912531715257531917}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3361899, y: 0.13302009, z: 0.86792856, w: 0.34056142}
+  m_LocalPosition: {x: -3.989029, y: -4.3145, z: -33.345947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3794356838585719934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912531715257531917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8023823302482079461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421459118163268424}
+  - component: {fileID: 6196137813633500127}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1421459118163268424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023823302482079461}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.90378034, y: -0.19460616, z: 0.3740018, w: 0.07370416}
+  m_LocalPosition: {x: 1.7456131, y: 6.4169073, z: 2.0449529}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3543892070362986611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6196137813633500127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023823302482079461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.1, y: 3.1, z: 1.38}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8063094021931575396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2823873168265598564}
+  - component: {fileID: 2086537736172063094}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2823873168265598564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063094021931575396}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.630613, y: 0.10385713, z: -0.75863236, w: 0.12656182}
+  m_LocalPosition: {x: -5.796829, y: -21.477554, z: -30.403658}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086537736172063094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063094021931575396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8151655437362448423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5781935100156817429}
+  - component: {fileID: 2133713992381007350}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5781935100156817429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151655437362448423}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.30566415, y: 0.8596706, z: -0.25304914, w: -0.32171747}
+  m_LocalPosition: {x: -4.9837646, y: -1.5510851, z: 3.6840248}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3559524990919084742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133713992381007350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151655437362448423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 0580213d871d8854c8af436d596d3e6b, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8421563016600343697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7718243812475424934}
+  - component: {fileID: 3680357028044519576}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7718243812475424934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421563016600343697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.042523365, y: -0.005395087, z: 0.9883979, w: -0.14571302}
+  m_LocalPosition: {x: -25.97609, y: -12.700407, z: 8.536452}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3680357028044519576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421563016600343697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8426594352223468718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8832559097655390103}
+  - component: {fileID: 3412643605658312398}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8832559097655390103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8426594352223468718}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5032042, y: -0.31227788, z: 0.6845427, w: 0.42505208}
+  m_LocalPosition: {x: 2.9980927, y: -26.682783, z: -1.1615773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3412643605658312398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8426594352223468718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6, y: 0.6, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8492471688043912288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4783039815005882340}
+  - component: {fileID: 1197325559199795055}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4783039815005882340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492471688043912288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.033688776, y: -0.54714966, z: 0.5149771, w: 0.6590075}
+  m_LocalPosition: {x: 10.401581, y: -28.537102, z: -12.11101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8689252854070687991}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1197325559199795055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492471688043912288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8697447340506635805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166711128736085138}
+  - component: {fileID: 895761554876900677}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &166711128736085138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697447340506635805}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.58311015, y: 0.77266765, z: -0.15216208, w: 0.19953461}
+  m_LocalPosition: {x: 22.161396, y: -6.972518, z: 19.710098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &895761554876900677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697447340506635805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.1, y: 3.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8723406701986052828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392961836685798371}
+  - component: {fileID: 6546161124200760897}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392961836685798371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723406701986052828}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.93889534, y: -0.34134305, z: 0.041509416, w: 0.0154117895}
+  m_LocalPosition: {x: 25.51722, y: -16.380907, z: 20.42047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6546161124200760897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723406701986052828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8748144948264375238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7625978648038707958}
+  - component: {fileID: 6455824663189191044}
+  m_Layer: 0
+  m_Name: Crack_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7625978648038707958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748144948264375238}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.22682436, y: 0.6697393, z: -0.6697393, w: -0.22682436}
+  m_LocalPosition: {x: 25.273699, y: -0.000011444099, z: 14.621811}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6455824663189191044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748144948264375238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b10602850fe0827aca261773e1bce2ce, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 1.1, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &8996925505295048345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4319720211520248345}
+  - component: {fileID: 6937418343509263421}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4319720211520248345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996925505295048345}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.35248685, y: -0.43070674, z: 0.82627094, w: 0.08672424}
+  m_LocalPosition: {x: 13.196381, y: -28.479713, z: -7.186156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7525672556459553937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6937418343509263421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996925505295048345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 20193abc4a038104081f4d76d10616d2, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 17.8, y: 17.8, z: 7.92}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1 &9074544534147008942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7153619300025214527}
+  - component: {fileID: 1375982439566054793}
+  m_Layer: 0
+  m_Name: Corrosion_Decal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7153619300025214527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9074544534147008942}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.91971934, y: -0.37231275, z: -0.11539959, w: -0.04671771}
+  m_LocalPosition: {x: 24.046642, y: -13.774094, z: 20.398298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480718469850011733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375982439566054793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9074544534147008942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: b8e28bab9de45434d9d0b2691384bebf, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_FadeFactor: 1
+  m_Version: 2
+--- !u!1001 &118584463343565273
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1978.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &6419552750527949892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 118584463343565273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &555639937197246654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2335.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &6847047386939333923 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 555639937197246654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &565004416939529500
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 2269058750379160403, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269058750379160403, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269058750379160403, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2269058750379160403, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -9197087669592562446, guid: c624826094c35db22a3332e777ed6fab,
+        type: 3}
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2478.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427583248995829179, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427583248995829179, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832952730047757776, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &6873850104086102145 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 565004416939529500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1230530207127356031
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2278.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051987833888853884, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3291db7a57d117a2a93f09cc535df151, type: 2}
+    - target: {fileID: 8937295757092214461, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: cutInSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 166711128736085138}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3420759706833894387}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 392961836685798371}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7830106944500474973}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7625978648038707958}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7945328355483974302}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9100298321811447621}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3991793257193175522}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7522813378279951338}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4914554678327675278}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 951778181737799026}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7153619300025214527}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1388118947579455464}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 95426540695130732}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6946623268298679775}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3706453490827996584}
+    - targetCorrespondingSourceObject: {fileID: 9079288554494143271, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3754630713093531605}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6906671290138024046}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1421459118163268424}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2492339470499126653}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6101214792427782922}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2668614677405513959}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4174817563129926166}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1493576977105186409}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7536215153777689521}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8701236549502499270}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7897809102147577939}
+    - targetCorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8633483490794321192}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &1480718469850011733 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230530207127356031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3543892070362986611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2323250184734767628, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230530207127356031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5305282632720209890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230530207127356031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8003921704232577368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9079288554494143271, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230530207127356031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2173734889053399759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2078.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &5087157294857600850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 2173734889053399759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2249746479573839937
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2435.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427583248995829179, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: df060e04289105245bda3fee051be3c0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &5155260682497664476 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 2249746479573839937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3258517290749516892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2020.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &8469875550728964545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 3258517290749516892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3817592542789652716
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2535.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5781935100156817429}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3754554092419636733}
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &3559524990919084742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 3817592542789652716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7422669246955036619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 3817592542789652716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3754554092419636733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422669246955036619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3256c965cb1a89b429dc64168826093c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterY: 0.1
+  ringRadius: 3.6
+  particleCount: 300
+  foamSize: 1
+  foamLifetime: 2
+  spreadSpeed: 0.3
+--- !u!4 &7802854652147975537 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 3817592542789652716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5108082134618476985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2120.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &2184267144593966116 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 5108082134618476985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6141906449036901053
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2178.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &977265286948777760 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 6141906449036901053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6596073328373612512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1878.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &232616496843696765 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 6596073328373612512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7921733335861079739
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 3556090326497395199, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2235.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051987833888853884, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051987833888853884, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3291db7a57d117a2a93f09cc535df151, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4319720211520248345}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &3845010551172119334 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 7921733335861079739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7525672556459553937 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 7921733335861079739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8305695825009830992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1920.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -220.51353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &3166132375529159117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 8305695825009830992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9009807574095979229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5844181626737092362}
+    m_Modifications:
+    - target: {fileID: 6050672319092805415, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_Name
+      value: wind_turbine_9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2378.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 154.17543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.986465
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3776994512608125908, guid: caad3f47ef9abfa5f923ea2ee57181c2, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7257511272177124843}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 671694770819429172}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 266063053057503489}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 386563507254560180}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8318083842058046297}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4783039815005882340}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6325747832908928330}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6321261454781752266}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7589693704083497759}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7813913875092765564}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5236671023521000632}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 150097954256823175}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3127921515383972074}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8832559097655390103}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1876672456388774342}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2410239535462528240}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4706818218510979977}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2823873168265598564}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1086136201152459763}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3070260808296542339}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6569079941244396113}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7718243812475424934}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1032459099196264766}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5743435317783063363}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2103759728933686980}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6486212863979481324}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8916948727769282002}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9109631487744579894}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5768359313804237827}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1208756302231807353}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1730405750010028820}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3842687462603079400}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2128928001999272603}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9041542789632986681}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5004679848237285911}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5176980614003771537}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1922996160928907956}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 932220378430003788}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 954918858931029376}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8520318548603423782}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8108573263947148314}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6076385507728398645}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113609504089422657}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3215951753161502659}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8155147155540589571}
+    - targetCorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5801746182162631799}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2541c13639af042129a38ea5c794ca64, type: 3}
+--- !u!4 &2718725596849764160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6391626869634012573, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 9009807574095979229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8689252854070687991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 405087770356472362, guid: 2541c13639af042129a38ea5c794ca64,
+    type: 3}
+  m_PrefabInstance: {fileID: 9009807574095979229}
+  m_PrefabAsset: {fileID: 0}

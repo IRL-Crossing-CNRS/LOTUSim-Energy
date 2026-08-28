@@ -60,7 +60,20 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
 
     [Header("Ignored Scene Roots")]
     [Tooltip("Root objects to ignore when scanning for camera targets.")]
-    public string[] ignoredRootNames = { "Environment", "Canvas", "World Script" };
+    public string[] ignoredRootNames = { "Environment", "Canvas", "World Script", "wind farm 2" };
+
+    [Tooltip("Skip targets whose bounding box exceeds this size (filters out large static world geometry like wind farms, terrain, etc.)")]
+    public float maxTargetDimension = 100f;
+
+    [Tooltip("Minimum height above the target the camera should sit, regardless of the target's own size.")]
+    public float minHeightOffset = 250f;
+
+    [Header("Fallback (used when no valid targets are found)")]
+    [Tooltip("Position used when there are no valid targets to follow, e.g. a view just above the water.")]
+    public Vector3 fallbackPosition = new Vector3(0f, 5f, 0f);
+
+    [Tooltip("Rotation (euler angles) used with the fallback position.")]
+    public Vector3 fallbackEulerRotation = new Vector3(15f, 0f, 0f);
 
     private readonly List<TargetData> targets = new();
     private int currentTargetIndex;
@@ -93,7 +106,25 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
 
     private void Update()
     {
-        if (targets.Count == 0) return;
+        if (targets.Count == 0)
+        {
+            // No valid targets found (e.g. everything filtered out, or nothing spawned yet).
+            // Ease toward a sensible default view instead of sitting wherever the camera started.
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                fallbackPosition,
+                ref moveVelocity,
+                moveSmoothTime
+            );
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.Euler(fallbackEulerRotation),
+                Time.deltaTime / Mathf.Max(rotationSmoothTime, 0.0001f)
+            );
+
+            return;
+        }
 
         HandleInput();
 
@@ -224,15 +255,24 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
             }
 
             float maxDimension = Mathf.Max(combinedBounds.size.x, combinedBounds.size.y, combinedBounds.size.z);
-            float scaleFactor = Mathf.Max(maxDimension, 0.5f);
+            if (maxDimension > maxTargetDimension)
+                continue;
 
-            Vector3 offset = new(0, scaleFactor * 0.5f, -scaleFactor * 1.5f);
+            float scaleFactor = Mathf.Max(maxDimension, 0.5f);
+            float heightOffset = Mathf.Max(scaleFactor * 0.5f, minHeightOffset);
+
+            Vector3 offset = new(0, heightOffset, -scaleFactor * 1.5f);
             float zoom = 60f; // Could be dynamic later if needed
 
             targets.Add(new TargetData(rootObj.transform, offset, zoom));
         }
 
         currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, Mathf.Max(0, targets.Count - 1));
+
+#if UNITY_EDITOR
+        foreach (var t in targets)
+            Debug.Log($"[Navigator] target={t.target.name} offset={t.offset} zoom={t.zoom}");
+#endif
     }
 
     private bool IsIgnored(string name)

@@ -124,8 +124,8 @@ namespace Lotusim
             vlg.padding = new RectOffset(20, 20, 20, 20);
             vlg.spacing = 15f;
             vlg.childAlignment = TextAnchor.UpperLeft;
-            vlg.childControlWidth = true;
-            vlg.childControlHeight = true;
+            vlg.childControlWidth = false;
+            vlg.childControlHeight = false;
             vlg.childForceExpandWidth = false;
             vlg.childForceExpandHeight = false;
 

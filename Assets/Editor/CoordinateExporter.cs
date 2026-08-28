@@ -192,8 +192,8 @@ public class CoordinateExporter : EditorWindow
             double x, y, z;
             if (coordinateSystem == 1) // ROS/Gazebo (Z-Up, right-handed)
             {
-                x = pos.z;
-                y = -pos.x;
+                x = pos.x;
+                y = pos.z;
                 z = pos.y;
             }
             else // Unity (Y-Up)
