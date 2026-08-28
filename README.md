@@ -121,8 +121,12 @@ the users.
 ## Scripts
 
 The project is organized into several script folders, each handling a specific aspect of the simulation and interaction system.
+Scripts sitting directly in `Scripts` cover the scene environment itself: endless seabed and water plane, storm state, wind particles, key bindings and the inspection detector.
 The `Camera` folder contains scripts for managing and switching between different camera views across scenes.
-The folder `EditorEnvironment` manages real-time simulation parameters, including the display of the Real-Time Factor, computation of the FPS, and interactive controls like the wind slider. It also includes scripts that control environmental elements such as the sun and clouds.
+The folder `EditorEnvironment` manages real-time simulation parameters, including the display of the Real-Time Factor, computation of the FPS, and interactive controls like the wind slider. It also holds the HUD panels and the wind, wind-region and ocean-current visualizations, and scripts that control environmental elements such as the sun and clouds.
+The `waypoint` folder drives agents along routes and draws their trajectories.
+The `lotusim_interface` folder connects Unity to the simulation, over ROS 2 or TCP/IP.
+The `Editor` folder holds editor-only tooling, reachable from the `LOTUSim` menu.
 The `LeapMotion` folder handles hand-tracking interactions.
 The `MultiUser` folder enables multi-user connectivity and synchronization.
 The `XR-Controller` folder provides VR support, handling user input and interaction.
@@ -144,17 +148,21 @@ The `XR-Controller` folder provides VR support, handling user input and interact
 - `CameraSensor.cs`:  Publishes RGB camera frames from Unity to ROS via the ROS–TCP Connector. Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
 - `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key.
 - `FPSLimiter.cs` : Controls the application's target frame rate to ensure consistent performance.
--`FreeFlyCamera.cs` : Controls the camera for a free fly spectator. Camera movement by 'W','A','S','D','Q','E' and speed of the quick camera movement when holding the 'Left Shift' key.
+- `FreeFlyCamera.cs` : Controls the camera for a free fly spectator. Camera movement by 'W','A','S','D','Q','E' and speed of the quick camera movement when holding the 'Left Shift' key.
+- `DisplaySwitcher.cs` : Routes one camera at a time to the primary display and parks the others off-screen, so views do not overlap on a single monitor. Static cameras are wired in the Inspector; agent cameras are resolved at runtime by fleet name.
+- `DroneCameraHUD.cs` : Screen-space overlay attached to each drone camera, grouped by drone type (x500 / wamv / bluerov). [↑ ↓] cycle through the drones of a fleet. The overlay layer is excluded from the frames sent to the detection server.
+- `ObjectNameDisplay.cs` : Displays a fixed, Inspector-configured list of labels above their target objects, toggled with a designated key.
 
 #### MultiUser:
-- `CameraWork.cs` : Used to deal with the Camera work to follow the player : Used to deal with the Camera work to follow the player  
-- `GameManager.cs` : Used to handle the game management so, instanciating players and cameras depending which user is being used  
-- `Launcher.cs` : Used to connect, and join/create room automatically on player or spectator mode  
-- `PlayerAnimatorManager.cs` : Used to deal with the networked player Animator Component controls.  
-- `PlayerManager.cs` : Used to deal with the networked player instance  
-- `PlayerNameInputField.cs` : Let the player input his name to be saved as the network player Name, viewed by alls players above each when in the same room.   
-- `PlayerUI.cs` : Used to deal with the networked player instance UI display tha follows a given player to show its health and name  
-- `SpectatorCamera.cs` : Used to set the spectator camera movements  
+- `CameraWork.cs` : Follows the player with the camera.
+- `GameManager.cs` : Handles the session, instantiating players and cameras according to the connected user.
+- `Launcher.cs` : Connects and joins or creates a room automatically, in player or spectator mode.
+- `LoaderAnime.cs` : Drives the loading animation shown while connecting.
+- `PlayerAnimatorManager.cs` : Drives the networked player's Animator component.
+- `PlayerManager.cs` : Handles the networked player instance.
+- `PlayerNameInputField.cs` : Takes the name to save as the network player name, shown above each player to everyone in the room.
+- `PlayerUI.cs` : Displays the networked player's UI, following the player to show its health and name.
+- `SpectatorCamera.cs` : Sets the spectator camera movements.
 
 
 ### EditorEnvironment:
@@ -169,22 +177,70 @@ The `XR-Controller` folder provides VR support, handling user input and interact
 - `RTFLabelUpdate.cs` :  Displays the Real-Time Factor (RTF) from the ROS simulation as a percentage on a TMP label. Toggles visibility with the 'L' key.
 - `WindSliderController.cs` : Controls wind vector sliders along X, Y, Z axes and publishes their values to a ROS2 topic via TCP/IP.
  Supports keyboard shortcuts for increment/decrement and reset.
+- `AgentBatteryHUD.cs` : Battery monitor for dynamically spawned agents. Every object carrying a `RendererPosesWaypointFollower` was spawned by `LotusimConnector`, so no name filtering is needed.
+- `HelpMenuHUD.cs` : Builds the in-scene help panel listing the key bindings declared in `KeyBindings.cs`.
+- `ImageDisplayHUD.cs` : Shows a still image panel that can be toggled and whose sprite can be swapped at runtime.
+- `MaintenanceHUD.cs` : Displays a maintenance overview of the drone fleet, toggled with the 'O' key.
+- `DetectionWarningHUD.cs` : Draws a canned detection-uncertainty warning over drone cameras (toggled with 'J'). Not driven by real detection data.
+- `WarningHUD.cs` : Draws a canned emergency warning popup (toggled with 'K'). Not driven by real data.
+- `OceanCurrentVisualizer.cs` : Renders the ocean current as a grid of arrow `LineRenderer`s below sea level, driven by the current message's `enable_current` flag.
+- `WindFieldVisualizer.cs` : Renders the global wind field as a grid of arrow `LineRenderer`s.
+- `WindArrowFieldRenderer.cs` : Reusable arrow-grid renderer over a rectangular XZ area sharing one direction and magnitude; arrow length and width scale with magnitude and the colour is supplied by the caller.
+- `WindRegionVisualizer.cs` : Renders each entry of a `WindRegionArray` message as a wireframe 3D shape coloured by wind speed, with an arrow field for its wind vector; creates, updates and tears down one zone per region id.
+- `WindRegionShapeRenderer.cs` : `IWindRegionShapeRenderer` interface and the shared visual settings every region shape renders with, one implementation per `WindRegion` shape type.
+- `BoxShapeRenderer.cs` : `IWindRegionShapeRenderer` implementation for box-shaped wind regions.
+- `ConeSegmentShapeRenderer.cs` : `IWindRegionShapeRenderer` implementation for cone-segment wind regions, used for turbine wakes.
+- `WindZoneGeometry.cs` : `LineRenderer` construction helpers (open and closed wireframe lines) shared by the wind region shape renderers.
+- `WindVisualUtils.cs` : Material helpers configuring HDRP/Unlit for alpha-blended, double-sided rendering, so translucent wind visuals blend instead of clipping their own alpha.
+- `WindHUDIndicator.cs` : Pixel-drawn circular wind direction panel in the bottom-left corner, with a rotating arrow and a speed label.
+- `WindTurbineController.cs` : Drives a turbine's Animator speed and power output from the effective wind speed, taken either from a ROS 2 wind topic or pushed in by another system.
+- `WindPowerGraphHUD.cs` : Records and plots `PowerW` for every wind turbine in the scene, with a manual start/stop/save workflow.
+- `WindLcoeGraphHUD.cs` : Subscribes to the world's `lcoe` topic, plots the farm's levelised cost of energy over time, and saves the recording under the user's Downloads directory.
 
+
+### Scripts (root):
+- `InfinitePlane.cs` : Keeps an odd-sized grid of tiling plane chunks centred on the camera, giving an apparently endless surface.
+- `SeabedObjects.cs` : Scatters prefabs across the `InfinitePlane` chunks to populate the seabed.
+- `InspectionDetector.cs` : Captures frames from a Unity camera, publishes them as `sensor_msgs/CompressedImage`, and draws bounding boxes over the corrosion and crack detections that come back asynchronously as JSON on a separate topic. All ROS I/O goes through `RosInterface`.
+- `KeyBindings.cs` : Single declaration of every runtime key binding, annotated with the category and description `HelpMenuHUD` renders.
+- `StormController.cs` : Drives sky, fog and ocean parameters from a single storm-intensity value, transitioning smoothly between calm and storm.
+- `TurbineFoamRing.cs` : Emits a ring of foam particles at the waterline around a turbine monopile.
+- `WindEffect.cs` : Spawns wind particles around the camera, with count, speed and spread scaled by the current wind speed.
+- `WindZoneController.cs` : Drives Unity's `WindZone` and the wind particle system from the wind vector, stopping emission below a minimum speed threshold.
+
+### waypoint:
+- `RendererPosesWaypointFollower.cs` : Pose follower using snapshot interpolation — it buffers incoming ROS poses and replays them with a small delay, removing the stutter of low-frequency Gazebo updates.
+- `BlueROVWaypointFollower.cs` : Inspector-configured route follower for the BlueROV, with model alignment, speed and turning parameters.
+- `WamvWaypointFollower.cs` : Same route follower for the WAM-V.
+- `X500WaypointFollower.cs` : Same route follower for the X500 drone.
+- `TrajectoryDrawer.cs` : Draws an agent's trajectory as a trail, dropping the oldest points to keep the polyline within a length in metres and a hard point cap.
+- `UnityPatrolExporter.cs` : Exports a patrol route configured in the Inspector to a JSON file for use by a scenario.
+
+### Editor:
+- `CoordinateExporter.cs` : Editor window (LOTUSim / Utilities) exporting selected scene coordinates to JSON.
+- `WaypointCapturerWindow.cs` : Editor window (LOTUSim / Utilities) capturing waypoints from the scene view.
+- `PerformanceMonitorWindow.cs` : Editor window (LOTUSim / Utilities) showing runtime performance figures.
+- `TextureCombiner.cs` : Editor window (LOTUSim / Utilities) packing several textures into one.
+- `CorrosionPainterTool.cs` : Editor window (LOTUSim) placing corrosion decals on inspection targets.
+- `CrackPainterTool.cs` : Editor window (LOTUSim) placing crack decals on inspection targets.
 
 ### LeapMotion:
 - `LeapMotionMovement.cs` :  Uses Leap Motion hand pose detection to control a CharacterController in 3D space. Supports movement in six directions: forward, back, left, right, up, and down.
 
 
 ### lotusim_interface:
-- `commons.cs` : Utility class for converting poses between Gazebo and Unity coordinate systems.
+- `common.cs` : Utility class for converting poses between Gazebo and Unity coordinate systems.
 - `InterfaceFactory.cs` : Factory and driver for creating and updating Lotusim interfaces (ROS2, TCPIP, etc.)
 - `LotusimBaseInterface.cs` : Base abstract class for all interfaces in the Lotusim system. Interfaces populate pose, creation, destruction, and propeller data for vessels. 
 - `LotusimConnector.cs` : Main Unity interface for Lotusim. Wraps LotusimBaseInterface implementations (ROS2, TCPIP). Handles creation, destruction, and updating of vessels, transforms, and animations.
 - `ROSConnectionConfigurator.cs` : Reads ROS IP and port from PlayerPrefs and configures the ROSConnection singleton.
+- `GazeboCustomCmdInterface.cs` : Minimal TCP listener receiving custom commands from Gazebo on a configurable port, on a background thread.
+- `GazeboWaveInterface.cs` : Samples the HDRP water surface height on a configurable XZ grid and writes the sampled positions to a YAML log.
 
 
 ### lotusim_interface/ROS2_interface:
 - `RosInterface.cs` :  Singleton interface for ROS2 communication in Lotusim. Handles vessel pose updates, renderer commands, dynamic vessel commands, and simulation stats.
+- `RosLogFilter.cs` : `ILogHandler` wrapper filtering noisy ROS-TCP-Connector log output out of the Unity console.
 
 
 ### lotusim_interface/Tcp_interface:
