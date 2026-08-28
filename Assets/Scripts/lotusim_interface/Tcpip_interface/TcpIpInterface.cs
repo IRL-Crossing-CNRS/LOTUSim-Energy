@@ -321,10 +321,11 @@ namespace Lotusim
                 {
                     var vessel = m_vessel_info_msg[i];
 
-                    // Update vessel pose
-                    m_vesselPoses[vessel.name] = CoordinateSystemUtils.GzPoseToUnityPose(
-                        new Pose(vessel.position, vessel.rotation)
-                    );
+                    // Update vessel pose. Stored in raw Gazebo (ENU) space, matching
+                    // RosInterface: LotusimConnector.UpdateVesselPoses() is the single
+                    // place that converts to Unity space. Converting here too would
+                    // double-apply GzPoseToUnityPose on every ongoing pose update.
+                    m_vesselPoses[vessel.name] = new Pose(vessel.position, vessel.rotation);
 
                     // Update thrusters
                     foreach (ThrusterInfo thruster in vessel.thrusters)

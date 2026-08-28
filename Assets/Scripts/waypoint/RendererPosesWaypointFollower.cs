@@ -69,7 +69,7 @@ public class RendererPosesWaypointFollower : MonoBehaviour
                 Pose unityPose = CoordinateSystemUtils.GzPoseToUnityPose(rawPose);
 
                 Vector3 newPos = unityPose.position;
-                if (constrainToHorizontal) 
+                if (constrainToHorizontal)
                     newPos.y = 0f;
 
                 // Add to buffer with the current Unity time

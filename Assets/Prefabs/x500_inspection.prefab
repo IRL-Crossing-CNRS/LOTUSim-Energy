@@ -512,21 +512,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 8329449537804902870, guid: a9900afb81b41444295fb91abc16083a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8329449537804902870, guid: a9900afb81b41444295fb91abc16083a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8329449537804902870, guid: a9900afb81b41444295fb91abc16083a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8698492970319496610, guid: a9900afb81b41444295fb91abc16083a,
         type: 3}
       propertyPath: m_Layer

@@ -75,6 +75,11 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
     [Tooltip("Rotation (euler angles) used with the fallback position.")]
     public Vector3 fallbackEulerRotation = new Vector3(15f, 0f, 0f);
 
+    [Tooltip("How often to retry scanning for targets while none are available (e.g. before vessels have spawned).")]
+    public float noTargetsRetryInterval = 1f;
+
+    private float noTargetsRetryTimer;
+
     private readonly List<TargetData> targets = new();
     private int currentTargetIndex;
     private bool cameraLocked;
@@ -109,6 +114,16 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
         if (targets.Count == 0)
         {
             // No valid targets found (e.g. everything filtered out, or nothing spawned yet).
+            // Keep retrying periodically so the navigator recovers once targets appear instead
+            // of getting stuck forever (HandleInput(), which rebuilds the list, is otherwise
+            // unreachable from this branch).
+            noTargetsRetryTimer -= Time.deltaTime;
+            if (noTargetsRetryTimer <= 0f)
+            {
+                noTargetsRetryTimer = noTargetsRetryInterval;
+                RefreshTargets();
+            }
+
             // Ease toward a sensible default view instead of sitting wherever the camera started.
             transform.position = Vector3.SmoothDamp(
                 transform.position,
@@ -319,6 +334,13 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
         cameraLocked = false;
         isLocking = false;
         lockTimer = 0f;
+
+        // Clear SmoothDamp velocities so the transition to the new target starts from rest
+        // instead of carrying over momentum from the previous target (which caused overshoot,
+        // visible as the camera swinging away/zooming out before correcting onto the new target).
+        moveVelocity = Vector3.zero;
+        zoomVelocity = 0f;
+        lookDirectionVelocity = Vector3.zero;
     }
 
     #endregion
