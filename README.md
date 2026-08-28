@@ -9,7 +9,7 @@ LOTUSim-Energy leverages the core simulation framework (https://github.com/naval
 
 ## Overview
 
-LOTUSim-Energy is a distributed, server–client simulation framework designed for multi-domain robotics. Gazebo serves as the central orchestrator for asset management and simulation timing (deterministic step scheduler), while separate client modules execute specific simulation tasks.
+LOTUSim-Energy is a distributed server-client simulation framework for multi-domain robotics. Gazebo is the central orchestrator for asset management and simulation timing (deterministic step scheduler); separate client modules run the individual simulation tasks.
 
 The core simulation control module interfaces with three primary client modules:
 
@@ -63,7 +63,7 @@ git submodule update --remote --merge
 
 2. **Add & open the project on Unity Hub.**
 3. **Open one of the scenes**
-4. **Enjoy !  🎉**   
+4. **Run the scene.**
 
 ## Start using the Leap Motion
 
@@ -71,7 +71,7 @@ git submodule update --remote --merge
 2. Plug your Leap Motion and check by using the Leap Motion Software if it is active on your computer.
 3. Place the Leap in front of the user, with the **wire pointing left** (the Leap has been implemented to be Desktop mounted)
 4. Check that the Unity scene you are using have the GameObject `LeapMouvementController` activated (in Unity).
-> Note: in this repo, only the `defenseScenario` scene have been developped to work with the Leap Motion.
+> Note: Leap Motion input was developed against the `defenseScenario` scene, which is not part of this repository. Using it in an Energy scene requires adding the `LeapMouvementController` GameObject yourself.
 5. If you see **red lights** on the cameras of the Leap, it is ready to be used!
 
 ## Start using the Tobbi Eye Tracker 5
@@ -85,10 +85,10 @@ git submodule update --remote --merge
 
 ## Packages / Assets available
 - `CityPeople`: Unity asset available [here](https://assetstore.unity.com/packages/3d/characters/city-people-free-samples-260446) to have civilians models.
-- `HandPoses`: Recorded hand poses to move in the `defenseScenario` scene with hands gestures instead of using the keyboard for a more natural interaction.
+- `HandPoses`: Recorded hand poses for moving through a scene with hand gestures instead of the keyboard. The `defenseScenario` scene they were recorded against is not part of this repository.
 - `IslandTools`: Unity tools to build the environment.
 - `LowPolySolider_demo`: Unity asset available [here](https://assetstore.unity.com/packages/3d/characters/low-poly-soldiers-demo-73611) to have soldiers models. 
-- `Photon`: Photon Unity Networking ([PUN](https://doc.photonengine.com/pun/current/getting-started/pun-intro)) is a Unity package for multiplayer games. Flexible matchmaking gets your players into rooms where objects can be synced over the network.
+- `Photon`: Photon Unity Networking ([PUN](https://doc.photonengine.com/pun/current/getting-started/pun-intro)), a Unity package for multiplayer applications. Its matchmaking places players in rooms in which objects are synchronised over the network.
 
 ---
 
@@ -96,18 +96,25 @@ git submodule update --remote --merge
 
 ### Unity Scenes Folder Overview
 
-The Unity project includes three main scene folders, each designed to support specific simulation and interaction features within the LOTUSim environment.
+The Unity project has three main scene folders, each covering a specific set of simulation and interaction features.
 
+
+### Energy
+The `Energy` folder holds this repository's own scenes: `demo_facet`,
+`demo_facet_VR`, `empty` and `facet_waypoint_yolo`, alongside the shared
+`Launcher` scene at the root of `Assets/Scenes/`. These are the scenes that
+pair with the LOTUSim-generic-scenario configs of the same names.
 
 ### LeapMotion
-The **LeapMotion** folder includes scenes and assets used to **record and interpret hand poses** for controlling camera movement.  
-This provides a **more natural and immersive interaction**, replacing traditional keyboard controls.  
-To use it, simply **launch the scene** and **follow the on-screen instructions** to calibrate and test hand-based input.
+The `LeapMotion` folder holds scenes and assets that record and interpret hand
+poses to control camera movement, in place of keyboard controls. Launch the
+scene and follow the on-screen instructions to calibrate and test hand input.
 
 ### MultiUser
-The **MultiUser** folder contains all scenes related to **multi-user functionality**.  
-It includes a **launcher scene** that allows users to **spawn a customizable Kyle robot** (editable via the *Kyle* scene) and enter a **shared two-player environment**.  
-This setup enables synchronized interactions and collaborative experiments, and it is **already integrated into certain scenes**, such as the **Defense** scenario.
+The `MultiUser` folder contains the scenes for multi-user operation. Its
+launcher scene spawns a configurable Kyle robot (edited in the `Kyle` scene)
+and enters a shared two-player environment, with state synchronised between
+the users.
 
 ---
 
@@ -118,7 +125,7 @@ The `Camera` folder contains scripts for managing and switching between differen
 The folder `EditorEnvironment` manages real-time simulation parameters, including the display of the Real-Time Factor, computation of the FPS, and interactive controls like the wind slider. It also includes scripts that control environmental elements such as the sun and clouds.
 The `LeapMotion` folder handles hand-tracking interactions.
 The `MultiUser` folder enables multi-user connectivity and synchronization.
-Finally, the `XR-Controller` folder provides VR support, managing user input and interactions in immersive environments.
+The `XR-Controller` folder provides VR support, handling user input and interaction.
 
 
 #### Camera:
@@ -196,8 +203,9 @@ Finally, the `XR-Controller` folder provides VR support, managing user input and
 ## Executables
 
 Executable for _Linux_ and _Windows_ of **LOTUSim** are available in the `lotusim-generic-scenario` repository.
-It includes the **DefenseScenario** and **Launcher** scenes already built and ready to run.  
-All build details and usage instructions are thoroughly explained in the **README** and **Wiki** of the `lotusim-generic-scenario` section and repository.
+It includes the Launcher scene already built and ready to run.
+
+Build details and usage instructions are in the README and wiki of the `lotusim-generic-scenario` repository.
 
 >**Note:** If you wish to develop your own scenario or Unity scene, you can integrate it with LOTUSim-core (repo LOTUSim)using the same `lotusim-generic-scenario` framework.  
 Before doing so, make sure to **build your Unity scene** for the desired platform and follow the same **linking process** described in the `lotusim-generic-scenario` documentation to connect Unity with LOTUSim.
