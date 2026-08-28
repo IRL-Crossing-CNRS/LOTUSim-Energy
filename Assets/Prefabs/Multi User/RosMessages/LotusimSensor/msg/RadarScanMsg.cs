@@ -5,49 +5,49 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.Lotusim
+namespace RosMessageTypes.LotusimSensor
 {
     [Serializable]
-    public class AISArrayMsg : Message
+    public class RadarScanMsg : Message
     {
-        public const string k_RosMessageName = "lotusim_msgs/AISArray";
+        public const string k_RosMessageName = "lotusim_sensor_msgs/RadarScan";
         public override string RosMessageName => k_RosMessageName;
 
         public Std.HeaderMsg header;
-        public AISMsg[] data;
+        public RadarDetectionMsg[] detections;
 
-        public AISArrayMsg()
+        public RadarScanMsg()
         {
             this.header = new Std.HeaderMsg();
-            this.data = new AISMsg[0];
+            this.detections = new RadarDetectionMsg[0];
         }
 
-        public AISArrayMsg(Std.HeaderMsg header, AISMsg[] data)
+        public RadarScanMsg(Std.HeaderMsg header, RadarDetectionMsg[] detections)
         {
             this.header = header;
-            this.data = data;
+            this.detections = detections;
         }
 
-        public static AISArrayMsg Deserialize(MessageDeserializer deserializer) => new AISArrayMsg(deserializer);
+        public static RadarScanMsg Deserialize(MessageDeserializer deserializer) => new RadarScanMsg(deserializer);
 
-        private AISArrayMsg(MessageDeserializer deserializer)
+        private RadarScanMsg(MessageDeserializer deserializer)
         {
             this.header = Std.HeaderMsg.Deserialize(deserializer);
-            deserializer.Read(out this.data, AISMsg.Deserialize, deserializer.ReadLength());
+            deserializer.Read(out this.detections, RadarDetectionMsg.Deserialize, deserializer.ReadLength());
         }
 
         public override void SerializeTo(MessageSerializer serializer)
         {
             serializer.Write(this.header);
-            serializer.WriteLength(this.data);
-            serializer.Write(this.data);
+            serializer.WriteLength(this.detections);
+            serializer.Write(this.detections);
         }
 
         public override string ToString()
         {
-            return "AISArrayMsg: " +
+            return "RadarScanMsg: " +
             "\nheader: " + header.ToString() +
-            "\ndata: " + System.String.Join(", ", data.ToList());
+            "\ndetections: " + System.String.Join(", ", detections.ToList());
         }
 
 #if UNITY_EDITOR

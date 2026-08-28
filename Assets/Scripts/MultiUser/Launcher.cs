@@ -18,11 +18,14 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using Photon.Pun;
 using TMPro;
 using System.Net.NetworkInformation;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Com.MyCompany.MyGame
 {
@@ -59,21 +62,19 @@ namespace Com.MyCompany.MyGame
         [Tooltip("Name of the room to join/create (used both online and offline)")]
         [SerializeField] private string roomName = "facetRoom";
 
-        [Tooltip("Scene to load after joining the room. Must be in Build Settings.")]
-#if UNITY_EDITOR
-        [SerializeField] private UnityEditor.SceneAsset targetSceneAsset;
-#endif
-        [SerializeField, HideInInspector] private string targetScene = "facet_waypoint";
+        [Tooltip("Dropdown listing every scene available in Build Settings. Selection picks the scene loaded after joining the room.")]
+        [SerializeField] private TMP_Dropdown sceneDropdown;
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (targetSceneAsset != null)
-            {
-                targetScene = targetSceneAsset.name;
-            }
-        }
-#endif
+        [Tooltip("Name of the current scene (e.g. this Launcher scene) to exclude from the dropdown list.")]
+        [SerializeField] private string launcherSceneName = "Launcher";
+
+        private List<string> availableSceneNames = new List<string>();
+
+        /// <summary>
+        /// Scene to load after joining the room. Populated from sceneDropdown selection, falls back to
+        /// PlayerPrefs / first available scene if the dropdown isn't assigned.
+        /// </summary>
+        private string targetScene;
 
         #endregion
 
@@ -105,6 +106,63 @@ namespace Com.MyCompany.MyGame
             Debug.Log("Launcher Awake");
             // Ensure scene sync on master client
             PhotonNetwork.AutomaticallySyncScene = true;
+
+            PopulateSceneDropdown();
+        }
+
+        #endregion
+
+        #region Scene Selection
+
+        /// <summary>
+        /// Fills sceneDropdown with every scene registered in Build Settings (excluding the Launcher scene itself),
+        /// and restores the previously selected scene if one was saved.
+        /// </summary>
+        private void PopulateSceneDropdown()
+        {
+            availableSceneNames.Clear();
+
+            int sceneCount = SceneManager.sceneCountInBuildSettings;
+            for (int i = 0; i < sceneCount; i++)
+            {
+                string path = SceneUtility.GetScenePathByBuildIndex(i);
+                string name = Path.GetFileNameWithoutExtension(path);
+
+                if (string.IsNullOrEmpty(name) || name == launcherSceneName)
+                    continue;
+
+                availableSceneNames.Add(name);
+            }
+
+            if (availableSceneNames.Count == 0)
+            {
+                Debug.LogWarning("No scenes found in Build Settings (other than the Launcher scene).");
+                return;
+            }
+
+            string savedScene = PlayerPrefs.GetString("TargetScene", null);
+            int selectedIndex = Mathf.Max(0, availableSceneNames.IndexOf(savedScene));
+            targetScene = availableSceneNames[selectedIndex];
+
+            if (sceneDropdown == null)
+            {
+                Debug.LogWarning("sceneDropdown is not assigned in the Inspector. Defaulting to: " + targetScene);
+                return;
+            }
+
+            sceneDropdown.ClearOptions();
+            sceneDropdown.AddOptions(availableSceneNames);
+            sceneDropdown.value = selectedIndex;
+            sceneDropdown.RefreshShownValue();
+            sceneDropdown.onValueChanged.AddListener(OnSceneDropdownChanged);
+        }
+
+        private void OnSceneDropdownChanged(int index)
+        {
+            if (index < 0 || index >= availableSceneNames.Count)
+                return;
+
+            targetScene = availableSceneNames[index];
         }
 
         #endregion
@@ -167,6 +225,18 @@ namespace Com.MyCompany.MyGame
             else
             {
                 Debug.LogWarning("ROS IP or Port input field is missing!");
+            }
+
+            // Save selected scene
+            if (!string.IsNullOrEmpty(targetScene))
+            {
+                PlayerPrefs.SetString("TargetScene", targetScene);
+                PlayerPrefs.Save();
+                Debug.Log("Selected scene to load: " + targetScene);
+            }
+            else
+            {
+                Debug.LogWarning("No target scene selected!");
             }
 
             // Decide: try Photon (online) or fallback to offline

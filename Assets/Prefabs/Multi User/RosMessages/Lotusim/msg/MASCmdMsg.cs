@@ -23,6 +23,10 @@ namespace RosMessageTypes.Lotusim
         //  If model has been created with folder in `assets/models` directory, sdf will be retrieved. 
         //  Lotusim param will be retrieved from sdf_string
         public string model_name;
+        //  Optional SDF file name inside the model folder.
+        //  If not specified, the default file `model.sdf` will be used.
+        //  Only applicable when the model exists in `assets/models`.
+        public string sdf_file;
         //  Name of vessel in gazebo
         public string vessel_name;
         //  ID of vessel in gazebo. 
@@ -38,6 +42,7 @@ namespace RosMessageTypes.Lotusim
             this.cmd_type = 0;
             this.sdf_string = "";
             this.model_name = "";
+            this.sdf_file = "";
             this.vessel_name = "";
             this.entity = 0;
             this.vessel_position = new Geometry.PoseMsg();
@@ -45,11 +50,12 @@ namespace RosMessageTypes.Lotusim
             this.heading = 0.0f;
         }
 
-        public MASCmdMsg(byte cmd_type, string sdf_string, string model_name, string vessel_name, ushort entity, Geometry.PoseMsg vessel_position, Geographic.GeoPointMsg geo_point, float heading)
+        public MASCmdMsg(byte cmd_type, string sdf_string, string model_name, string sdf_file, string vessel_name, ushort entity, Geometry.PoseMsg vessel_position, Geographic.GeoPointMsg geo_point, float heading)
         {
             this.cmd_type = cmd_type;
             this.sdf_string = sdf_string;
             this.model_name = model_name;
+            this.sdf_file = sdf_file;
             this.vessel_name = vessel_name;
             this.entity = entity;
             this.vessel_position = vessel_position;
@@ -64,6 +70,7 @@ namespace RosMessageTypes.Lotusim
             deserializer.Read(out this.cmd_type);
             deserializer.Read(out this.sdf_string);
             deserializer.Read(out this.model_name);
+            deserializer.Read(out this.sdf_file);
             deserializer.Read(out this.vessel_name);
             deserializer.Read(out this.entity);
             this.vessel_position = Geometry.PoseMsg.Deserialize(deserializer);
@@ -76,6 +83,7 @@ namespace RosMessageTypes.Lotusim
             serializer.Write(this.cmd_type);
             serializer.Write(this.sdf_string);
             serializer.Write(this.model_name);
+            serializer.Write(this.sdf_file);
             serializer.Write(this.vessel_name);
             serializer.Write(this.entity);
             serializer.Write(this.vessel_position);
@@ -89,6 +97,7 @@ namespace RosMessageTypes.Lotusim
             "\ncmd_type: " + cmd_type.ToString() +
             "\nsdf_string: " + sdf_string.ToString() +
             "\nmodel_name: " + model_name.ToString() +
+            "\nsdf_file: " + sdf_file.ToString() +
             "\nvessel_name: " + vessel_name.ToString() +
             "\nentity: " + entity.ToString() +
             "\nvessel_position: " + vessel_position.ToString() +
