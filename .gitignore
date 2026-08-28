@@ -75,3 +75,7 @@ crashlytics-build.properties
 *.blob
 
 /CLAUDE.md
+# Python bytecode caches: build artefacts, and a .pyc embeds the absolute
+# path of the machine that compiled it.
+__pycache__/
+*.pyc
