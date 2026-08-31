@@ -8,7 +8,7 @@ public class ObjectLabelDisplay : MonoBehaviour
     public class LabeledObject
     {
         public Transform target;
-        public string displayName = "Nom";
+        public string displayName = "Name";
         public float labelHeight = 2f;
         public float textSize = 12f;
     }
