@@ -15,10 +15,6 @@ using TMPro;
 
 namespace Lotusim
 {
-    /// <summary>
-    /// Displays a maintenance overview of the drone fleet.
-    /// Toggled with the 'O' key (KeyBindings.ToggleMaintenance).
-    /// </summary>
     public class MaintenanceHUD : MonoBehaviour
     {
         [Header("Design Settings")]

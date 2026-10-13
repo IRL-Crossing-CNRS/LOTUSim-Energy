@@ -209,7 +209,7 @@ MonoBehaviour:
   trajectoryColor: {r: 0, g: 1, b: 1, a: 1}
   lineWidth: 0.2
   customMaterial: {fileID: 0}
-  trailLength: 100
+  trailLength: 1000
   minDistanceBetweenPoints: 0.5
   maxPoints: 5000
 --- !u!1001 &2402697611025732988

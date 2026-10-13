@@ -23,7 +23,7 @@ using Unity.Robotics.ROSTCPConnector;
 
 namespace Lotusim
 {
-    public class WindLcoeGraphHUD : MonoBehaviour
+    public class WindLcoeGraphHUD : MonoBehaviour, IHudPanel
     {
         [Header("ROS")]
         [Tooltip("Topic pattern. Use {0} as placeholder for the world name.")]
@@ -104,12 +104,6 @@ namespace Lotusim
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyBindings.ToggleLcoeGraph))
-            {
-                bool nowOpen = !m_window.activeSelf;
-                SetWindowOpen(nowOpen);
-            }
-
             if (!m_window.activeSelf) return;
 
             HandleKeyboardShortcuts();
@@ -578,6 +572,9 @@ namespace Lotusim
             m_toastText.richText = true;
             m_toastText.enableWordWrapping = false;
         }
+
+        public bool IsOpen => m_window != null && m_window.activeSelf;
+        public void SetOpen(bool open) { if (m_window != null) SetWindowOpen(open); }
 
         private void SetWindowOpen(bool open)
         {

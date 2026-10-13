@@ -33,13 +33,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 namespace Lotusim
 {
-    /// <summary>
-    /// Records and plots PowerW for every wind turbine in the scene.
-    /// Manual Start/Stop/Save workflow.
-    /// </summary>
-    public class WindPowerGraphHUD : MonoBehaviour
+
+    public class WindPowerGraphHUD : MonoBehaviour, IHudPanel
     {
         // ---------------------------------------------------------------------------------
         #region Inspector Fields
@@ -134,11 +132,6 @@ namespace Lotusim
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyBindings.TogglePowerGraph))
-            {
-                bool nowOpen = !m_window.activeSelf;
-                SetWindowOpen(nowOpen);
-            }
 
             if (!m_window.activeSelf) return;
 
@@ -723,6 +716,9 @@ namespace Lotusim
             m_toastText.richText = true;
             m_toastText.enableWordWrapping = false;
         }
+
+        public bool IsOpen => m_window != null && m_window.activeSelf;
+        public void SetOpen(bool open) { if (m_window != null) SetWindowOpen(open); }
 
         private void SetWindowOpen(bool open)
         {

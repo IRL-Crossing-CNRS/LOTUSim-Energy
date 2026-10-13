@@ -57,16 +57,16 @@ namespace Lotusim
         [KeyDescription("Graphs & HUD", "Toggle Help Menu")]
         public static KeyCode ToggleHelp = KeyCode.H;
 
-        [KeyDescription("Graphs & HUD", "Toggle Image Display")]
+        //[KeyDescription("Graphs & HUD", "Toggle Image Display")]
         public static KeyCode ToggleImage = KeyCode.I;
 
-        [KeyDescription("Graphs & HUD", "Toggle Maintenance HUD")]
+        [KeyDescription("Graphs & HUD", "Detection Uncertainty")]
         public static KeyCode ToggleMaintenance = KeyCode.O;
 
-        [KeyDescription("Graphs & HUD", "Toggle Warning HUD")]
+        [KeyDescription("Graphs & HUD", "Toggle Enviromental Warning")]
         public static KeyCode ToggleWarning = KeyCode.K;
 
-        [KeyDescription("Graphs & HUD", "Toggle Detection Warning")]
+        //[KeyDescription("Graphs & HUD", "Toggle Detection Warning")]
         public static KeyCode ToggleDetectionWarning = KeyCode.J;
 
         [KeyDescription("Graphs & HUD", "Prev Drone in Fleet")]
@@ -97,11 +97,14 @@ namespace Lotusim
         [KeyDescription("Wind Sliders", "Reset All Axes")]
         public static KeyCode WindReset = KeyCode.Alpha0;
 
+        [KeyDescription("Wind Sliders", "Max All Axes")]
+        public static KeyCode Storm = KeyCode.F1;
+
         // Visualization
         [KeyDescription("Visualization", "Toggle Wind Field")]
         public static KeyCode ToggleWindField = KeyCode.Alpha9;
 
-        [KeyDescription("Visualization", "Toggle Wind Regions")]
+        [KeyDescription("Visualization", "Toggle Wake Regions")]
         public static KeyCode ToggleWindRegions = KeyCode.Alpha3;
 
         [KeyDescription("Visualization", "Toggle Ocean Current Field")]
@@ -127,7 +130,7 @@ namespace Lotusim
         [KeyDescription("Display Switching", "X500 Camera")]
         public static KeyCode DisplayX500 = KeyCode.F7;
 
-        [KeyDescription("Display Switching", "VR Camera")]
-        public static KeyCode DisplayVR = KeyCode.F8;
+        //[KeyDescription("Display Switching", "VR Camera")]
+        //public static KeyCode DisplayVR = KeyCode.F8;
     }
 }

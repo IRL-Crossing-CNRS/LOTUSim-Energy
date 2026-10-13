@@ -6,6 +6,7 @@ namespace Lotusim
 {
     public class StormController : MonoBehaviour
     {
+
         [Header("References")]
         public Volume skyAndFogVolume;
         public GameObject oceanObject;
@@ -60,12 +61,24 @@ namespace Lotusim
         public float calmFoamAmount = 0.1f;
         public float stormFoamAmount = 0.9f;
 
+        [Header("Beaufort Storm Driving")]
+        [Tooltip("If true, storm intensity automatically rises with Beaufort scale — force 12 = full storm.")]
+        public bool beaufortDrivesStorm = true;
+
         [Header("Beaufort Wave Scaling")]
         public float baseWaveWindSpeed = 10f;
         public float waveWindScaleFactor = 30f;
         public float baseRippleWindSpeed = 9.28f;
         public float rippleWindScaleFactor = 15f;
         public float foamScaleFactor = 0.2f;
+
+        [Header("Force 12 Warning")]
+        [Tooltip("Shown automatically when wind reaches Beaufort force 12. Auto-found if left empty.")]
+        public EnvironmentalWarningHUD warningHUD;
+        [Tooltip("Hide the warning again when wind drops back below force 12.")]
+        public bool hideWarningBelowForce12 = true;
+
+        private bool wasForce12 = false;
 
         private bool stormActive = false;
         private Vector3 calmWind;
@@ -98,6 +111,9 @@ namespace Lotusim
                 profile.TryGet(out pbrSky);
                 profile.TryGet(out exposure);
             }
+
+            if (warningHUD == null)
+            warningHUD = FindFirstObjectByType<EnvironmentalWarningHUD>();
 
             if (oceanObject != null)
                 waterSurface = oceanObject.GetComponent<WaterSurface>();
@@ -158,21 +174,38 @@ namespace Lotusim
             if (Input.GetKeyDown(stormKey))
             {
                 stormActive = !stormActive;
-                targetIntensity = stormActive ? 1f : 0f;
-                ApplyStormWind();
+
+                if (stormActive)
+                {
+                    calmWind = windController != null ? windController.CurrentWindVector : Vector3.zero;
+                    if (windController != null)
+                        windController.SetWind(float.MaxValue, float.MaxValue, float.MaxValue);
+                    targetIntensity = 1f;
+                }
+                else
+                {
+                    if (windController != null)
+                        windController.SetWind(calmWind.x, calmWind.y, calmWind.z);
+                    targetIntensity = 0f;
+                }
+
                 Debug.Log($"[StormController] Storm {(stormActive ? "activated" : "deactivated")}");
             }
 
             stormIntensity = Mathf.MoveTowards(stormIntensity, targetIntensity,
                 transitionSpeed * Time.deltaTime);
 
-            if (playerCamera != null && rainObject != null)
+            if (rainObject != null)
             {
-                rainObject.transform.position = new Vector3(
-                    playerCamera.position.x,
-                    playerCamera.position.y + rainHeightAboveCamera,
-                    playerCamera.position.z
-                );
+                Transform activeCam = GetActiveCamera();
+                if (activeCam != null)
+                {
+                    rainObject.transform.position = new Vector3(
+                        activeCam.position.x,
+                        activeCam.position.y + rainHeightAboveCamera,
+                        activeCam.position.z
+                    );
+                }
             }
 
             if (!Mathf.Approximately(stormIntensity, lastIntensity))
@@ -185,10 +218,10 @@ namespace Lotusim
 
             ApplyOcean();
             ApplyRain();
+
+            CheckForce12Warning();
         }
 
-        // Raises the wind sliders (and with them the Beaufort gauge) for the duration of the
-        // storm, restoring whatever the wind was before.
         void ApplyStormWind()
         {
             if (windController == null) return;
@@ -224,6 +257,21 @@ namespace Lotusim
 
             fog.meanFreePath.Override(Mathf.Lerp(calmFogAttenuation, stormFogAttenuation, stormIntensity));
             fog.depthExtent.Override(Mathf.Lerp(calmFogDistance, stormFogDistance, stormIntensity));
+        }
+
+        void CheckForce12Warning()
+        {
+            if (windController == null || warningHUD == null) return;
+
+            var (force, _, _, _) = BeaufortScale.GetForce(windController.CurrentWindVector.magnitude);
+            bool atForce12 = force >= 12;
+
+            if (atForce12 && !wasForce12)
+                warningHUD.Show();
+            else if (!atForce12 && wasForce12 && hideWarningBelowForce12)
+                warningHUD.Hide();
+
+            wasForce12 = atForce12;
         }
 
         void ApplyClouds()
@@ -294,19 +342,41 @@ namespace Lotusim
             rainEmission.rateOverTime = Mathf.Lerp(0, stormRainEmission, stormIntensity);
         }
 
+        Transform GetActiveCamera()
+        {
+            if (DisplaySwitcher.Instance == null) return playerCamera;
+
+            int idx = DisplaySwitcher.Instance.ActiveSlotIndex;
+            Camera[] cams = FindObjectsByType<Camera>(FindObjectsSortMode.None);
+            foreach (Camera c in cams)
+                if (c.targetDisplay == 0)
+                    return c.transform;
+
+            return playerCamera;
+        }
+
         void ApplyOcean()
         {
             if (waterSurface == null) return;
 
             float windMagnitude = 0f;
             float beaufortMultiplier = 1f;
+            float beaufortIntensity = 0f;
 
             if (windController != null)
             {
                 Vector3 windVec = windController.CurrentWindVector;
-                windMagnitude = new Vector3(windVec.x, 0f, windVec.z).magnitude;
-                var (_, _, _, multiplier) = BeaufortScale.GetForce(windMagnitude);
+                windMagnitude = new Vector3(windVec.x, windVec.y, windVec.z).magnitude;
+                var (force, _, _, multiplier) = BeaufortScale.GetForce(windMagnitude);
                 beaufortMultiplier = multiplier;
+
+                beaufortIntensity = Mathf.Clamp01(force / 12f);
+                beaufortIntensity = Mathf.Clamp01((beaufortIntensity - 0.70f) / 0.30f);
+
+                if (beaufortDrivesStorm && !stormActive)
+                {
+                    targetIntensity = beaufortIntensity;
+                }
             }
 
             float largeWind;

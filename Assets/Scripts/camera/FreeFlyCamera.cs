@@ -4,6 +4,7 @@
 //===========================================================================//
 
 using UnityEngine;
+using Leap;
 
 [RequireComponent(typeof(Camera))]
 public class FreeFlyCamera : MonoBehaviour
@@ -29,7 +30,7 @@ public class FreeFlyCamera : MonoBehaviour
     [Space]
 
     [SerializeField]
-    [Tooltip("Camera zooming in/out by 'Mouse Scroll Wheel' is active")]
+    [Tooltip("Camera zooming in/out by Mouse Scroll Wheel is active")]
     private bool _enableTranslation = true;
 
     [SerializeField]
@@ -47,14 +48,12 @@ public class FreeFlyCamera : MonoBehaviour
     private float _movementSpeed = 10f;
 
     [SerializeField]
-    [Tooltip("Speed of the quick camera movement when holding the 'Left Shift' key")]
+    [Tooltip("Speed of the quick camera movement when holding Left Shift")]
     private float _boostedSpeed = 50f;
 
     [SerializeField]
     [Tooltip("Boost speed")]
     private KeyCode _boostSpeed = KeyCode.LeftShift;
-
-
 
     [Space]
 
@@ -83,7 +82,7 @@ public class FreeFlyCamera : MonoBehaviour
     private KeyCode _lockToggleKey = KeyCode.L;
 
     [SerializeField]
-    [Tooltip("LOCK-ON: How quickly the camera swings to face the target when locking on. Higher = snappier.")]
+    [Tooltip("LOCK-ON: How quickly the camera swings to face the target when locking on.")]
     private float _lockSmoothSpeed = 5f;
 
     [Space]
@@ -93,18 +92,55 @@ public class FreeFlyCamera : MonoBehaviour
     private bool _enableCollision = true;
 
     [SerializeField]
-    [Tooltip("Radius of the camera's collision 'bubble'")]
+    [Tooltip("Radius of the camera's collision bubble")]
     private float _collisionRadius = 0.3f;
 
     [SerializeField]
     [Tooltip("Layers the camera should collide with")]
-    private LayerMask _collisionMask = ~0; // defaults to "everything"
+    private LayerMask _collisionMask = ~0;
 
     [SerializeField]
     [Tooltip("Small buffer so the camera doesn't visually clip into surfaces")]
     private float _skinWidth = 0.05f;
 
     #endregion UI
+
+
+    #region Leap Motion
+
+    [Space]
+    [Header("Leap Motion Movement")]
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera forward")]
+    private HandPoseDetector _moveForwardPose;
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera backward")]
+    private HandPoseDetector _moveBackPose;
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera left")]
+    private HandPoseDetector _moveLeftPose;
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera right")]
+    private HandPoseDetector _moveRightPose;
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera up")]
+    private HandPoseDetector _moveUpPose;
+
+    [SerializeField]
+    [Tooltip("Hand pose that moves the camera down")]
+    private HandPoseDetector _moveDownPose;
+
+    [SerializeField]
+    [Tooltip("Movement speed when using Leap Motion")]
+    private float _leapMovementSpeed = 10f;
+
+    #endregion Leap Motion
+
 
     private CursorLockMode _wantedMode;
 
@@ -114,7 +150,8 @@ public class FreeFlyCamera : MonoBehaviour
     private Vector3 _initPosition;
     private Vector3 _initRotation;
 
-    private bool _isLocked = false; // LOCK-ON
+    private bool _isLocked = false;
+
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -131,13 +168,14 @@ public class FreeFlyCamera : MonoBehaviour
         _initRotation = transform.eulerAngles;
     }
 
+
     private void OnEnable()
     {
         if (_active)
             _wantedMode = CursorLockMode.Locked;
     }
 
-    // Apply requested cursor state
+
     private void SetCursorState()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -150,17 +188,16 @@ public class FreeFlyCamera : MonoBehaviour
             _wantedMode = CursorLockMode.Locked;
         }
 
-        // Apply cursor state
         Cursor.lockState = _wantedMode;
-        // Hide cursor when locking
         Cursor.visible = (CursorLockMode.Locked != _wantedMode);
     }
+
 
     private void CalculateCurrentIncrease(bool moving)
     {
         _currentIncrease = Time.deltaTime;
 
-        if (!_enableSpeedAcceleration || _enableSpeedAcceleration && !moving)
+        if (!_enableSpeedAcceleration || !moving)
         {
             _currentIncreaseMem = 0;
             return;
@@ -169,8 +206,11 @@ public class FreeFlyCamera : MonoBehaviour
         _currentIncreaseMem += Time.deltaTime * (_speedAccelerationFactor - 1);
         _currentIncreaseMem = Mathf.Clamp(_currentIncreaseMem, 0f, 3f);
 
-        _currentIncrease = Time.deltaTime + Mathf.Pow(_currentIncreaseMem, 3) * Time.deltaTime;
+        _currentIncrease =
+            Time.deltaTime +
+            Mathf.Pow(_currentIncreaseMem, 3) * Time.deltaTime;
     }
+
 
     private void Update()
     {
@@ -179,21 +219,33 @@ public class FreeFlyCamera : MonoBehaviour
 
         SetCursorState();
 
-        // LOCK-ON: toggle
         if (Input.GetKeyDown(_lockToggleKey) && _lockTarget != null)
         {
             _isLocked = !_isLocked;
-            Debug.Log($"[FreeFlyCamera] Lock-on {(_isLocked ? "enabled" : "disabled")} on {_lockTarget.name}");
+
+            Debug.Log(
+                $"[FreeFlyCamera] Lock-on {(_isLocked ? "enabled" : "disabled")} on {_lockTarget.name}"
+            );
         }
 
         if (Cursor.visible)
             return;
 
-        // Translation
+
+        //==============================================================//
+        // Translation / Mouse Wheel
+        //==============================================================//
+
         if (_enableTranslation)
         {
-            Vector3 translateVector = Vector3.forward * Input.mouseScrollDelta.y * Time.deltaTime * _translationSpeed;
-            Vector3 worldTranslate = transform.TransformDirection(translateVector);
+            Vector3 translateVector =
+                Vector3.forward *
+                Input.mouseScrollDelta.y *
+                Time.deltaTime *
+                _translationSpeed;
+
+            Vector3 worldTranslate =
+                transform.TransformDirection(translateVector);
 
             if (_enableCollision && worldTranslate != Vector3.zero)
                 worldTranslate = GetCollisionSafeMove(worldTranslate);
@@ -201,14 +253,24 @@ public class FreeFlyCamera : MonoBehaviour
             transform.position += worldTranslate;
         }
 
+
+        //==============================================================//
         // Movement
+        //==============================================================//
+
         if (_enableMovement)
         {
             Vector3 deltaPosition = Vector3.zero;
+
             float currentSpeed = _movementSpeed;
 
             if (Input.GetKey(_boostSpeed))
                 currentSpeed = _boostedSpeed;
+
+
+            //==========================================================//
+            // Keyboard movement
+            //==========================================================//
 
             if (Input.GetKey(Lotusim.KeyBindings.Forward))
                 deltaPosition += transform.forward;
@@ -228,9 +290,82 @@ public class FreeFlyCamera : MonoBehaviour
             if (Input.GetKey(Lotusim.KeyBindings.Down))
                 deltaPosition -= transform.up;
 
+
+            //==========================================================//
+            // Leap Motion movement
+            //==========================================================//
+
+            Vector3 leapMovement = Vector3.zero;
+
+
+            if (_moveForwardPose != null &&
+                _moveForwardPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement += transform.forward;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Forward");
+            }
+
+
+            if (_moveBackPose != null &&
+                _moveBackPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement -= transform.forward;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Back");
+            }
+
+
+            if (_moveLeftPose != null &&
+                _moveLeftPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement -= transform.right;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Left");
+            }
+
+
+            if (_moveRightPose != null &&
+                _moveRightPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement += transform.right;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Right");
+            }
+
+
+            if (_moveUpPose != null &&
+                _moveUpPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement += transform.up;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Up");
+            }
+
+
+            if (_moveDownPose != null &&
+                _moveDownPose.GetCurrentlyDetectedPose() != null)
+            {
+                leapMovement -= transform.up;
+
+                Debug.Log("[FreeFlyCamera] Leap Motion: Down");
+            }
+
+
+            // Apply Leap Motion movement
+            deltaPosition += leapMovement * _leapMovementSpeed;
+
+
+            //==========================================================//
+            // Apply movement
+            //==========================================================//
+
             CalculateCurrentIncrease(deltaPosition != Vector3.zero);
 
-            Vector3 moveVector = deltaPosition * currentSpeed * _currentIncrease;
+            Vector3 moveVector =
+                deltaPosition *
+                currentSpeed *
+                _currentIncrease;
 
             if (_enableCollision && moveVector != Vector3.zero)
                 moveVector = GetCollisionSafeMove(moveVector);
@@ -238,9 +373,14 @@ public class FreeFlyCamera : MonoBehaviour
             transform.position += moveVector;
         }
 
-        if (_isLocked && _lockTarget != null) // LOCK-ON: rotation itself now happens in LateUpdate (see below)
+
+        //==============================================================//
+        // Camera rotation
+        //==============================================================//
+
+        if (_isLocked && _lockTarget != null)
         {
-            // Intentionally left empty — see LateUpdate for why.
+            // Rotation handled in LateUpdate
         }
         else if (_enableRotation)
         {
@@ -249,13 +389,18 @@ public class FreeFlyCamera : MonoBehaviour
                 Vector3.right
             );
 
-            // Paw
             transform.rotation = Quaternion.Euler(
                 transform.eulerAngles.x,
-                transform.eulerAngles.y + Input.GetAxis("Mouse X") * _mouseSense,
+                transform.eulerAngles.y +
+                Input.GetAxis("Mouse X") * _mouseSense,
                 transform.eulerAngles.z
             );
         }
+
+
+        //==============================================================//
+        // Reset position
+        //==============================================================//
 
         if (Input.GetKeyDown(_initPositonButton))
         {
@@ -267,26 +412,57 @@ public class FreeFlyCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!_active || !_isLocked || _lockTarget == null || Cursor.visible)
+        if (!_active ||
+            !_isLocked ||
+            _lockTarget == null ||
+            Cursor.visible)
             return;
 
-        Vector3 dirToTarget = (_lockTarget.position - transform.position).normalized;
-        Quaternion lookRot = Quaternion.LookRotation(dirToTarget, Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, _lockSmoothSpeed * Time.deltaTime);
+        Vector3 dirToTarget =
+            (_lockTarget.position - transform.position).normalized;
+
+        Quaternion lookRot =
+            Quaternion.LookRotation(dirToTarget, Vector3.up);
+
+        transform.rotation =
+            Quaternion.Slerp(
+                transform.rotation,
+                lookRot,
+                _lockSmoothSpeed * Time.deltaTime
+            );
 
         Vector3 lockedEuler = transform.eulerAngles;
-        transform.rotation = Quaternion.Euler(lockedEuler.x, lockedEuler.y, 0f);
+
+        transform.rotation =
+            Quaternion.Euler(
+                lockedEuler.x,
+                lockedEuler.y,
+                0f
+            );
     }
+
 
     private Vector3 GetCollisionSafeMove(Vector3 desiredMove)
     {
         float distance = desiredMove.magnitude;
+
+        if (distance <= 0f)
+            return Vector3.zero;
+
         Vector3 direction = desiredMove / distance;
 
-        if (Physics.SphereCast(transform.position, _collisionRadius, direction,
-            out RaycastHit hit, distance + _skinWidth, _collisionMask, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(
+            transform.position,
+            _collisionRadius,
+            direction,
+            out RaycastHit hit,
+            distance + _skinWidth,
+            _collisionMask,
+            QueryTriggerInteraction.Ignore))
         {
-            float allowedDistance = Mathf.Max(hit.distance - _skinWidth, 0f);
+            float allowedDistance =
+                Mathf.Max(hit.distance - _skinWidth, 0f);
+
             return direction * allowedDistance;
         }
 

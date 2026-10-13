@@ -55,7 +55,7 @@ namespace Lotusim
 
         [Header("Visibility")]
         [Tooltip("Show wind region shapes. Toggle at runtime with KeyBindings.ToggleWindRegions.")]
-        [SerializeField] private bool showRegions = true;
+        [SerializeField] private bool showRegions = false;
 
         [Tooltip("Small on-screen label showing whether wind regions are toggled ON/OFF.")]
         [SerializeField] private bool showStatusIndicator = true;

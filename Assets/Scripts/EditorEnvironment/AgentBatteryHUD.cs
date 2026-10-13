@@ -41,10 +41,8 @@ using RosMessageTypes.Sensor;
 
 namespace Lotusim
 {
-    /// <summary>
-    /// Real-time battery monitor for dynamically spawned agents.
-    /// </summary>
-    public class AgentBatteryHUD : MonoBehaviour
+
+    public class AgentBatteryHUD : MonoBehaviour, IHudPanel
     {
         // -----------------------------------------------------------------------
         #region Inspector Fields
@@ -160,12 +158,6 @@ namespace Lotusim
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyBindings.ToggleBatteryHUD))
-                SetWindowOpen(!m_window.activeSelf);
-
-            // Discovery + despawn cleanup runs regardless of panel visibility, so battery
-            // subscriptions track agent lifecycle (a despawned agent must release its sub
-            // even while the panel is hidden, otherwise the endpoint node lingers).
             m_discoveryAccum += Time.deltaTime;
             if (m_discoveryAccum >= discoveryIntervalSec)
             {
@@ -381,7 +373,6 @@ namespace Lotusim
 
                 if (e.row == null) continue;
 
-                // Only update UI if values have changed
                 if (Mathf.Approximately(pct, e.lastPercentage) &&
                     Mathf.Approximately(volt, e.lastVoltage) &&
                     Mathf.Approximately(curr, e.lastCurrent) &&
@@ -422,7 +413,6 @@ namespace Lotusim
             }
         }
 
-        // Fill a bar by moving its anchorMax.x — works at any RectTransform size.
         private static void SetBarFillAnchor(RawImage fill, float t01, Texture2D tex)
         {
             if (fill == null) return;
@@ -434,7 +424,7 @@ namespace Lotusim
         }
 
         #endregion
-        // -----------------------------------------------------------------------
+    
 
         #region UI Construction
 
@@ -671,6 +661,9 @@ namespace Lotusim
         }
 
         private void CloseWindow() => SetWindowOpen(false);
+
+        public bool IsOpen => m_window != null && m_window.activeSelf;
+        public void SetOpen(bool open) { if (m_window != null) SetWindowOpen(open); }
 
         private void SetWindowOpen(bool open)
         {

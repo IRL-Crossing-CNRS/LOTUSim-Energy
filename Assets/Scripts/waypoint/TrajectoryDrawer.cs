@@ -29,7 +29,7 @@ namespace Lotusim
         private LineRenderer lineRenderer;
         private Vector3 lastSavedPoint;
 
-        private static bool s_tracesVisible = true;
+        private static bool s_tracesVisible = false;
 
         // Every agent's Update() sees the same key press, so only let the first one toggle.
         private static int s_lastToggleFrame = -1;

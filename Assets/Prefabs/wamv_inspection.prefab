@@ -236,6 +236,7 @@ MonoBehaviour:
   crackBoxColor: {r: 1, g: 0, b: 0, a: 1}
   showLabels: 1
   crackDisplayThreshold: 0.05
+  detectionTimeout: 3
 --- !u!114 &4752531658930044446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ PrefabInstance:
     - target: {fileID: -8377078851324746670, guid: 5c279591dc63c41488e21cc77ef9b2a3,
         type: 3}
       propertyPath: trailLength
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 716916962413151487, guid: 5c279591dc63c41488e21cc77ef9b2a3,
         type: 3}

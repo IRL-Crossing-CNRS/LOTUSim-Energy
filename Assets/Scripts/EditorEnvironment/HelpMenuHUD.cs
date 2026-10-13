@@ -121,11 +121,11 @@ namespace Lotusim
             helpPanel = new GameObject("HelpPanel");
             helpPanel.transform.SetParent(canvasGO.transform, false);
             RectTransform hRT = helpPanel.AddComponent<RectTransform>();
-            hRT.anchorMin = new Vector2(1f - panelWidthRatio, 0f);
-            hRT.anchorMax = new Vector2(1f, 1f);
-            hRT.pivot = new Vector2(1f, 0f);
-            hRT.offsetMin = new Vector2(10f, 60f);
-            hRT.offsetMax = new Vector2(-20f, -40f);
+            hRT.anchorMin = new Vector2(0f, 0f);
+            hRT.anchorMax = new Vector2(panelWidthRatio, 1f);
+            hRT.pivot = new Vector2(0f, 0f);
+            hRT.offsetMin = new Vector2(20f, 60f);
+            hRT.offsetMax = new Vector2(-10f, -40f);
 
             Image hBg = helpPanel.AddComponent<Image>();
             hBg.color = new Color(0.05f, 0.08f, 0.14f, 0.95f);
