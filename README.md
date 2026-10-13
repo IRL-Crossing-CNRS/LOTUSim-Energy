@@ -20,7 +20,7 @@ The core simulation control module interfaces with three primary client modules:
 <img src="Media/lotusim_architecture.png" alt="architecture" width="30%">
 
 ## Table of Contents
-- [Requirements / Setup](#requirements--setup)
+- [Requirements](#requirements)
 - [Get Started](#get-started)
 - [Start using the Leap Motion](#start-using-the-leap-motion)
 - [Start using the Tobbi Eye Tracker 5](#start-using-the-tobbi-eye-tracker-5)
@@ -33,41 +33,30 @@ The core simulation control module interfaces with three primary client modules:
 - [Appendix](#appendix)
 
 
-## Requirements / Setup
-- **Unity** `2022.3.18f`  
-- **Multi-Users** `PUN2 - Photon Unity Networking 2` (already in the git) 
-- **Leap Motion** (works on Linux and Windows) An `Ultraleap Hand Tracking Camera` 
-You will need a computer that meets the [Tracking Requirements](https://www.ultraleap.com/gemini-downloads/?_gl=1*1p21y34*_ga*MjA3MTg2NzM3NS4xNzQ1ODk1Mjky*_ga_5G8B19JLWG*czE3NTAzOTQ1ODQkbzEwJGcwJHQxNzUwMzk0NTg0JGo2MCRsMCRoMA..) and have the `[Ultraleap Hand Tracking Software (V5.2+)]`(https://www.ultraleap.com/downloads/) installed (for this project, the **Leap Motion Controller** have been used) 
-- **Eye Tracker (only on Windows)** `Tobii Eye Tracker 5` device  
-Tobii Gaming | Download or Setup Eye Tracking Software and Drivers install the driver
-Then Tobii Ghost,
-Install the `Tobii Experience App` in the Microsoft Store  
-The `Tobii Experience Driver v1.133` (https://gaming.tobii.com/getstarted/?bundle=tobii-et5)  
-And the `Tobii Ghost v1.14.1` (https://gaming.tobii.com/getstarted/?bundle=tobii-et5)
+## Requirements
+
+- **Unity** `2022.3.18f1`
+- **Multi-user**: `PUN2 - Photon Unity Networking 2` (already in the repository)
+- **Leap Motion** (optional, Linux and Windows): an `Ultraleap Hand Tracking Camera`
+- **Eye tracker** (optional, Windows only): a `Tobii Eye Tracker 5`
+
+Installing the Unity Editor, the project and the device software is described
+in [How_To_Install_LOTUSim — Unity project](https://github.com/IRL-Crossing-CNRS/How_To_Install_LOTUSim#optional-the-unity-project-unity-developers-only). Running a
+scenario needs none of it: the scenario workspace ships the built player
+(see [Executables](#executables)).
 
 ---
 
 ## Get Started
 
-1. **Get the Unity project**    
-Use this command :
-```bash
-git clone --recurse-submodules https://github.com/naval-group/LOTUSim-Unity-modules
-```
-
-And after cloning:
-```sh
-cd LOTUSim-Unity-modules
-git submodule update --remote --merge
-```
-
+1. **Install the project**, see [Requirements](#requirements).
 2. **Add & open the project on Unity Hub.**
 3. **Open one of the scenes**
 4. **Run the scene.**
 
 ## Start using the Leap Motion
 
-1. Make sure you have the [requirements](#requirements/setup) installed for the Leap Motion with the device you have.
+1. Make sure you have the [requirements](#requirements) installed for the Leap Motion with the device you have.
 2. Plug your Leap Motion and check by using the Leap Motion Software if it is active on your computer.
 3. Place the Leap in front of the user, with the **wire pointing left** (the Leap has been implemented to be Desktop mounted)
 4. Check that the Unity scene you are using have the GameObject `LeapMouvementController` activated (in Unity).
@@ -76,7 +65,7 @@ git submodule update --remote --merge
 
 ## Start using the Tobbi Eye Tracker 5
 
-1. Plug the Eye Tracker, and make sure you have the [requirements](#requirements/setup) installed.
+1. Plug the Eye Tracker, and make sure you have the [requirements](#requirements) installed.
 2. Open the `Tobii Experience App` and callibrate your device by following the instructions.
 3. Open the `Tobii Ghost` app and play with the settings to display the gaze trace and more...
 4. You can start running your simulations and the Eye Tracker will track your gaze!
