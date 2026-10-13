@@ -107,23 +107,27 @@ namespace Lotusim
         [KeyDescription("Visualization", "Toggle Ocean Current Field")]
         public static KeyCode ToggleOceanCurrentField = KeyCode.Alpha6;
 
+        // Not M: its physical position differs between AZERTY and QWERTY.
+        [KeyDescription("Visualization", "Toggle Agent Trace")]
+        public static KeyCode ToggleAgentTrace = KeyCode.C;
+
         // Display Switching
         [KeyDescription("Display Switching", "Main Camera")]
-        public static KeyCode DisplayMain = KeyCode.Keypad1;
+        public static KeyCode DisplayMain = KeyCode.F9;
 
         [KeyDescription("Display Switching", "Leap Camera")]
-        public static KeyCode DisplayLeap = KeyCode.Keypad4;
+        public static KeyCode DisplayLeap = KeyCode.F10;
 
         [KeyDescription("Display Switching", "BlueROV Camera")]
-        public static KeyCode DisplayBlueROV = KeyCode.Keypad5;
+        public static KeyCode DisplayBlueROV = KeyCode.F5;
 
         [KeyDescription("Display Switching", "WAMV Camera")]
-        public static KeyCode DisplayWAMV = KeyCode.Keypad6;
+        public static KeyCode DisplayWAMV = KeyCode.F6;
 
         [KeyDescription("Display Switching", "X500 Camera")]
-        public static KeyCode DisplayX500 = KeyCode.Keypad7;
+        public static KeyCode DisplayX500 = KeyCode.F7;
 
         [KeyDescription("Display Switching", "VR Camera")]
-        public static KeyCode DisplayVR = KeyCode.Keypad8;
+        public static KeyCode DisplayVR = KeyCode.F8;
     }
 }

@@ -29,6 +29,11 @@ namespace Lotusim
         private LineRenderer lineRenderer;
         private Vector3 lastSavedPoint;
 
+        private static bool s_tracesVisible = true;
+
+        // Every agent's Update() sees the same key press, so only let the first one toggle.
+        private static int s_lastToggleFrame = -1;
+
         // True when we created the default material ourselves (HDRP/Unlit) rather than the caller
         // supplying customMaterial — only then do we know it's safe to push color to the material
         // directly and to route it into HDRP's After-Post-Process queue (see Awake()).
@@ -79,6 +84,15 @@ namespace Lotusim
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyBindings.ToggleAgentTrace) && Time.frameCount != s_lastToggleFrame)
+            {
+                s_tracesVisible = !s_tracesVisible;
+                s_lastToggleFrame = Time.frameCount;
+            }
+
+            lineRenderer.enabled = s_tracesVisible;
+            if (!s_tracesVisible) return;
+
             // Allows viewing color/size changes in real-time in the inspector
             lineRenderer.startColor = trajectoryColor;
             lineRenderer.endColor = trajectoryColor;

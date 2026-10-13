@@ -37,15 +37,26 @@ namespace Lotusim
 
         #region Configuration
 
+        private const string DefaultIp = "127.0.0.1";
+        private const int DefaultPort = 10000;
+
         private void ConfigureROSConnection()
         {
-            string ip = PlayerPrefs.GetString("ROS_IP", "127.0.0.1");
-            string portStr = PlayerPrefs.GetString("ROS_Port", "10000");
+            string ip = PlayerPrefs.GetString("ROS_IP", DefaultIp);
+            string portStr = PlayerPrefs.GetString("ROS_Port", DefaultPort.ToString());
 
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                ip = DefaultIp;
+            }
+
+            // The launcher screen stores the address the user types but leaves
+            // ROS_Port empty, so returning here would drop that address too and
+            // leave ROSConnection on whatever IP was serialised at build time.
             if (!int.TryParse(portStr, out int port))
             {
-                Debug.LogError($"[ROSConnectionConfigurator] Invalid ROS port: {portStr}");
-                return;
+                Debug.LogWarning($"[ROSConnectionConfigurator] Invalid ROS port '{portStr}', using {DefaultPort}.");
+                port = DefaultPort;
             }
 
             ROSConnection rosConnection = ROSConnection.GetOrCreateInstance();

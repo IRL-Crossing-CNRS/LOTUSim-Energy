@@ -478,10 +478,10 @@ namespace Lotusim
             m_window = new GameObject("AgentBatteryHUD_Window");
             m_window.transform.SetParent(canvasGO.transform, false);
             RectTransform winRT = m_window.AddComponent<RectTransform>();
-            winRT.anchorMin        = winRT.anchorMax = new Vector2(1f, 0.5f);
-            winRT.pivot            = new Vector2(1f, 0.5f);
+            winRT.anchorMin        = winRT.anchorMax = new Vector2(0f, 0f);
+            winRT.pivot            = new Vector2(0f, 0f);
             winRT.sizeDelta        = new Vector2(panelWidth, panelHeight);
-            winRT.anchoredPosition = new Vector2(-16f, 0f);
+            winRT.anchoredPosition = new Vector2(16f, 16f);
             Image winBg = m_window.AddComponent<Image>();
             winBg.color = k_WinBg;
 
@@ -499,7 +499,7 @@ namespace Lotusim
 
             m_titleText = CreateTMP("Title", titleBar.transform);
             m_titleText.text      = "Agent Battery Monitor";
-            m_titleText.fontSize  = 14f;
+            m_titleText.fontSize  = 25f;
             m_titleText.fontStyle = FontStyles.Bold;
             m_titleText.color     = new Color(0.55f, 0.90f, 1f);
             m_titleText.alignment = TextAlignmentOptions.MidlineLeft;
@@ -510,7 +510,7 @@ namespace Lotusim
 
             // ---- Subtitle ----
             m_subtitleText = CreateTMP("Subtitle", m_window.transform);
-            m_subtitleText.fontSize  = 10f;
+            m_subtitleText.fontSize  = 20f;
             m_subtitleText.color     = new Color(0.65f, 0.70f, 0.80f);
             m_subtitleText.alignment = TextAlignmentOptions.MidlineLeft;
             RectTransform subRT = m_subtitleText.rectTransform;
@@ -581,7 +581,7 @@ namespace Lotusim
             toRT.pivot            = new Vector2(0.5f, 0f);
             toRT.sizeDelta        = new Vector2(-24f, 26f);
             toRT.anchoredPosition = new Vector2(0f, 4f);
-            m_toastText.fontSize  = 10f;
+            m_toastText.fontSize  = 15f;
             m_toastText.alignment = TextAlignmentOptions.Center;
             m_toastText.color     = new Color(0.75f, 0.90f, 1f, 0.80f);
         }
@@ -604,7 +604,7 @@ namespace Lotusim
             // --- Top line: agent name (left) + value text (right) ---
             entry.labelText = CreateTMP("Label", row.transform);
             entry.labelText.text      = entry.agentName;
-            entry.labelText.fontSize  = 11.5f;
+            entry.labelText.fontSize  = 20f;
             entry.labelText.fontStyle = FontStyles.Bold;
             entry.labelText.color     = Color.white;
             entry.labelText.alignment = TextAlignmentOptions.MidlineLeft;
@@ -619,7 +619,7 @@ namespace Lotusim
             // Small topic label for diagnostics (shown below agent name, inside bar area)
             TMP_Text topicLabel = CreateTMP("Topic", row.transform);
             topicLabel.text      = entry.topic;
-            topicLabel.fontSize  = 7.5f;
+            topicLabel.fontSize  = 10f;
             topicLabel.color     = new Color(0.45f, 0.55f, 0.65f);
             topicLabel.alignment = TextAlignmentOptions.BottomLeft;
             topicLabel.enableWordWrapping = false;

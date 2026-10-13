@@ -40,7 +40,7 @@ namespace Lotusim
             [Tooltip("Human-readable label shown in the toast when this slot is activated.")]
             public string label;
 
-            [Tooltip("Numpad key that activates this slot.")]
+            [Tooltip("Key that activates this slot.")]
             public KeyCode key;
 
             [Tooltip("Camera for static displays (Display 1, 4, 8). Leave null for agent camera slots.")]

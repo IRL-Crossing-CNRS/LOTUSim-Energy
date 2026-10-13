@@ -170,34 +170,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_slots:
   - label: Main Camera
-    key: 257
+    key: 290
     staticCamera: {fileID: 2076066924}
     agentFleet: 
     exclusiveHUDs:
     - {fileID: 1487846291}
     - {fileID: 112131757}
   - label: LeapMotion
-    key: 260
+    key: 291
     staticCamera: {fileID: 1351689598}
     agentFleet: 
     exclusiveHUDs: []
   - label: BlueROV Camera Inspection
-    key: 261
+    key: 286
     staticCamera: {fileID: 0}
     agentFleet: BlueROV
     exclusiveHUDs: []
   - label: WAMV Camera Inspection
-    key: 262
+    key: 287
     staticCamera: {fileID: 0}
     agentFleet: WAMV
     exclusiveHUDs: []
   - label: X500 Camera Inspection
-    key: 263
+    key: 288
     staticCamera: {fileID: 0}
     agentFleet: X500
     exclusiveHUDs: []
   - label: VR
-    key: 264
+    key: 289
     staticCamera: {fileID: 1238364699}
     agentFleet: 
     exclusiveHUDs: []

@@ -16,8 +16,11 @@
 //  Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Unity.Robotics.ROSTCPConnector;
 using RosMessageTypes.Sensor;
 using RosMessageTypes.Std;
@@ -62,7 +65,14 @@ namespace Lotusim
         private ROSConnection rosConnection;
         private bool isRosInitialized = false;
 
-        private Texture2D snapshot;
+        // RenderTexture reutilisee : la version precedente en allouait une
+        // neuve, plus une Texture2D, a chaque capture -- dix fois par seconde.
+        private RenderTexture renderTex;
+        private bool captureInFlight;
+        // Les images pretes reviennent par cette file, vidée depuis Update :
+        // rien de cette chaine ne doit faire attendre LOTUSim, sinon les FPS
+        // tombent et la simulation n'est plus temps reel.
+        private readonly ConcurrentQueue<byte[]> pendingFrames = new ConcurrentQueue<byte[]>();
         private float timeElapsed;
         private string vesselName;
         private string topicName;
@@ -134,11 +144,13 @@ namespace Lotusim
                 return; // give the endpoint a frame to process the registration
             }
 
+            DrainPendingFrames();
+
             // Publish at defined rate
             timeElapsed += Time.deltaTime;
-            if (timeElapsed >= publishRate)
+            if (timeElapsed >= publishRate && !captureInFlight)
             {
-                CaptureAndSendImage();
+                StartCoroutine(CaptureAndSendImage());
                 timeElapsed = 0f;
             }
         }
@@ -177,46 +189,75 @@ namespace Lotusim
         /// <summary>
         /// Captures the camera’s current frame and publishes it as a ROS <see cref="ImageMsg"/>.
         /// </summary>
-        private void CaptureAndSendImage()
+        private IEnumerator CaptureAndSendImage()
         {
-            // Prepare render target
-            RenderTexture renderTex = new RenderTexture(imageWidth, imageHeight, 24);
-            snapCam.targetTexture = renderTex;
-            RenderTexture.active = renderTex;
+            captureInFlight = true;
 
-            // Render and read pixels into Texture2D
-            snapshot = new Texture2D(imageWidth, imageHeight, TextureFormat.RGB24, false);
-            snapCam.Render();
-            snapshot.ReadPixels(new Rect(0, 0, imageWidth, imageHeight), 0, 0);
-            snapshot.Apply();
+            // Toute la charge GPU se fait en fin de frame. Capturer depuis
+            // Update() rend la camera pendant que la frame est encore en cours
+            // et fait courir le rendu manuel contre le thread de rendu : c'est
+            // la cause du SIGSEGV deja rencontre ailleurs dans ce projet.
+            yield return new WaitForEndOfFrame();
 
-            byte[] imageData = snapshot.GetRawTextureData();
-
-            // Build ROS Image message
-            ImageMsg imgMsg = new ImageMsg
+            if (renderTex == null)
             {
-                header = new HeaderMsg
+                renderTex = new RenderTexture(imageWidth, imageHeight, 24, RenderTextureFormat.ARGB32);
+                renderTex.Create();
+            }
+
+            RenderTexture prevTarget = snapCam.targetTexture;
+            snapCam.targetTexture = renderTex;
+            snapCam.Render();
+            snapCam.targetTexture = prevTarget;
+
+            // Lecture asynchrone : aucune attente du GPU.
+            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, OnCaptureReadback);
+        }
+
+        private void OnCaptureReadback(AsyncGPUReadbackRequest request)
+        {
+            captureInFlight = false;
+
+            if (request.hasError)
+            {
+                Debug.LogError("[CameraSensor] AsyncGPUReadback failed.");
+                return;
+            }
+
+            pendingFrames.Enqueue(request.GetData<byte>().ToArray());
+        }
+
+        // Envoi ROS : au main thread, mais sans jamais attendre.
+        private void DrainPendingFrames()
+        {
+            while (pendingFrames.TryDequeue(out byte[] imageData))
+            {
+                ImageMsg imgMsg = new ImageMsg
                 {
-                    stamp = new TimeMsg(0, 0),
-                    frame_id = $"{vesselName}/camera"
-                },
-                height = (uint)imageHeight,
-                width = (uint)imageWidth,
-                encoding = "rgb8",
-                is_bigendian = 0,
-                step = (uint)(imageWidth * 3),
-                data = imageData
-            };
+                    header = new HeaderMsg
+                    {
+                        stamp = new TimeMsg(0, 0),
+                        frame_id = $"{vesselName}/camera"
+                    },
+                    height = (uint)imageHeight,
+                    width = (uint)imageWidth,
+                    encoding = "rgb8",
+                    is_bigendian = 0,
+                    step = (uint)(imageWidth * 3),
+                    data = imageData
+                };
 
-            // Publish to ROS
-            rosConnection?.Publish(topicName, imgMsg);
-            Debug.Log($"[CameraSensor] Published image to {topicName} ({imageData.Length} bytes)");
+                rosConnection?.Publish(topicName, imgMsg);
+            }
+        }
 
-            // Cleanup
-            RenderTexture.active = null;
-            snapCam.targetTexture = null;
-            Destroy(renderTex);
-            Destroy(snapshot);
+        private void OnDestroy()
+        {
+            if (renderTex != null)
+            {
+                renderTex.Release();
+                Destroy(renderTex);
+            }
         }
 
         #endregion

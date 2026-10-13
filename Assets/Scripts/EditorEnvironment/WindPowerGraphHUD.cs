@@ -617,7 +617,7 @@ namespace Lotusim
             canvasGO.AddComponent<CanvasScaler>();
             canvasGO.AddComponent<GraphicRaycaster>();
 
-            float widgetW = graphWidth + 40f + 150f;
+            float widgetW = graphWidth + 40f + 220f;
             float widgetH = -kGraphAnchorY + graphHeight + 20f;
 
             m_window = new GameObject("WindPowerGraph_Window");
@@ -702,9 +702,9 @@ namespace Lotusim
             RectTransform lRT = m_legendText.rectTransform;
             lRT.anchorMin = new Vector2(1f, 1f); lRT.anchorMax = new Vector2(1f, 1f);
             lRT.pivot = new Vector2(1f, 1f);
-            lRT.sizeDelta = new Vector2(150f, graphHeight);
+            lRT.sizeDelta = new Vector2(220f, graphHeight);
             lRT.anchoredPosition = new Vector2(-12f, kGraphAnchorY);
-            m_legendText.fontSize = 9f;
+            m_legendText.fontSize = 16f;
             m_legendText.alignment = TextAlignmentOptions.TopLeft;
             m_legendText.color = Color.white;
             m_legendText.richText = true;

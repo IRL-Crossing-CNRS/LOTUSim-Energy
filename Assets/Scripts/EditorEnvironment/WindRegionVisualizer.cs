@@ -39,6 +39,7 @@ using System.Collections.Generic;
 using RosMessageTypes.Lotusim;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Lotusim
 {
@@ -55,6 +56,9 @@ namespace Lotusim
         [Header("Visibility")]
         [Tooltip("Show wind region shapes. Toggle at runtime with KeyBindings.ToggleWindRegions.")]
         [SerializeField] private bool showRegions = true;
+
+        [Tooltip("Small on-screen label showing whether wind regions are toggled ON/OFF.")]
+        [SerializeField] private bool showStatusIndicator = true;
 
         [Header("Outline")]
         [Tooltip("Width of the perimeter outline lines — shared by every shape for a consistent look.")]
@@ -125,6 +129,10 @@ namespace Lotusim
 
         private readonly Dictionary<string, ZoneInstance> m_zones = new Dictionary<string, ZoneInstance>();
         private int m_layerIndex;
+        private TMP_Text m_statusText;
+
+        // Read by WakeEmissionController and TurbineWake so one key hides every wake visual.
+        public static bool WakeVisible { get; private set; } = true;
 
         // -1 = no message ever received yet (don't time out before the scenario has even started).
         private float m_lastMessageRealtime = -1f;
@@ -140,6 +148,15 @@ namespace Lotusim
 
             m_shapeRenderers[WindRegionMsg.BOX] = boxShape;
             m_shapeRenderers[WindRegionMsg.CONE_SEGMENT] = coneShape;
+
+            WakeVisible = showRegions;
+
+            if (showStatusIndicator) BuildStatusIndicator();
+        }
+
+        private void Start()
+        {
+            UpdateStatusIndicator();
         }
 
         private void Update()
@@ -147,7 +164,9 @@ namespace Lotusim
             if (Input.GetKeyDown(KeyBindings.ToggleWindRegions))
             {
                 showRegions = !showRegions;
+                WakeVisible = showRegions;
                 ApplyVisibility();
+                UpdateStatusIndicator();
             }
 
             if (m_zones.Count == 0) return;
@@ -320,6 +339,38 @@ namespace Lotusim
             foreach (ZoneInstance zone in m_zones.Values)
                 DestroyZone(zone);
             m_zones.Clear();
+        }
+
+        private void BuildStatusIndicator()
+        {
+            GameObject canvasGO = new GameObject("WindRegionStatus_Canvas");
+            canvasGO.transform.SetParent(transform, false);
+            Canvas canvas = canvasGO.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 100;
+            canvasGO.AddComponent<CanvasScaler>();
+            canvasGO.AddComponent<GraphicRaycaster>();
+
+            GameObject textGO = new GameObject("WindRegionStatus_Text");
+            textGO.transform.SetParent(canvasGO.transform, false);
+            m_statusText = textGO.AddComponent<TextMeshProUGUI>();
+            m_statusText.fontSize = 11f;
+            m_statusText.fontStyle = FontStyles.Bold;
+            m_statusText.alignment = TextAlignmentOptions.Top;
+            m_statusText.raycastTarget = false;
+
+            RectTransform rt = m_statusText.rectTransform;
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 1f);
+            rt.pivot = new Vector2(0.5f, 1f);
+            rt.anchoredPosition = new Vector2(0f, -12f);
+            rt.sizeDelta = new Vector2(180f, 20f);
+        }
+
+        private void UpdateStatusIndicator()
+        {
+            if (m_statusText == null) return;
+            m_statusText.text = showRegions ? "WAKE: ON" : "WAKE: OFF";
+            m_statusText.color = showRegions ? new Color(0.4f, 0.95f, 0.5f) : new Color(0.9f, 0.4f, 0.4f);
         }
 
         private WindZoneRenderSettings MakeSettings(ZoneInstance zone)

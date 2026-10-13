@@ -473,7 +473,7 @@ namespace Lotusim
             canvasGO.AddComponent<CanvasScaler>();
             canvasGO.AddComponent<GraphicRaycaster>();
 
-            float widgetW = graphWidth + 40f + 190f;
+            float widgetW = graphWidth + 70f + 190f;
             float widgetH = -kGraphAnchorY + graphHeight + 20f;
 
             m_window = new GameObject("WindLcoeGraph_Window");
@@ -493,7 +493,7 @@ namespace Lotusim
             tRT.offsetMin = new Vector2(8f, -31f);
             tRT.offsetMax = new Vector2(-80f, -5f);
             title.text = "Wind Farm LCOE  <size=9><color=#A09060>A$/MWh · AUS market</color></size>";
-            title.fontSize = 13f;
+            title.fontSize = 20f;
             title.fontStyle = FontStyles.Bold;
             title.color = farmAvgColor;
             title.alignment = TextAlignmentOptions.MidlineLeft;
@@ -560,7 +560,7 @@ namespace Lotusim
             lRT.pivot = new Vector2(1f, 1f);
             lRT.sizeDelta = new Vector2(190f, graphHeight);
             lRT.anchoredPosition = new Vector2(-12f, kGraphAnchorY);
-            m_legendText.fontSize = 11f;
+            m_legendText.fontSize = 20f;
             m_legendText.alignment = TextAlignmentOptions.TopLeft;
             m_legendText.color = Color.white;
             m_legendText.richText = true;

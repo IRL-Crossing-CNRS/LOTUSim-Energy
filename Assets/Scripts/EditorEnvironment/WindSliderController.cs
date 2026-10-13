@@ -64,6 +64,21 @@ namespace Lotusim
         [Tooltip("Text display for Z-axis slider value.")]
         [SerializeField] private TMP_Text textZ;
 
+        [Tooltip("Text display for the Beaufort scale corresponding to the current wind speed.")]
+        [SerializeField] private TMP_Text textBeaufort;
+
+        [Header("Beaufort Gauge")]
+        [SerializeField] private TMP_Text forceNumberText;
+        [SerializeField] private TMP_Text forceLabelText;
+        [SerializeField] private Image gaugeFillImage;
+        [SerializeField] private Color beaufortLowColor = new Color(0.95f, 0.85f, 0.2f);
+        [SerializeField] private Color beaufortHighColor = new Color(0.9f, 0.15f, 0.1f);
+        [SerializeField] private int beaufortMaxForceForColor = 11;
+
+        [SerializeField] private Image sliderFillX;
+        [SerializeField] private Image sliderFillY;
+        [SerializeField] private Image sliderFillZ;
+
         [Header("ROS Settings")]
         [Tooltip("Increment applied when adjusting sliders via keyboard.")]
         [SerializeField] private float increment = 1f;
@@ -73,6 +88,9 @@ namespace Lotusim
 
         [Tooltip("Time interval (seconds) between automatic ROS2 publishes.")]
         [SerializeField] private float publishRate = 0.5f;
+
+        [Header("Panel Positioning")]
+        [SerializeField] private RectTransform sliderPanelRT;
 
         #endregion
         // ---------------------------------------------------------------------------------
@@ -115,6 +133,14 @@ namespace Lotusim
 
         private void Start()
         {
+            if (sliderPanelRT != null)
+            {
+                sliderPanelRT.anchorMin = new Vector2(0.5f, 0f);
+                sliderPanelRT.anchorMax = new Vector2(0.5f, 0f);
+                sliderPanelRT.pivot = new Vector2(0.5f, 0f);
+                sliderPanelRT.anchoredPosition = new Vector2(0f, 20f);
+            }
+            
             if (sliderX == null || sliderY == null || sliderZ == null)
             {
                 Debug.LogError("[WindSliderController] One or more sliders are not assigned!");
@@ -131,6 +157,10 @@ namespace Lotusim
             sliderZ.onValueChanged.AddListener(OnSliderChanged);
 
             UpdateText();
+
+            Canvas.ForceUpdateCanvases();
+            if (gaugeFillImage != null)
+                LayoutRebuilder.ForceRebuildLayoutImmediate(gaugeFillImage.rectTransform.root as RectTransform);
         }
 
         private void Update()
@@ -227,6 +257,24 @@ namespace Lotusim
             UpdateText();
         }
 
+        /// <summary>Sets the sliders, refreshes the Beaufort gauge and publishes to ROS.</summary>
+        public void SetWind(float x, float y, float z)
+        {
+            if (sliderX == null || sliderY == null || sliderZ == null) return;
+
+            sliderX.value = Mathf.Clamp(x, sliderX.minValue, sliderX.maxValue);
+            sliderY.value = Mathf.Clamp(y, sliderY.minValue, sliderY.maxValue);
+            sliderZ.value = Mathf.Clamp(z, sliderZ.minValue, sliderZ.maxValue);
+
+            UpdateText();
+            PublishWind(sliderX.value, sliderY.value, sliderZ.value);
+
+            prevX = sliderX.value;
+            prevY = sliderY.value;
+            prevZ = sliderZ.value;
+            timeElapsed = 0f;
+        }
+
         private void HandleKeyboardInput()
         {
             bool updated = false;
@@ -275,6 +323,41 @@ namespace Lotusim
             if (textX != null) textX.text = $"X: {sliderX.value:F2}";
             if (textY != null) textY.text = $"Y: {sliderY.value:F2}";
             if (textZ != null) textZ.text = $"Z: {sliderZ.value:F2}";
+
+            if (forceNumberText != null && forceLabelText != null && gaugeFillImage != null)
+            {
+                float horizontalSpeed = new Vector3(sliderX.value, 0f, sliderY.value).magnitude;
+                var (force, label, _, _) = BeaufortScale.GetForce(horizontalSpeed);
+                forceNumberText.text = force.ToString();
+                forceLabelText.text = label;
+                float t = Mathf.Clamp01((float)force / beaufortMaxForceForColor);
+                Color lerped = Color.Lerp(beaufortLowColor, beaufortHighColor, t);
+                forceNumberText.color = lerped;
+                gaugeFillImage.color = lerped;
+                gaugeFillImage.fillAmount = Mathf.Clamp01((float)force / 12f);
+
+            }
+
+            if (sliderFillX != null) sliderFillX.color = ColorForValue(sliderX.value);
+            if (sliderFillY != null) sliderFillY.color = ColorForValue(sliderY.value);
+            if (sliderFillZ != null) sliderFillZ.color = ColorForValue(sliderZ.value);
+
+            /*if (textBeaufort != null)
+            {
+                float windSpeed = CurrentWindVector.magnitude;
+                var (force, label, _, _) = BeaufortScale.GetForce(windSpeed);
+                textBeaufort.text = $"Beaufort: {force} ({label})";
+
+                float t = Mathf.Clamp01((float)force / beaufortMaxForceForColor);
+                textBeaufort.color = Color.Lerp(beaufortLowColor, beaufortHighColor, t);
+            }*/
+        }
+
+        private Color ColorForValue(float sliderValue)
+        {
+            var (force, _, _, _) = BeaufortScale.GetForce(Mathf.Abs(sliderValue));
+            float t = Mathf.Clamp01((float)force / beaufortMaxForceForColor);
+            return Color.Lerp(beaufortLowColor, beaufortHighColor, t);
         }
 
         /// <summary>

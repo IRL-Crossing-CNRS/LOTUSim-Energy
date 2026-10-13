@@ -10,12 +10,16 @@ namespace Lotusim
         public Volume skyAndFogVolume;
         public GameObject oceanObject;
         public Transform playerCamera;
+        public WindSliderController windController;
 
         [Header("Storm Trigger")]
         [Range(0f, 1f)]
         public float stormIntensity = 0f;
         public float transitionSpeed = 0.5f;
         public KeyCode stormKey = KeyCode.F1;
+
+        [Tooltip("Horizontal wind speed (m/s) pushed onto the wind sliders while the storm is active.")]
+        public float stormWindSpeed = 28f;
 
         [Header("Fog Settings")]
         public float calmFogAttenuation = 400f;
@@ -27,7 +31,9 @@ namespace Lotusim
         public float calmCloudOpacity = 0.61f;
         public float stormCloudOpacity = 1f;
         public Color calmCloudTint = Color.white;
-        public Color stormCloudTint = new Color(0.3f, 0.3f, 0.35f);
+        public Color stormCloudTint = new Color(0.25f, 0.25f, 0.28f);
+        public float calmCloudOpacityR = 1f;
+        public float stormCloudOpacityR = 1f;
 
         [Header("Sky Darkening")]
         public float calmExposureCompensation = 0f;
@@ -42,7 +48,7 @@ namespace Lotusim
         public float rainHeightAboveCamera = 30f;
         public float waterSurfaceY = 1f;
 
-        [Header("Ocean Settings")]
+        [Header("Ocean Base Settings")]
         public float calmLargeWindSpeed = 0f;
         public float stormLargeWindSpeed = 60f;
         public float calmRipplesWindSpeed = 9.28f;
@@ -51,12 +57,22 @@ namespace Lotusim
         public float stormLargeChaos = 1f;
         public float calmRipplesChaos = 0.8f;
         public float stormRipplesChaos = 1f;
-        public float calmFoamAmount = 0.2f;
+        public float calmFoamAmount = 0.1f;
         public float stormFoamAmount = 0.9f;
 
+        [Header("Beaufort Wave Scaling")]
+        public float baseWaveWindSpeed = 10f;
+        public float waveWindScaleFactor = 30f;
+        public float baseRippleWindSpeed = 9.28f;
+        public float rippleWindScaleFactor = 15f;
+        public float foamScaleFactor = 0.2f;
+
         private bool stormActive = false;
+        private Vector3 calmWind;
+        public bool StormActive => stormActive;
         private float targetIntensity = 0f;
         private float lastIntensity = -1f;
+        private float lastWindMagnitude = -1f;
 
         private Fog fog;
         private CloudLayer cloudLayer;
@@ -143,6 +159,7 @@ namespace Lotusim
             {
                 stormActive = !stormActive;
                 targetIntensity = stormActive ? 1f : 0f;
+                ApplyStormWind();
                 Debug.Log($"[StormController] Storm {(stormActive ? "activated" : "deactivated")}");
             }
 
@@ -163,11 +180,35 @@ namespace Lotusim
                 ApplyFog();
                 ApplyClouds();
                 ApplySky();
-                ApplyOcean();
                 lastIntensity = stormIntensity;
             }
 
+            ApplyOcean();
             ApplyRain();
+        }
+
+        // Raises the wind sliders (and with them the Beaufort gauge) for the duration of the
+        // storm, restoring whatever the wind was before.
+        void ApplyStormWind()
+        {
+            if (windController == null) return;
+
+            if (stormActive)
+            {
+                calmWind = windController.CurrentWindVector;
+
+                Vector2 direction = new Vector2(calmWind.x, calmWind.y);
+                if (direction.sqrMagnitude < 0.01f) direction = Vector2.right;
+                direction.Normalize();
+
+                windController.SetWind(direction.x * stormWindSpeed,
+                                       direction.y * stormWindSpeed,
+                                       calmWind.z);
+            }
+            else
+            {
+                windController.SetWind(calmWind.x, calmWind.y, calmWind.z);
+            }
         }
 
         void ApplyFog()
@@ -193,11 +234,24 @@ namespace Lotusim
             {
                 cloudLayer.opacity.overrideState = false;
                 cloudLayer.layerA.tint.overrideState = false;
+                cloudLayer.layerA.opacityR.overrideState = false;
                 return;
             }
 
-            cloudLayer.opacity.Override(Mathf.Lerp(calmCloudOpacity, stormCloudOpacity, stormIntensity));
-            cloudLayer.layerA.tint.Override(Color.Lerp(calmCloudTint, stormCloudTint, stormIntensity));
+            cloudLayer.opacity.Override(
+                Mathf.Lerp(calmCloudOpacity, stormCloudOpacity, stormIntensity));
+
+            cloudLayer.layerA.tint.Override(
+                Color.Lerp(calmCloudTint, stormCloudTint, stormIntensity));
+
+            cloudLayer.layerA.opacityR.Override(
+                Mathf.Lerp(calmCloudOpacityR, stormCloudOpacityR, stormIntensity));
+
+            cloudLayer.layerA.opacityG.Override(
+                Mathf.Lerp(0f, 1f, stormIntensity));
+
+            cloudLayer.layerA.opacityA.Override(
+                Mathf.Lerp(0f, 1f, stormIntensity));
         }
 
         void ApplySky()
@@ -234,7 +288,6 @@ namespace Lotusim
             bool shouldShow = stormIntensity > 0.05f && !cameraUnderwater;
 
             rainObject.SetActive(shouldShow);
-
             if (!shouldShow) return;
 
             if (!rainPS.isPlaying) rainPS.Play();
@@ -244,11 +297,50 @@ namespace Lotusim
         void ApplyOcean()
         {
             if (waterSurface == null) return;
-            waterSurface.largeWindSpeed      = Mathf.Lerp(calmLargeWindSpeed,   stormLargeWindSpeed,   stormIntensity);
-            waterSurface.ripplesWindSpeed    = Mathf.Lerp(calmRipplesWindSpeed, stormRipplesWindSpeed, stormIntensity);
-            waterSurface.largeChaos          = Mathf.Lerp(calmLargeChaos,       stormLargeChaos,       stormIntensity);
-            waterSurface.ripplesChaos        = Mathf.Lerp(calmRipplesChaos,     stormRipplesChaos,     stormIntensity);
-            waterSurface.simulationFoamAmount = Mathf.Lerp(calmFoamAmount,      stormFoamAmount,       stormIntensity);
+
+            float windMagnitude = 0f;
+            float beaufortMultiplier = 1f;
+
+            if (windController != null)
+            {
+                Vector3 windVec = windController.CurrentWindVector;
+                windMagnitude = new Vector3(windVec.x, 0f, windVec.z).magnitude;
+                var (_, _, _, multiplier) = BeaufortScale.GetForce(windMagnitude);
+                beaufortMultiplier = multiplier;
+            }
+
+            float largeWind;
+            float ripplesWind;
+            float chaos;
+            float ripplesChaos;
+            float foam;
+
+            if (stormIntensity > 0f)
+            {
+                largeWind    = Mathf.Lerp(calmLargeWindSpeed,   stormLargeWindSpeed,   stormIntensity);
+                ripplesWind  = Mathf.Lerp(calmRipplesWindSpeed, stormRipplesWindSpeed, stormIntensity);
+                chaos        = Mathf.Lerp(calmLargeChaos,       stormLargeChaos,       stormIntensity);
+                ripplesChaos = Mathf.Lerp(calmRipplesChaos,     stormRipplesChaos,     stormIntensity);
+                foam         = Mathf.Lerp(calmFoamAmount,       stormFoamAmount,       stormIntensity);
+
+                largeWind   *= beaufortMultiplier;
+                ripplesWind *= beaufortMultiplier;
+                foam         = Mathf.Clamp01(foam * beaufortMultiplier);
+            }
+            else
+            {
+                largeWind    = baseWaveWindSpeed   * beaufortMultiplier * waveWindScaleFactor   / 30f;
+                ripplesWind  = baseRippleWindSpeed * beaufortMultiplier * rippleWindScaleFactor / 15f;
+                chaos        = Mathf.Lerp(0f, 0.5f, (beaufortMultiplier - 1f) / 2f);
+                ripplesChaos = Mathf.Lerp(calmRipplesChaos, 1f, (beaufortMultiplier - 1f) / 2f);
+                foam         = Mathf.Clamp01(calmFoamAmount + (beaufortMultiplier - 1f) * foamScaleFactor);
+            }
+
+            waterSurface.largeWindSpeed       = largeWind;
+            waterSurface.ripplesWindSpeed     = ripplesWind;
+            waterSurface.largeChaos           = chaos;
+            waterSurface.ripplesChaos         = ripplesChaos;
+            waterSurface.simulationFoamAmount = foam;
         }
 
         void OnDestroy()

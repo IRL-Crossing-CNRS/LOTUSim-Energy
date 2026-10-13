@@ -15,9 +15,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -72,14 +75,33 @@ namespace Lotusim
 
         private float timeElapsed = 0f;
         private bool isProcessing = false;
+
+        // Cadencement ferme sur le detecteur. isProcessing ne dit que si la
+        // capture GPU est finie, pas si YOLO a repondu : l'envoi etait donc
+        // purement temporel et ignorait le debit reel du detecteur. Des qu'une
+        // inference depasse inferenceRate, les images s'empilent dans les files
+        // profondes et sans perte du pont, la latence monte et ne redescend
+        // jamais -- les detections affichees decrivent une scene de plus en
+        // plus ancienne, et Unity encode des images deja perimees a l'arrivee.
+        //
+        // On n'envoie donc plus rien tant que la precedente n'a pas eu sa
+        // reponse. La cadence s'aligne d'elle-meme sur YOLO, et inferenceRate
+        // devient un plafond plutot que le seul regulateur.
+        private bool awaitingDetection = false;
+        private float awaitingSince = 0f;
+        [SerializeField] private float detectionTimeout = 3f;
         private string resolvedAgentName;
         private List<Detection> currentDetections = new List<Detection>();
         private List<Detection> uiSnapshot = new List<Detection>();
         private readonly object detectionLock = new object();
         
         // Reusable Textures (to prevent Garbage Collection spikes)
+        // L'encodage JPEG part sur un thread de travail : rien de cette chaine
+        // ne doit faire attendre LOTUSim, sinon les FPS tombent et la
+        // simulation n'est plus temps reel. Le resultat revient par cette file,
+        // vidée depuis Update() puisque la publication ROS reste au main thread.
+        private readonly ConcurrentQueue<byte[]> pendingJpegs = new ConcurrentQueue<byte[]>();
         private RenderTexture renderTex;
-        private Texture2D captureTex;
 
         // UI Fields
         private Canvas uiCanvas;
@@ -133,7 +155,6 @@ namespace Lotusim
             // way to fault the Vulkan backend on the render thread.
             renderTex = new RenderTexture(imageWidth, imageHeight, 24, RenderTextureFormat.ARGB32);
             renderTex.Create();
-            captureTex = new Texture2D(imageWidth, imageHeight, TextureFormat.RGB24, false);
 
             InitializeUI();
         }
@@ -148,8 +169,6 @@ namespace Lotusim
                 renderTex.Release();
                 Destroy(renderTex);
             }
-            if (captureTex != null)
-                Destroy(captureTex);
         }
 
         private void InitializeUI()
@@ -232,8 +251,18 @@ namespace Lotusim
             if (detectionsJson != null)
                 ParseDetections(detectionsJson);
 
+            DrainPendingJpegs();
+
+            // Si le detecteur ne repond plus, on repart apres detectionTimeout
+            // plutot que de rester bloque.
+            if (awaitingDetection && Time.time - awaitingSince > detectionTimeout)
+            {
+                Debug.LogWarning($"[InspectionDetector] No detection within {detectionTimeout}s, resuming.");
+                awaitingDetection = false;
+            }
+
             timeElapsed += Time.deltaTime;
-            if (timeElapsed >= inferenceRate && !isProcessing)
+            if (timeElapsed >= inferenceRate && !isProcessing && !awaitingDetection)
             {
                 timeElapsed = 0f;
                 StartCoroutine(CaptureAndPublish());
@@ -410,27 +439,59 @@ namespace Lotusim
             snapCam.targetTexture = prevTarget;
             foreach (var c in childCanvases) c.enabled = true;
 
-            // 2. Read the pixels back SYNCHRONOUSLY. We are now at end-of-frame, so the
-            //    render above has completed and the RenderTexture is safe to read.
-            RenderTexture prevActive = RenderTexture.active;
-            RenderTexture.active = renderTex;
-            captureTex.ReadPixels(new Rect(0, 0, imageWidth, imageHeight), 0, 0);
-            captureTex.Apply(false);
-            RenderTexture.active = prevActive;
+            // 2. Read the pixels back ASYNCHRONOUSLY. ReadPixels stalls the main
+            //    thread until the GPU has finished and the copy has landed, which
+            //    at 640x480 is a hitch on every capture -- and it freezes every
+            //    other publisher in the scene with it, the docking camera
+            //    included.
+            //
+            //    This is safe here, and does not reopen the historical SIGSEGV:
+            //    that fault was one of *timing*, a capture injected mid-frame,
+            //    and the comment above records that switching async->sync alone
+            //    never fixed it. WaitForEndOfFrame is what fixed it, and the
+            //    request below is still issued from there.
+            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, OnCaptureReadback);
+        }
 
-            // 3. Encode to JPG on the main thread (requires Unity API)
-            byte[] jpgBytes = captureTex.EncodeToJPG(75);
-
-            // 4. Publish over ROS as sensor_msgs/CompressedImage. Detections come back
-            //    asynchronously on {ns}/{agent}/inspection/detections and are consumed in Update().
-            if (RosInterface.Instance.IsConnected)
-                RosInterface.Instance.PublishInspectionImage(resolvedAgentName, jpgBytes);
-
+        private void OnCaptureReadback(AsyncGPUReadbackRequest request)
+        {
             isProcessing = false;
+
+            if (request.hasError)
+            {
+                Debug.LogError("[InspectionDetector] AsyncGPUReadback failed.");
+                return;
+            }
+
+            // Encode off the main thread, straight from the readback buffer.
+            byte[] raw = request.GetData<byte>().ToArray();
+            int w = imageWidth, h = imageHeight;
+            Task.Run(() =>
+            {
+                byte[] jpg = ImageConversion.EncodeArrayToJPG(
+                    raw, GraphicsFormat.R8G8B8_UNorm, (uint)w, (uint)h, 0, 75);
+                pendingJpegs.Enqueue(jpg);
+            });
+        }
+
+        // Publication ROS : au main thread, mais sans jamais attendre. Ce qui
+        // n'est pas pret a cette frame partira a la suivante.
+        private void DrainPendingJpegs()
+        {
+            while (pendingJpegs.TryDequeue(out byte[] jpg))
+            {
+                if (RosInterface.Instance.IsConnected)
+                {
+                    RosInterface.Instance.PublishInspectionImage(resolvedAgentName, jpg);
+                    awaitingDetection = true;
+                    awaitingSince = Time.time;
+                }
+            }
         }
 
         private void ParseDetections(string json)
         {
+            awaitingDetection = false;
             try
             {
                 DetectionResponse response = JsonUtility.FromJson<DetectionResponse>(json);
