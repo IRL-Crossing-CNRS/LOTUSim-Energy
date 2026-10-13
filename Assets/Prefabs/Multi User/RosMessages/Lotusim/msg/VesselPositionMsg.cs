@@ -14,9 +14,11 @@ namespace RosMessageTypes.Lotusim
         public override string RosMessageName => k_RosMessageName;
 
         public string vessel_name;
+        public string model_name;
         public Geometry.PoseMsg pose;
         //  Orientation uses front-left-up
         public Geographic.GeoPointMsg geo_point;
+        public float speed_over_ground;
         //  World-frame (ENU) linear and angular velocity of the vessel's base_link.
         // 
         //  Added because a control loop closing on `poses` had no other way to get a
@@ -33,17 +35,21 @@ namespace RosMessageTypes.Lotusim
         public VesselPositionMsg()
         {
             this.vessel_name = "";
+            this.model_name = "";
             this.pose = new Geometry.PoseMsg();
             this.geo_point = new Geographic.GeoPointMsg();
+            this.speed_over_ground = 0.0f;
             this.twist = new Geometry.TwistMsg();
             this.has_twist = false;
         }
 
-        public VesselPositionMsg(string vessel_name, Geometry.PoseMsg pose, Geographic.GeoPointMsg geo_point, Geometry.TwistMsg twist, bool has_twist)
+        public VesselPositionMsg(string vessel_name, string model_name, Geometry.PoseMsg pose, Geographic.GeoPointMsg geo_point, float speed_over_ground, Geometry.TwistMsg twist, bool has_twist)
         {
             this.vessel_name = vessel_name;
+            this.model_name = model_name;
             this.pose = pose;
             this.geo_point = geo_point;
+            this.speed_over_ground = speed_over_ground;
             this.twist = twist;
             this.has_twist = has_twist;
         }
@@ -53,8 +59,10 @@ namespace RosMessageTypes.Lotusim
         private VesselPositionMsg(MessageDeserializer deserializer)
         {
             deserializer.Read(out this.vessel_name);
+            deserializer.Read(out this.model_name);
             this.pose = Geometry.PoseMsg.Deserialize(deserializer);
             this.geo_point = Geographic.GeoPointMsg.Deserialize(deserializer);
+            deserializer.Read(out this.speed_over_ground);
             this.twist = Geometry.TwistMsg.Deserialize(deserializer);
             deserializer.Read(out this.has_twist);
         }
@@ -62,8 +70,10 @@ namespace RosMessageTypes.Lotusim
         public override void SerializeTo(MessageSerializer serializer)
         {
             serializer.Write(this.vessel_name);
+            serializer.Write(this.model_name);
             serializer.Write(this.pose);
             serializer.Write(this.geo_point);
+            serializer.Write(this.speed_over_ground);
             serializer.Write(this.twist);
             serializer.Write(this.has_twist);
         }
@@ -72,8 +82,10 @@ namespace RosMessageTypes.Lotusim
         {
             return "VesselPositionMsg: " +
             "\nvessel_name: " + vessel_name.ToString() +
+            "\nmodel_name: " + model_name.ToString() +
             "\npose: " + pose.ToString() +
             "\ngeo_point: " + geo_point.ToString() +
+            "\nspeed_over_ground: " + speed_over_ground.ToString() +
             "\ntwist: " + twist.ToString() +
             "\nhas_twist: " + has_twist.ToString();
         }

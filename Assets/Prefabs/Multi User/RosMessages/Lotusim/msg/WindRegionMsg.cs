@@ -21,6 +21,8 @@ namespace RosMessageTypes.Lotusim
         public WindRegionConeSegmentMsg cone;
         public Geometry.Vector3Msg linear_velocity;
         public bool enable_wind;
+        public double turbulence_sigma;
+        public double[] radial_speed;
 
         public WindRegionMsg()
         {
@@ -30,9 +32,11 @@ namespace RosMessageTypes.Lotusim
             this.cone = new WindRegionConeSegmentMsg();
             this.linear_velocity = new Geometry.Vector3Msg();
             this.enable_wind = false;
+            this.turbulence_sigma = 0.0;
+            this.radial_speed = new double[0];
         }
 
-        public WindRegionMsg(string id, byte shape_type, WindRegionBoxMsg box, WindRegionConeSegmentMsg cone, Geometry.Vector3Msg linear_velocity, bool enable_wind)
+        public WindRegionMsg(string id, byte shape_type, WindRegionBoxMsg box, WindRegionConeSegmentMsg cone, Geometry.Vector3Msg linear_velocity, bool enable_wind, double turbulence_sigma, double[] radial_speed)
         {
             this.id = id;
             this.shape_type = shape_type;
@@ -40,6 +44,8 @@ namespace RosMessageTypes.Lotusim
             this.cone = cone;
             this.linear_velocity = linear_velocity;
             this.enable_wind = enable_wind;
+            this.turbulence_sigma = turbulence_sigma;
+            this.radial_speed = radial_speed;
         }
 
         public static WindRegionMsg Deserialize(MessageDeserializer deserializer) => new WindRegionMsg(deserializer);
@@ -52,6 +58,8 @@ namespace RosMessageTypes.Lotusim
             this.cone = WindRegionConeSegmentMsg.Deserialize(deserializer);
             this.linear_velocity = Geometry.Vector3Msg.Deserialize(deserializer);
             deserializer.Read(out this.enable_wind);
+            deserializer.Read(out this.turbulence_sigma);
+            deserializer.Read(out this.radial_speed, sizeof(double), deserializer.ReadLength());
         }
 
         public override void SerializeTo(MessageSerializer serializer)
@@ -62,6 +70,9 @@ namespace RosMessageTypes.Lotusim
             serializer.Write(this.cone);
             serializer.Write(this.linear_velocity);
             serializer.Write(this.enable_wind);
+            serializer.Write(this.turbulence_sigma);
+            serializer.WriteLength(this.radial_speed);
+            serializer.Write(this.radial_speed);
         }
 
         public override string ToString()
@@ -72,7 +83,9 @@ namespace RosMessageTypes.Lotusim
             "\nbox: " + box.ToString() +
             "\ncone: " + cone.ToString() +
             "\nlinear_velocity: " + linear_velocity.ToString() +
-            "\nenable_wind: " + enable_wind.ToString();
+            "\nenable_wind: " + enable_wind.ToString() +
+            "\nturbulence_sigma: " + turbulence_sigma.ToString() +
+            "\nradial_speed: " + System.String.Join(", ", radial_speed.ToList());
         }
 
 #if UNITY_EDITOR
