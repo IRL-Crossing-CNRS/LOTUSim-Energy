@@ -79,6 +79,11 @@ namespace Lotusim
         public bool hideWarningBelowForce12 = true;
 
         private bool wasForce12 = false;
+        [SerializeField] private Volume volume;
+        [SerializeField] private KeyCode toggleKey = KeyCode.F3;
+        private bool fogEnabled = true;
+        private bool isVisible = true;
+        public GameObject foggy;
 
         private bool stormActive = false;
         private Vector3 calmWind;
@@ -110,6 +115,13 @@ namespace Lotusim
                 profile.TryGet(out cloudLayer);
                 profile.TryGet(out pbrSky);
                 profile.TryGet(out exposure);
+            }
+
+            if (volume == null)
+            {
+                Debug.LogError("Volume reference is missing.");
+                enabled = false;
+                return;
             }
 
             if (warningHUD == null)
@@ -171,6 +183,16 @@ namespace Lotusim
 
         void Update()
         {
+            {
+                if (Input.GetKeyDown(toggleKey))
+                {
+                    ToggleFog();
+                    //isVisible = !isVisible;
+                    //if (foggy != null) foggy.SetActive(isVisible);
+                    Debug.Log($"[StormController] Fog {(fogEnabled ? "enabled" : "disabled")}");
+                }
+            }
+
             if (Input.GetKeyDown(stormKey))
             {
                 stormActive = !stormActive;
@@ -222,6 +244,15 @@ namespace Lotusim
             CheckForce12Warning();
         }
 
+        void ToggleFog()
+        {
+            if (volume.profile.TryGet<Fog>(out var fog))
+            {
+                fogEnabled = !fogEnabled;
+                fog.active = fogEnabled;
+            }
+        }
+
         void ApplyStormWind()
         {
             if (windController == null) return;
@@ -248,7 +279,7 @@ namespace Lotusim
         {
             if (fog == null) return;
 
-            if (stormIntensity <= 0f)
+            if (!fogEnabled)
             {
                 fog.meanFreePath.overrideState = false;
                 fog.depthExtent.overrideState = false;

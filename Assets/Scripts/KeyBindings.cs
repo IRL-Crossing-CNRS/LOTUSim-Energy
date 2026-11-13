@@ -57,7 +57,6 @@ namespace Lotusim
         [KeyDescription("Graphs & HUD", "Toggle Help Menu")]
         public static KeyCode ToggleHelp = KeyCode.H;
 
-        //[KeyDescription("Graphs & HUD", "Toggle Image Display")]
         public static KeyCode ToggleImage = KeyCode.I;
 
         [KeyDescription("Graphs & HUD", "Detection Uncertainty")]
@@ -100,6 +99,7 @@ namespace Lotusim
         [KeyDescription("Wind Sliders", "Max All Axes")]
         public static KeyCode Storm = KeyCode.F1;
 
+
         // Visualization
         [KeyDescription("Visualization", "Toggle Wind Field")]
         public static KeyCode ToggleWindField = KeyCode.Alpha9;
@@ -109,6 +109,9 @@ namespace Lotusim
 
         [KeyDescription("Visualization", "Toggle Ocean Current Field")]
         public static KeyCode ToggleOceanCurrentField = KeyCode.Alpha6;
+
+        [KeyDescription("Visualization", "Toggle Ocean")]
+        public static KeyCode ToggleOcean = KeyCode.F3;
 
         // Not M: its physical position differs between AZERTY and QWERTY.
         [KeyDescription("Visualization", "Toggle Agent Trace")]
