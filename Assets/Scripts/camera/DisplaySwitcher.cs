@@ -51,6 +51,9 @@ namespace Lotusim
 
             [Tooltip("HUD root GameObjects to show ONLY when this slot is active. All others are hidden.")]
             public GameObject[] exclusiveHUDs;
+
+            [Tooltip("This slot is the VR headset view (needs a VRCameraRig in the scene). Switching to it starts the headset, switching to any other slot stops it.")]
+            public bool vrHeadset;
         }
 
         [SerializeField] private DisplaySlot[] m_slots;
@@ -106,7 +109,15 @@ namespace Lotusim
                 if (slot.staticCamera != null)
                     slot.staticCamera.targetDisplay = m_parkDisplay;
 
-            ActivateSlot(0, force: true);
+            // Start on the VR view when the headset is already running (XR initialised on startup).
+            int startSlot = 0;
+            if (VRCameraRig.Instance != null && VRCameraRig.IsXRRunning)
+            {
+                int vrSlot = Array.FindIndex(m_slots, s => s.vrHeadset);
+                if (vrSlot >= 0) startSlot = vrSlot;
+            }
+
+            ActivateSlot(startSlot, force: true);
         }
 
         void Update()
@@ -139,8 +150,23 @@ namespace Lotusim
 
             if (cam == null)
             {
-                ShowToast($"{slot.label}: not spawned yet");
+                ShowToast(slot.vrHeadset ? $"{slot.label}: no VR camera rig in the scene" : $"{slot.label}: not spawned yet");
                 return;
+            }
+
+            // Start the headset for the VR slot, stop it for every other slot.
+            var vrRig = VRCameraRig.Instance;
+            if (slot.vrHeadset)
+            {
+                if (!vrRig.StartVR())
+                {
+                    ShowToast($"{slot.label}: no headset found");
+                    return;
+                }
+            }
+            else if (vrRig != null)
+            {
+                vrRig.StopVR();
             }
 
             // Park the previously active camera.
@@ -165,6 +191,9 @@ namespace Lotusim
 
         Camera ResolveCamera(DisplaySlot slot)
         {
+            if (slot.vrHeadset)
+                return VRCameraRig.Instance != null ? VRCameraRig.Instance.HeadCamera : null;
+
             if (slot.staticCamera != null) return slot.staticCamera;
             if (string.IsNullOrEmpty(slot.agentFleet)) return null;
 
