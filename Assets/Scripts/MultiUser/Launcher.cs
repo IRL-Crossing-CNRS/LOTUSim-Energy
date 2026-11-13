@@ -234,9 +234,14 @@ namespace Com.MyCompany.MyGame
             else
             {
                 LogFeedback("Connecting to Photon...");
-                // set game version first
-                PhotonNetwork.GameVersion = this.gameVersion;
-                PhotonNetwork.ConnectUsingSettings();
+                // The game version carries the target scene: with AutomaticallySyncScene, joining a
+                // room loads the master client's scene, so a build aiming at another scene (an
+                // older player still on demo_facet, say) must never share our room.
+                // ConnectUsingSettings() overwrites PhotonNetwork.GameVersion with the settings'
+                // AppVersion, so the version goes into a copy of the settings (the asset is untouched).
+                var settings = PhotonNetwork.PhotonServerSettings.AppSettings.CopyTo(new AppSettings());
+                settings.AppVersion = $"{this.gameVersion}-{targetScene}";
+                PhotonNetwork.ConnectUsingSettings(settings);
             }
         }
 
