@@ -216,6 +216,22 @@ namespace Lotusim
             statusText.horizontalOverflow = HorizontalWrapMode.Overflow;
             statusText.verticalOverflow = VerticalWrapMode.Overflow;
 
+            // On the DroneHUD layer, which the viewer's cameras do not draw: the
+            // overlay floats in the world in front of this camera.
+            SetLayerRecursive(canvasObj, HudLayer);
+            DroneCameraHUD.HideHudFromViewers();
+
+        }
+
+        private static int HudLayer
+        {
+            get { return LayerMask.NameToLayer("DroneHUD"); }  // -1 when the project lacks it
+        }
+
+        private static void SetLayerRecursive(GameObject go, int layer)
+        {
+            if (layer < 0) return;
+            foreach (var t in go.GetComponentsInChildren<Transform>(true)) t.gameObject.layer = layer;
         }
 
         private void Start()
@@ -382,6 +398,7 @@ namespace Lotusim
             txt.horizontalOverflow = HorizontalWrapMode.Overflow;
             txt.verticalOverflow = VerticalWrapMode.Overflow;
 
+            SetLayerRecursive(boxObj, HudLayer);
             return boxObj;
         }
 
@@ -434,9 +451,14 @@ namespace Lotusim
             Canvas[] childCanvases = snapCam.GetComponentsInChildren<Canvas>(true);
             foreach (var c in childCanvases) c.enabled = false;
             RenderTexture prevTarget = snapCam.targetTexture;
+            int prevMask = snapCam.cullingMask;
+            // Other vehicles' overlays (DroneHUD layer) stay out of the frame too.
+            int hud = HudLayer;
+            if (hud >= 0) snapCam.cullingMask = prevMask & ~(1 << hud);
             snapCam.targetTexture = renderTex;
             snapCam.Render();
             snapCam.targetTexture = prevTarget;
+            snapCam.cullingMask = prevMask;
             foreach (var c in childCanvases) c.enabled = true;
 
             // 2. Read the pixels back ASYNCHRONOUSLY. ReadPixels stalls the main

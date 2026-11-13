@@ -708,11 +708,11 @@ namespace Lotusim
             RectTransform htRT = m_toastText.rectTransform;
             htRT.anchorMin = new Vector2(0f, 0f); htRT.anchorMax = new Vector2(1f, 0f);
             htRT.pivot = new Vector2(0.5f, 0f);
-            htRT.sizeDelta = new Vector2(-16f, 14f);
+            htRT.sizeDelta = new Vector2(-16f, 18f);
             htRT.anchoredPosition = new Vector2(0f, 4f);
-            m_toastText.fontSize = 9f;
+            m_toastText.fontSize = 12f;
             m_toastText.alignment = TextAlignmentOptions.Center;
-            m_toastText.color = new Color(1f, 1f, 1f, 0.28f);
+            m_toastText.color = new Color(1f, 1f, 1f, 0.9f);
             m_toastText.richText = true;
             m_toastText.textWrappingMode = TextWrappingModes.NoWrap;
         }
@@ -729,7 +729,7 @@ namespace Lotusim
 
         private void HandleKeyboardShortcuts()
         {
-            if (Input.GetKeyDown(KeyCode.S) && m_state != State.Recording && m_series.Count > 0) StartRecording();
+            if (Input.GetKeyDown(KeyCode.Return) && m_state != State.Recording && m_series.Count > 0) StartRecording();
             else if (Input.GetKeyDown(KeyCode.X) && m_state == State.Recording) StopRecording();
             else if (Input.GetKeyDown(KeyCode.V) && m_state == State.Stopped && TotalSampleCount() > 0) SaveRecording();
             else if (Input.GetKeyDown(KeyCode.N) && m_state != State.Recording && TotalSampleCount() > 0) NewRecording();
@@ -745,17 +745,19 @@ namespace Lotusim
             else
             {
                 m_toastText.text = HintsText();
-                m_toastText.color = new Color(1f, 1f, 1f, 0.28f);
+                m_toastText.color = new Color(1f, 1f, 1f, 0.9f);
             }
         }
 
         private string HintsText()
         {
-            string dim = "#282828";
-            string s = m_state != State.Recording && m_series.Count > 0 ? "[S]" : $"<color={dim}>[S]</color>";
-            string x = m_state == State.Recording ? "[X]" : $"<color={dim}>[X]</color>";
-            string v = m_state == State.Stopped && TotalSampleCount() > 0 ? "[V]" : $"<color={dim}>[V]</color>";
-            string n = m_state != State.Recording && TotalSampleCount() > 0 ? "[N]" : $"<color={dim}>[N]</color>";
+            // Available keys bright, unavailable ones grey: both must stand out from the
+            // window's dark blue background.
+            string dim = "#8A94A6";
+            string s = m_state != State.Recording && m_series.Count > 0 ? "<color=#FFD54A><b>[Enter]</b></color>" : $"<color={dim}>[Enter]</color>";
+            string x = m_state == State.Recording ? "<color=#FFD54A><b>[X]</b></color>" : $"<color={dim}>[X]</color>";
+            string v = m_state == State.Stopped && TotalSampleCount() > 0 ? "<color=#FFD54A><b>[V]</b></color>" : $"<color={dim}>[V]</color>";
+            string n = m_state != State.Recording && TotalSampleCount() > 0 ? "<color=#FFD54A><b>[N]</b></color>" : $"<color={dim}>[N]</color>";
             return $"{s} start  ·  {x} stop  ·  {v} save  ·  {n} clear";
         }
 

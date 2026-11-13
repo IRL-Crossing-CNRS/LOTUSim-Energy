@@ -13,6 +13,7 @@ The simulator visualizes the aerodynamic wake behind each floating wind turbine 
 - **Colour:** deep blue at the centre (low normalised velocity, strong deficit) changing to a red, then a transparent green at the cone edge where the wind speed has mostly recovered.
 - **Emission:** the wake only appears when the turbine is spinning. Emission rate and particle lifetime scale directly with the turbine's animator speed, so a slow-spinning turbine produces a faint short wake and a fast-spinning turbine produces a full dense cone.
 - **Wind driven:** the wake cone faces downwind automatically, rotating with the nacelle via `Face_The_Wind`. When wind drops below cut-in speed the blades stop and the wake disappears entirely.
+- **In demo_facet and demo_facet_VR** `Face_The_Wind` is disabled on the turbine prefab (`New wind turbine/Cableless`): the wake model of the simulation assumes turbines facing north, so the nacelles stay still and the wake cones keep their direction. Enable the component on the prefab to make them follow the wind again.
 
 ## How it is built
 

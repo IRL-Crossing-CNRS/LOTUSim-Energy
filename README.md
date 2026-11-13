@@ -35,7 +35,7 @@ The core simulation control module interfaces with three primary client modules:
 
 ## Requirements
 
-- **Unity** `2022.3.18f1`
+- **Unity** `6000.6.6f1` (Unity 6.6, HDRP 17.6) on the `unity6` branch
 - **Multi-user**: `PUN2 - Photon Unity Networking 2` (already in the repository)
 - **Leap Motion** (optional, Linux and Windows): an `Ultraleap Hand Tracking Camera`
 - **Eye tracker** (optional, Windows only): a `Tobii Eye Tracker 5`
@@ -135,7 +135,7 @@ The `XR-Controller` folder provides VR support, handling user input and interact
      - Arrow keys (↑ ↓ ← →) enable Auto mode (entity navigation).
      - Q, W, E, A, S, D keys enable Free-Fly mode (manual movement).
 - `CameraSensor.cs`:  Publishes RGB camera frames from Unity to ROS via the ROS–TCP Connector. Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
-- `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key.
+- `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key (F2 in demo_facet and demo_facet_VR; F3 hides the ocean).
 - `FPSLimiter.cs` : Controls the application's target frame rate to ensure consistent performance.
 - `FreeFlyCamera.cs` : Controls the camera for a free fly spectator. Camera movement by 'W','A','S','D','Q','E' and speed of the quick camera movement when holding the 'Left Shift' key.
 - `DisplaySwitcher.cs` : Routes one camera at a time to the primary display and parks the others off-screen, so views do not overlap on a single monitor. Static cameras are wired in the Inspector; agent cameras are resolved at runtime by fleet name.

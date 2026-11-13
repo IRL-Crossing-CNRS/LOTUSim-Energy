@@ -60,6 +60,7 @@ public class DroneCameraHUD : MonoBehaviour
         m_fleetName = m_fleetType == FleetType.Auto ? FleetOf(m_droneName) : m_fleetType.ToString();
 
         BuildCanvas();
+        HideHudFromViewers();
         StartCoroutine(LateRefresh());
     }
 
@@ -74,6 +75,25 @@ public class DroneCameraHUD : MonoBehaviour
     {
         if (Input.GetKeyDown(Lotusim.KeyBindings.DronePrev)) CycleDrone(-1);
         if (Input.GetKeyDown(Lotusim.KeyBindings.DroneNext)) CycleDrone(+1);
+    }
+
+    /// <summary>
+    /// Removes the DroneHUD layer from every camera that is not a vehicle camera.
+    /// The vehicle overlays (this HUD, InspectionDetector's detections and status)
+    /// are Screen Space - Camera canvases: they sit in the world just in front of
+    /// their vehicle's camera, so the viewer's cameras would draw them as floating
+    /// labels next to every vehicle (seen underwater as soon as F3 hides the ocean).
+    /// </summary>
+    public static void HideHudFromViewers()
+    {
+        int hud = LayerMask.NameToLayer("DroneHUD");
+        if (hud < 0) return;
+        foreach (var cam in FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (cam.GetComponent<DroneCameraHUD>() != null || cam.GetComponent<Lotusim.InspectionDetector>() != null)
+                continue;
+            cam.cullingMask &= ~(1 << hud);
+        }
     }
 
     // ── Cycling ───────────────────────────────────────────────────────────────
@@ -143,6 +163,7 @@ public class DroneCameraHUD : MonoBehaviour
             rt.pivot = new Vector2(0.5f, 0.5f);
             rt.sizeDelta = new Vector2(dot, dot);
             rt.anchoredPosition = new Vector2(startX + i * (dot + gap) + dot * 0.5f, 0f);
+            go.layer = m_dotsRow.gameObject.layer;
             m_dots.Add(img);
         }
     }
@@ -223,6 +244,9 @@ public class DroneCameraHUD : MonoBehaviour
             new Vector2(0, 0), new Vector2(1, 0), new Vector2(10, 6), new Vector2(-10, 22));
         hint.text = $"[{Lotusim.KeyBindings.DronePrev}/{Lotusim.KeyBindings.DroneNext}] drone";
 
+        // hudLayer was looked up but never applied: the overlay stayed on Default,
+        // so every camera drew it as a floating name label next to the vehicle.
+        SetLayerRecursive(cgo, hudLayer);
     }
 
     static void SetLayerRecursive(GameObject go, int layer)

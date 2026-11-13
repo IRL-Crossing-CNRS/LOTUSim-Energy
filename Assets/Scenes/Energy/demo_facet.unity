@@ -231,31 +231,37 @@ MonoBehaviour:
     agentFleet: 
     exclusiveHUDs:
     - {fileID: 1487846291}
+    vrHeadset: 0
   - label: LeapMotion
     key: 291
     staticCamera: {fileID: 1351689598}
     agentFleet: 
     exclusiveHUDs: []
+    vrHeadset: 0
   - label: BlueROV Camera Inspection
     key: 286
     staticCamera: {fileID: 0}
     agentFleet: BlueROV
     exclusiveHUDs: []
+    vrHeadset: 0
   - label: WAMV Camera Inspection
     key: 287
     staticCamera: {fileID: 0}
     agentFleet: WAMV
     exclusiveHUDs: []
+    vrHeadset: 0
   - label: X500 Camera Inspection
     key: 288
     staticCamera: {fileID: 0}
     agentFleet: X500
     exclusiveHUDs: []
+    vrHeadset: 0
   - label: VR
     key: 289
     staticCamera: {fileID: 0}
     agentFleet: 
     exclusiveHUDs: []
+    vrHeadset: 0
   m_parkDisplay: 9
 --- !u!1 &23623182
 GameObject:
@@ -2718,7 +2724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_15
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -8553,6 +8559,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d707291e40ef30b48996e1edc64837dc, type: 3}
   m_PrefabInstance: {fileID: 1862067663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &436998071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 436998072}
+  - component: {fileID: 436998073}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &436998072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436998071}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5773996, y: -0.21253164, z: 0.7397905, w: -0.27230516}
+  m_LocalPosition: {x: -501.78024, y: -13.565282, z: -738.74634}
+  m_LocalScale: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436998073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436998071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: 40540687ee39c7d41894b3d2d0c0d6da, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.14, y: 2.14, z: 0.5}
+  m_FadeFactor: 1
 --- !u!1 &438940982
 GameObject:
   m_ObjectHideFlags: 0
@@ -8713,6 +8781,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451536761}
   m_CullTransparentMesh: 1
+--- !u!1 &466467468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466467469}
+  - component: {fileID: 466467470}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &466467469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466467468}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.12412058, y: -0.51105785, z: 0.21565957, w: 0.8227424}
+  m_LocalPosition: {x: -493.90546, y: 11.569578, z: -766.96295}
+  m_LocalScale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &466467470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466467468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: 40540687ee39c7d41894b3d2d0c0d6da, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.14, y: 2.14, z: 0.5}
+  m_FadeFactor: 1
 --- !u!1 &475434327
 GameObject:
   m_ObjectHideFlags: 0
@@ -8875,7 +9005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_13
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -9954,7 +10084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_16
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -13181,7 +13311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_4
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -13247,7 +13377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_2
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -13444,7 +13574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_11
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -14064,6 +14194,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1104230275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &845116866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845116867}
+  m_Layer: 0
+  m_Name: Crack decals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &845116867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845116866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 958119230}
+  - {fileID: 1318736560}
+  - {fileID: 881955390}
+  - {fileID: 1123965237}
+  - {fileID: 1395955794}
+  - {fileID: 436998072}
+  - {fileID: 466467469}
+  - {fileID: 1839175812}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &852376291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14411,6 +14580,68 @@ Transform:
   - {fileID: 324949356206162577}
   m_Father: {fileID: 1959290325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &881955389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881955390}
+  - component: {fileID: 881955391}
+  m_Layer: 0
+  m_Name: Crack_Decal (2) (wind_turbine_7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &881955390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881955389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.04715188, y: -0.097054794, z: 0.894217, w: 0.43443415}
+  m_LocalPosition: {x: 342.8552, y: -1.83438, z: -241.23796}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881955391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881955389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: c79f413b3ad179140ab336096d856478, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 5, z: 2.74}
+  m_FadeFactor: 1
 --- !u!4 &883930733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af9982bd7a0df44079f3be71f1e002ec, type: 3}
@@ -14776,7 +15007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_12
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -14862,6 +15093,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af9982bd7a0df44079f3be71f1e002ec, type: 3}
+--- !u!1 &958119229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958119230}
+  - component: {fileID: 958119231}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958119230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958119229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.04715188, y: -0.097054794, z: 0.894217, w: 0.43443415}
+  m_LocalPosition: {x: 342.8552, y: -1.83438, z: -241.23796}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958119231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958119229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: c79f413b3ad179140ab336096d856478, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 5, z: 2.74}
+  m_FadeFactor: 1
 --- !u!4 &959960879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6276234146966797246, guid: 481522fce8018e74692429f673e23bc5, type: 3}
@@ -16002,6 +16295,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107847717}
   m_CullTransparentMesh: 1
+--- !u!1 &1123965236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123965237}
+  - component: {fileID: 1123965238}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123965237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123965236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.09579721, y: 0.062952794, z: -0.23517203, w: 0.96517044}
+  m_LocalPosition: {x: 327.81668, y: -1.81242, z: -241.23314}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123965238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123965236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: bbe383fa42fe7f44a86703632dd88bac, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 4, z: 14.6}
+  m_FadeFactor: 1
 --- !u!1 &1124135025
 GameObject:
   m_ObjectHideFlags: 0
@@ -16743,7 +17098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_8
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -16786,6 +17141,68 @@ Transform:
   - {fileID: 71043421}
   m_Father: {fileID: 1644079452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1318736559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318736560}
+  - component: {fileID: 1318736561}
+  m_Layer: 0
+  m_Name: Crack_Decal (1) (wind_turbine_7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318736560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318736559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.04715188, y: -0.097054794, z: 0.894217, w: 0.43443415}
+  m_LocalPosition: {x: 342.8552, y: -1.83438, z: -241.23796}
+  m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1318736561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318736559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: c79f413b3ad179140ab336096d856478, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 5, z: 2.74}
+  m_FadeFactor: 1
 --- !u!1 &1328744210
 GameObject:
   m_ObjectHideFlags: 0
@@ -17132,7 +17549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_6
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -17198,7 +17615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_14
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -17209,6 +17626,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 481522fce8018e74692429f673e23bc5, type: 3}
+--- !u!1 &1395955793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1395955794}
+  - component: {fileID: 1395955795}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1395955794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395955793}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3490426, y: -0.07080933, z: 0.91577345, w: 0.18578035}
+  m_LocalPosition: {x: -467.22815, y: -13.71373, z: -785.02515}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395955795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395955793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: 40540687ee39c7d41894b3d2d0c0d6da, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.14, y: 2.14, z: 0.5}
+  m_FadeFactor: 1
 --- !u!1 &1403721688
 GameObject:
   m_ObjectHideFlags: 0
@@ -19051,7 +19530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_9
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -19866,7 +20345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_10
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -19951,6 +20430,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d707291e40ef30b48996e1edc64837dc, type: 3}
   m_PrefabInstance: {fileID: 398382941}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839175811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839175812}
+  - component: {fileID: 1839175813}
+  m_Layer: 0
+  m_Name: Crack_Decal (wind_turbine_1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839175812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839175811}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.1557314, y: -0.015512548, z: 0.9867066, w: 0.04378592}
+  m_LocalPosition: {x: -495.48206, y: 29.925186, z: -768.04407}
+  m_LocalScale: {x: 1.0000001, y: 1.0000004, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845116867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1839175813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839175811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_Material: {fileID: 2100000, guid: 40540687ee39c7d41894b3d2d0c0d6da, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_AffectsTransparency: 0
+  m_TransparentTextureResolution:
+    m_Override: 256
+    m_UseOverride: 1
+    m_Level: 0
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.14, y: 2.14, z: 0.5}
+  m_FadeFactor: 1
 --- !u!114 &1855577459 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5571620627189813233, guid: 5a2b7cdd5b910414d94d31dd271b3a1e, type: 3}
@@ -20166,7 +20707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_3
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -21109,7 +21650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4163fa44604e1aa46af106afaf8b9929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleKey: 284
+  toggleKey: 283
   textMeshProFont: {fileID: 11400000, guid: 4652ec2f3a1009845ac180627188f64a, type: 2}
   defaultLabelHeight: 2
   defaultTextSize: 12
@@ -24425,7 +24966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_5
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -24641,7 +25182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_1
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -24721,7 +25262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795602762193053784, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: m_Name
-      value: Cableless
+      value: wind_turbine_7
       objectReference: {fileID: 0}
     - target: {fileID: 5984031581046820301, guid: 481522fce8018e74692429f673e23bc5, type: 3}
       propertyPath: windController
@@ -24797,3 +25338,4 @@ SceneRoots:
   - {fileID: 1403721689}
   - {fileID: 577572415}
   - {fileID: 7446861071866336777}
+  - {fileID: 845116867}
