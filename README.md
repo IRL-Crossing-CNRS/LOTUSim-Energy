@@ -57,7 +57,7 @@ scenario needs none of it: the scenario workspace ships the built player
 ## Start using the Leap Motion
 
 1. Make sure you have the [requirements](#requirements) installed for the Leap Motion with the device you have.
-2. Plug your Leap Motion and check by using the Leap Motion Software if it is active on your computer.
+2. Plug your Leap Motion and check that the Ultraleap tracking service sees it (`leapctl` on Linux, the Ultraleap Control Panel on Windows). Installing the service is described in [How_To_Install_LOTUSim](https://github.com/IRL-Crossing-CNRS/How_To_Install_LOTUSim#optional-the-unity-project-unity-developers-only).
 3. Place the Leap in front of the user, with the **wire pointing left** (the Leap has been implemented to be Desktop mounted)
 4. Check that the Unity scene you are using have the GameObject `LeapMouvementController` activated (in Unity).
 > Note: Leap Motion input was developed against the `defenseScenario` scene, which is not part of this repository. Using it in an Energy scene requires adding the `LeapMouvementController` GameObject yourself.
