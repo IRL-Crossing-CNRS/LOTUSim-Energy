@@ -50,15 +50,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Energy/Old_scenes/facet_VR.unity
     guid: 8e890bafcc0684c41bb72761c1079322
+  - enabled: 1
+    path: Assets/Scenes/Energy/demo_facet_VR.unity
+    guid: 3fe731e92ebe2a271bfd7facb97264be
   - enabled: 0
     path: Assets/Scenes/Energy/Old_scenes/old_demo_facet.unity
     guid: d40b464b39f7382419f85a51e8e89057
   - enabled: 0
     path: Assets/Scenes/Defense/defenseScenario.unity
     guid: a6f5b499b741ff344b18233d9aea8fe6
-  - enabled: 1
-    path: Assets/Scenes/Energy/demo_facet.unity
-    guid: e34169635e7d64a449c78e988c577987
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4591d6174912e2244a7f5599199d5209, type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: 750f01d5bb4614457aaae6a15827c284, type: 2}

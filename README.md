@@ -89,10 +89,11 @@ The Unity project has three main scene folders, each covering a specific set of 
 
 
 ### Energy
-The `Energy` folder holds this repository's own scenes: `demo_facet`,
-`demo_facet_VR`, `empty` and `facet_waypoint_yolo`, alongside the shared
-`Launcher` scene at the root of `Assets/Scenes/`. These are the scenes that
-pair with the LOTUSim-generic-scenario configs of the same names.
+The `Energy` folder holds this repository's own scenes: `demo_facet_VR`,
+`empty` and `facet_waypoint_yolo`, alongside the shared `Launcher` scene at
+the root of `Assets/Scenes/`. `demo_facet_VR` is the demo scene the Launcher
+opens: it runs with or without a headset (F8 starts VR) and renders the
+LOTUSim-generic-scenario `facet_demo` and `iros_demo` configs.
 
 ### LeapMotion
 The `LeapMotion` folder holds scenes and assets that record and interpret hand
@@ -135,7 +136,7 @@ The `XR-Controller` folder provides VR support, handling user input and interact
      - Arrow keys (↑ ↓ ← →) enable Auto mode (entity navigation).
      - Q, W, E, A, S, D keys enable Free-Fly mode (manual movement).
 - `CameraSensor.cs`:  Publishes RGB camera frames from Unity to ROS via the ROS–TCP Connector. Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
-- `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key (F2 in demo_facet and demo_facet_VR; F3 hides the ocean).
+- `DynamicObjectNameDisplay.cs` : Dynamically displays the names of objects above them in the scene. Allows the user to toggle the visibility of these labels using a designated key (F2, listed in the help menu; F3 hides the ocean).
 - `FPSLimiter.cs` : Controls the application's target frame rate to ensure consistent performance.
 - `FreeFlyCamera.cs` : Controls the camera for a free fly spectator. Camera movement by 'W','A','S','D','Q','E' and speed of the quick camera movement when holding the 'Left Shift' key.
 - `DisplaySwitcher.cs` : Routes one camera at a time to the primary display and parks the others off-screen, so views do not overlap on a single monitor. Static cameras are wired in the Inspector; agent cameras are resolved at runtime by fleet name.
