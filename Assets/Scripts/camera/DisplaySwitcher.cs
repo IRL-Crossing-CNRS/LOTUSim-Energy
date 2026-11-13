@@ -76,6 +76,17 @@ namespace Lotusim
                 ActivateSlot(m_activeSlotIndex, force: true);
         }
 
+        /// <summary>
+        /// Key of this scene's VR headset slot, for the help menu: only VR scenes have one,
+        /// so the help lists the VR camera there and nowhere else.
+        /// </summary>
+        public bool TryGetVrHeadsetKey(out KeyCode key)
+        {
+            int i = m_slots == null ? -1 : Array.FindIndex(m_slots, s => s.vrHeadset);
+            key = i >= 0 ? m_slots[i].key : KeyCode.None;
+            return i >= 0;
+        }
+
         // ── State ─────────────────────────────────────────────────────────────
 
         public int ActiveSlotIndex => m_activeSlotIndex;

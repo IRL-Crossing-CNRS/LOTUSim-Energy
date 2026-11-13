@@ -28,14 +28,11 @@ namespace Lotusim
 {
     /// <summary>
     /// Displays dynamic labels for scene objects.
-    /// Labels can be toggled with a key press (default F1).
+    /// Labels are toggled with KeyBindings.ToggleLabels (F2), so the help menu lists it.
     /// </summary>
     public class ObjectDynamicLabelDisplay : MonoBehaviour
     {
         #region Configurable Fields
-
-        [Header("Controls")]
-        public KeyCode toggleKey = KeyCode.F1;
 
         [Header("Text Settings")]
         public TMP_FontAsset textMeshProFont;
@@ -83,7 +80,7 @@ namespace Lotusim
 
         private void HandleToggleInput()
         {
-            if (!Input.GetKeyDown(toggleKey))
+            if (!Input.GetKeyDown(KeyBindings.ToggleLabels))
                 return;
 
             labelsVisible = !labelsVisible;

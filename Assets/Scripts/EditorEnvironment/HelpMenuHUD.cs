@@ -61,6 +61,14 @@ namespace Lotusim
                 }
             }
 
+            // VR camera: listed only in scenes whose DisplaySwitcher has a headset slot.
+            if (DisplaySwitcher.Instance != null && DisplaySwitcher.Instance.TryGetVrHeadsetKey(out KeyCode vrKey))
+            {
+                const string cat = "Display Switching";
+                if (!categories.ContainsKey(cat)) { categories[cat] = new List<string>(); categoryOrder.Add(cat); }
+                categories[cat].Add($"VR Camera: [{vrKey}]");
+            }
+
             foreach (var cat in categoryOrder)
             {
                 sb.AppendLine($"<color=#55A0FF><b>{cat}</b></color>");

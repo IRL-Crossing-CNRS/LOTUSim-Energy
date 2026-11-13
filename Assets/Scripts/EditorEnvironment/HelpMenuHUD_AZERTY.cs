@@ -19,7 +19,6 @@ namespace Lotusim
         private KeyboardLayout layout = KeyboardLayout.Qwerty;
 
         [Header("Layout")]
-        [SerializeField] private float maxPanelHeightRatio = 0.75f;
         [SerializeField, Range(0.1f, 0.9f)] private float panelWidthRatio = 0.28f;
 
         [Header("Font Sizes")]
@@ -30,8 +29,19 @@ namespace Lotusim
         private GameObject helpPanel;
         private TMP_Text togglePromptText;
         private TMP_Text footerText;
+        // Two columns side by side, so the whole key list fits without scrolling.
         private TMP_Text contentText;
+        private TMP_Text contentTextRight;
         private RectTransform contentRT;
+        private RectTransform panelRT;
+
+        // Panel height around the key list: title above the scroll view, footer below it.
+        private const float kPanelTopChrome = 60f, kPanelBottomChrome = 54f;
+        // Horizontal margins of one column (20 left + 10 right, see CreateColumn) plus slack.
+        private const float kColumnPadding = 40f;
+        // Gap kept between the panel's bottom and the screen edge, and the smallest key text
+        // the panel shrinks to so that the whole list fits on screen.
+        private const float kPanelScreenMargin = 20f, kMinContentFontSize = 10f;
 
         private static readonly Dictionary<KeyCode, string> s_azertyMap = new Dictionary<KeyCode, string>
         {
@@ -126,27 +136,85 @@ namespace Lotusim
                 }
             }
 
+            // VR camera: listed only in scenes whose DisplaySwitcher has a headset slot.
+            if (DisplaySwitcher.Instance != null && DisplaySwitcher.Instance.TryGetVrHeadsetKey(out KeyCode vrKey))
+            {
+                const string cat = "Display Switching";
+                if (!categories.ContainsKey(cat)) { categories[cat] = new List<string>(); categoryOrder.Add(cat); }
+                categories[cat].Add($"VR Camera: [{KeyLabel(vrKey)}]");
+            }
+
+            // Whole categories go to the left column until it holds about half the lines
+            // (header + keys + blank line each); the rest go to the right column.
+            int totalLines = 0;
+            foreach (var cat in categoryOrder) totalLines += categories[cat].Count + 2;
+
+            StringBuilder sbRight = new StringBuilder();
+            int leftLines = 0;
+            bool left = true;
             foreach (var cat in categoryOrder)
             {
-                sb.AppendLine($"<color=#55A0FF><b>{cat}</b></color>");
+                int catLines = categories[cat].Count + 2;
+                // Stays left while the category's middle falls in the first half; once a
+                // category goes right, all the following ones do too, keeping the order.
+                left = left && (leftLines == 0 || leftLines + catLines / 2 <= totalLines / 2);
+                StringBuilder col = left ? sb : sbRight;
+                if (left) leftLines += catLines;
+
+                col.AppendLine($"<color=#55A0FF><b>{cat}</b></color>");
                 foreach (var line in categories[cat])
                 {
-                    sb.AppendLine(line);
+                    col.AppendLine(line);
                 }
-                sb.AppendLine();
+                col.AppendLine();
             }
 
             contentText.text = sb.ToString();
+            contentTextRight.text = sbRight.ToString();
 
-            Canvas.ForceUpdateCanvases();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(contentText.rectTransform);
-            float textHeight = LayoutUtility.GetPreferredHeight(contentText.rectTransform);
-            contentRT.sizeDelta = new Vector2(0f, textHeight + 40f);
-
-            RectTransform textRT = contentText.rectTransform;
-            textRT.sizeDelta = new Vector2(textRT.sizeDelta.x, textHeight);
+            // Every line must be visible without scrolling: when the list is taller than the
+            // screen below the panel's top, shrink the key text until it fits.
+            Rect screen = ((RectTransform)panelRT.parent).rect;
+            float avail = screen.height - 40f - kPanelScreenMargin;
+            float chrome = 40f + kPanelTopChrome + kPanelBottomChrome;
+            float size = contentFontSize;
+            float panelH = LayoutColumns(size, screen);
+            for (int i = 0; i < 5 && avail > chrome && panelH > avail && size > kMinContentFontSize; i++)
+            {
+                size = Mathf.Max(kMinContentFontSize, size * (avail - chrome) / (panelH - chrome));
+                panelH = LayoutColumns(size, screen);
+            }
 
             UpdateFooter();
+        }
+
+        // Sizes the two columns and the panel around them at the given font size; returns the panel height.
+        private float LayoutColumns(float fontSize, Rect screen)
+        {
+            contentText.fontSize = contentTextRight.fontSize = fontSize;
+
+            // Width first (the heights depend on it): two equal columns as wide as the longest
+            // unwrapped line, up to panelWidthRatio of the screen (lines wrap beyond that).
+            float colW = Mathf.Max(contentText.GetPreferredValues(contentText.text).x,
+                                   contentTextRight.GetPreferredValues(contentTextRight.text).x);
+            float panelW = 2f * (colW + kColumnPadding) + 20f;
+            if (screen.width > 0f) panelW = Mathf.Min(panelW, screen.width * panelWidthRatio);
+            panelRT.sizeDelta = new Vector2(panelW, panelRT.sizeDelta.y);
+
+            Canvas.ForceUpdateCanvases();
+            float textHeight = 0f;
+            foreach (var t in new[] { contentText, contentTextRight })
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(t.rectTransform);
+                float h = LayoutUtility.GetPreferredHeight(t.rectTransform);
+                t.rectTransform.sizeDelta = new Vector2(t.rectTransform.sizeDelta.x, h);
+                textHeight = Mathf.Max(textHeight, h);
+            }
+            contentRT.sizeDelta = new Vector2(0f, textHeight + 40f);
+
+            float panelH = textHeight + 40f + kPanelTopChrome + kPanelBottomChrome;
+            panelRT.sizeDelta = new Vector2(panelRT.sizeDelta.x, panelH);
+            return panelH;
         }
 
         private void UpdateFooter()
@@ -203,12 +271,12 @@ namespace Lotusim
 
             helpPanel = new GameObject("HelpPanel");
             helpPanel.transform.SetParent(canvasGO.transform, false);
+            // Hangs from the top-left corner; its height is set by UpdateHelpContent to fit the list.
             RectTransform hRT = helpPanel.AddComponent<RectTransform>();
-            hRT.anchorMin = new Vector2(0f, 0f);
-            hRT.anchorMax = new Vector2(panelWidthRatio, 1f);
-            hRT.pivot = new Vector2(0f, 0f);
-            hRT.offsetMin = new Vector2(20f, 60f);
-            hRT.offsetMax = new Vector2(-10f, -40f);
+            hRT.anchorMin = hRT.anchorMax = new Vector2(0f, 1f);
+            hRT.pivot = new Vector2(0f, 1f);
+            hRT.anchoredPosition = new Vector2(20f, -40f);
+            panelRT = hRT;
 
             Image hBg = helpPanel.AddComponent<Image>();
             hBg.color = new Color(0.05f, 0.08f, 0.14f, 0.95f);
@@ -234,8 +302,8 @@ namespace Lotusim
             RectTransform scrollRT = scrollGO.AddComponent<RectTransform>();
             scrollRT.anchorMin = new Vector2(0f, 0f);
             scrollRT.anchorMax = new Vector2(1f, 1f);
-            scrollRT.offsetMin = new Vector2(10f, 54f);
-            scrollRT.offsetMax = new Vector2(-10f, -60f);
+            scrollRT.offsetMin = new Vector2(10f, kPanelBottomChrome);
+            scrollRT.offsetMax = new Vector2(-10f, -kPanelTopChrome);
 
             ScrollRect scrollRect = scrollGO.AddComponent<ScrollRect>();
             scrollRect.horizontal = false;
@@ -264,14 +332,8 @@ namespace Lotusim
 
             scrollRect.content = contentRT;
 
-            contentText = CreateText("KeybindText", contentGO.transform, contentFontSize, FontStyles.Normal, TextAlignmentOptions.TopLeft);
-            RectTransform textRT = contentText.rectTransform;
-            textRT.anchorMin = new Vector2(0f, 1f);
-            textRT.anchorMax = new Vector2(1f, 1f);
-            textRT.pivot = new Vector2(0.5f, 1f);
-            textRT.offsetMin = new Vector2(20f, textRT.offsetMin.y);
-            textRT.offsetMax = new Vector2(-20f, textRT.offsetMax.y);
-            textRT.anchoredPosition = new Vector2(0f, -20f);
+            contentText = CreateColumn("KeybindText_Left", contentGO.transform, 0f, 0.5f);
+            contentTextRight = CreateColumn("KeybindText_Right", contentGO.transform, 0.5f, 1f);
 
             // Footer — small note at the bottom of the panel about the layout switch
             footerText = CreateText("Footer", helpPanel.transform, footerFontSize, FontStyles.Italic, TextAlignmentOptions.BottomLeft);
@@ -282,6 +344,20 @@ namespace Lotusim
             fRT.pivot = new Vector2(0.5f, 0f);
             fRT.offsetMin = new Vector2(20f, 8f);
             fRT.offsetMax = new Vector2(-20f, 50f);
+        }
+
+        // One key-list column spanning [xMin, xMax] of the content width, top-aligned.
+        private TMP_Text CreateColumn(string name, Transform parent, float xMin, float xMax)
+        {
+            TMP_Text t = CreateText(name, parent, contentFontSize, FontStyles.Normal, TextAlignmentOptions.TopLeft);
+            RectTransform rt = t.rectTransform;
+            rt.anchorMin = new Vector2(xMin, 1f);
+            rt.anchorMax = new Vector2(xMax, 1f);
+            rt.pivot = new Vector2(0.5f, 1f);
+            rt.offsetMin = new Vector2(20f, rt.offsetMin.y);
+            rt.offsetMax = new Vector2(-10f, rt.offsetMax.y);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -20f);
+            return t;
         }
 
         private TMP_Text CreateText(string name, Transform parent, float fontSize, FontStyles style, TextAlignmentOptions align)

@@ -492,6 +492,7 @@ namespace Lotusim
             title.color = farmAvgColor;
             title.alignment = TextAlignmentOptions.MidlineLeft;
             title.richText = true;
+            FitInRect(title, 10f);
 
             // Status indicator — top-right (tiny)
             m_statusText = CreateTMP("Status", m_window.transform);
@@ -534,6 +535,7 @@ namespace Lotusim
                 yt.fontSize = 9f;
                 yt.color = new Color(1f, 0.92f, 0.55f, 0.80f);
                 yt.alignment = TextAlignmentOptions.MidlineRight;
+                FitInRect(yt, 6f);
                 m_yTickLabels[i] = yt;
 
                 TMP_Text xt = CreateTMP("XTick" + i, m_window.transform);
@@ -544,6 +546,7 @@ namespace Lotusim
                 xt.fontSize = 9f;
                 xt.color = new Color(1f, 1f, 1f, 0.7f);
                 xt.alignment = TextAlignmentOptions.Top;
+                FitInRect(xt, 6f);
                 m_xTickLabels[i] = xt;
             }
 
@@ -558,6 +561,7 @@ namespace Lotusim
             m_legendText.alignment = TextAlignmentOptions.TopLeft;
             m_legendText.color = Color.white;
             m_legendText.richText = true;
+            FitInRect(m_legendText, 8f);
 
             // Hints / toast strip — bottom of widget
             m_toastText = CreateTMP("Hints", m_window.transform);
@@ -570,7 +574,19 @@ namespace Lotusim
             m_toastText.alignment = TextAlignmentOptions.Center;
             m_toastText.color = new Color(1f, 1f, 1f, 0.9f);
             m_toastText.richText = true;
-            m_toastText.textWrappingMode = TextWrappingModes.NoWrap;
+            FitInRect(m_toastText, 8f);
+        }
+
+        // Shrinks the text (never below minSize) so it stays inside its rect instead of
+        // spilling past the window edge; fontSize becomes the upper bound. No wrapping, so
+        // a long value shrinks the line rather than breaking it.
+        private static void FitInRect(TMP_Text t, float minSize)
+        {
+            t.textWrappingMode = TextWrappingModes.NoWrap;
+            t.fontSizeMax = t.fontSize;
+            t.fontSizeMin = minSize;
+            t.enableAutoSizing = true;
+            t.overflowMode = TextOverflowModes.Truncate;
         }
 
         public bool IsOpen => m_window != null && m_window.activeSelf;
