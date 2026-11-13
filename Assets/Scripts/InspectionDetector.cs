@@ -140,6 +140,9 @@ namespace Lotusim
 
         private void Awake()
         {
+            // Random phase, so the vehicles spawned together do not all render their capture in the
+            // same frame: 20 synchronised captures made a 40 fps dip every ~3 s.
+            timeElapsed = UnityEngine.Random.Range(0f, inferenceRate);
             if (snapCam == null) snapCam = GetComponent<Camera>();
             if (snapCam == null) snapCam = GetComponentInChildren<Camera>();
             if (snapCam == null)
@@ -205,7 +208,7 @@ namespace Lotusim
             statusRect.anchorMin = new Vector2(0, 1);
             statusRect.anchorMax = new Vector2(0, 1);
             statusRect.pivot = new Vector2(0, 1);
-            statusRect.anchoredPosition = new Vector2(10, -10);
+            statusRect.anchoredPosition = new Vector2(10, -60); // below the ROS IP field
             statusRect.sizeDelta = new Vector2(350, 30);
 
             statusText = statusObj.AddComponent<UnityEngine.UI.Text>();
@@ -227,6 +230,24 @@ namespace Lotusim
         {
             get { return LayerMask.NameToLayer("DroneHUD"); }  // -1 when the project lacks it
         }
+
+        // The scene's terrains lie 15 km and more from the farm, far beyond the 1 km of an
+        // inspection camera, yet culling them for each capture took ~150 ms and stalled the
+        // frame. On their own layer, the captures skip them; the viewers still draw them.
+        public static int FarSceneryLayer
+        {
+            get
+            {
+                int layer = LayerMask.NameToLayer("FarScenery");
+                if (layer >= 0 && !s_terrainsMoved)
+                {
+                    foreach (var t in Terrain.activeTerrains) t.gameObject.layer = layer;
+                    s_terrainsMoved = Terrain.activeTerrains.Length > 0;
+                }
+                return layer;
+            }
+        }
+        private static bool s_terrainsMoved;
 
         private static void SetLayerRecursive(GameObject go, int layer)
         {
@@ -280,7 +301,7 @@ namespace Lotusim
             timeElapsed += Time.deltaTime;
             if (timeElapsed >= inferenceRate && !isProcessing && !awaitingDetection)
             {
-                timeElapsed = 0f;
+                timeElapsed = UnityEngine.Random.Range(0f, 0.2f * inferenceRate); // keeps the phases apart
                 StartCoroutine(CaptureAndPublish());
             }
 
@@ -454,7 +475,9 @@ namespace Lotusim
             int prevMask = snapCam.cullingMask;
             // Other vehicles' overlays (DroneHUD layer) stay out of the frame too.
             int hud = HudLayer;
-            if (hud >= 0) snapCam.cullingMask = prevMask & ~(1 << hud);
+            if (hud >= 0) snapCam.cullingMask &= ~(1 << hud);
+            int far = FarSceneryLayer;
+            if (far >= 0) snapCam.cullingMask &= ~(1 << far);
             snapCam.targetTexture = renderTex;
             snapCam.Render();
             snapCam.targetTexture = prevTarget;

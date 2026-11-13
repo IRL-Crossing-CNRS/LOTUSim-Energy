@@ -230,7 +230,7 @@ MonoBehaviour:
   snapCam: {fileID: 0}
   imageWidth: 640
   imageHeight: 480
-  inferenceRate: 0.5
+  inferenceRate: 2
   agentNameOverride: 
   corrosionBoxColor: {r: 1, g: 0.5, b: 0, a: 1}
   crackBoxColor: {r: 1, g: 0, b: 0, a: 1}

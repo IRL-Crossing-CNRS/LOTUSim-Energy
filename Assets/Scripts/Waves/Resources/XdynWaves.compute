@@ -24,6 +24,7 @@ float _RegionSize;
 float _InvAmplitude;
 // Components with a larger wave number are skipped: the height map cannot draw them.
 float _MaxK;
+float _EdgeFade;
 
 [numthreads(8, 8, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
@@ -47,5 +48,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
         float2 p = _Phases[i];
         height += r.x * p.y * sin(r.y * (dxNed * r.z + dyNed * r.w) + p.x);
     }
-    _Height[id.xy] = height * _InvAmplitude;
+    // Fades out at the region's edge, where HDRP's swell takes over (see EdgeMask).
+    float half = 0.5 * _RegionSize;
+    float w = smoothstep(0.0, 1.0, saturate(min(half - abs(dX), half - abs(dZ)) / _EdgeFade));
+    _Height[id.xy] = w * height * _InvAmplitude;
 }

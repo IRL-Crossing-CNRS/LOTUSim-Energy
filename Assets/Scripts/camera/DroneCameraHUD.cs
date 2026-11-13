@@ -247,6 +247,9 @@ public class DroneCameraHUD : MonoBehaviour
         // hudLayer was looked up but never applied: the overlay stayed on Default,
         // so every camera drew it as a floating name label next to the vehicle.
         SetLayerRecursive(cgo, hudLayer);
+        // The vehicle prefabs' cameras leave DroneHUD out of their culling mask: without it the
+        // camera never drew its own overlay (InspectionDetector still drops it from captures).
+        if (m_cam != null) m_cam.cullingMask |= 1 << hudLayer;
     }
 
     static void SetLayerRecursive(GameObject go, int layer)

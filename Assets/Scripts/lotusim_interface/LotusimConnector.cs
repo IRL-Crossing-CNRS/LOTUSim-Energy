@@ -180,6 +180,11 @@ namespace Lotusim
                     pose.rotation
                 );
                 instantiatedObject.name = vesselName;
+                // Every vehicle camera left enabled is a full HDRP render per frame, hidden behind the
+                // view (25 vehicles: 7 fps). Their captures call Render() themselves; DisplaySwitcher
+                // and DroneCameraHUD enable the one on screen.
+                foreach (var vehicleCam in instantiatedObject.GetComponentsInChildren<Camera>(true))
+                    vehicleCam.enabled = false;
 
                 m_objectMap.Add(vesselName, instantiatedObject);
                 m_transformMap.Add(vesselName, instantiatedObject.transform);
@@ -291,13 +296,17 @@ namespace Lotusim
             {
                 m_transformMap[gameObject.name] = gameObject.transform;
                 m_objectMap[gameObject.name] = gameObject;
-                Animator[] _animator = gameObject.GetComponentsInChildren<Animator>();
-                foreach (Animator _a in _animator)
-                {
-                    string animator_name_with_namespace = gameObject.name + "/" + _a.name;
-                    // m_animatorMap.Add(animator_name_with_namespace, _a);
-                }
             }
+        }
+
+        // Renderer poses also name entities that have no GameObject here: rescanning the whole scene
+        // for each of them, every frame, took ~35 ms a frame with the demo's agents. At most every 2 s.
+        private float m_nextRescan;
+        private void RescanVesselsThrottled()
+        {
+            if (Time.unscaledTime < m_nextRescan) return;
+            m_nextRescan = Time.unscaledTime + 2f;
+            UpdateVesselsList();
         }
 
         private void UpdateVesselPoses()
@@ -310,7 +319,7 @@ namespace Lotusim
                 {
                     if (!m_transformMap.TryGetValue(vessel_name, out var transform))
                     {
-                        UpdateVesselsList();
+                        RescanVesselsThrottled();
                         continue;
                     }
 
@@ -319,7 +328,7 @@ namespace Lotusim
                     // '==' detects the destroyed native object; skip and refresh the map.
                     if (transform == null)
                     {
-                        UpdateVesselsList();
+                        RescanVesselsThrottled();
                         continue;
                     }
 

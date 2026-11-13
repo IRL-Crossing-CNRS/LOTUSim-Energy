@@ -259,7 +259,10 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
             if (!rootObj.activeInHierarchy || IsIgnored(rootObj.name))
                 continue;
 
-            Renderer[] renderers = rootObj.GetComponentsInChildren<Renderer>();
+            // Trails and particles left out of the size: a drone's 100 m trajectory line made it
+            // look like world geometry and dropped it from the list.
+            Renderer[] renderers = System.Array.FindAll(rootObj.GetComponentsInChildren<Renderer>(),
+                r => !(r is LineRenderer || r is TrailRenderer || r is ParticleSystemRenderer));
             if (renderers.Length == 0) continue;
 
             // Calculate combined bounds for the entire object
@@ -284,7 +287,7 @@ public class CameraDynamicTargetsNavigator : MonoBehaviour
 
         currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, Mathf.Max(0, targets.Count - 1));
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         foreach (var t in targets)
             Debug.Log($"[Navigator] target={t.target.name} offset={t.offset} zoom={t.zoom}");
 #endif

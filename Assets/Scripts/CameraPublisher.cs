@@ -144,9 +144,13 @@ public class CameraPublisher : MonoBehaviour
 
         RenderTexture previous = cam.targetTexture;
 
+        int previousMask = cam.cullingMask;
+        int far = Lotusim.InspectionDetector.FarSceneryLayer; // see there
+        if (far >= 0) cam.cullingMask &= ~(1 << far);
         cam.targetTexture = renderTexture;
         cam.Render();
         cam.targetTexture = previous;
+        cam.cullingMask = previousMask;
 
         // Plus de Blit intermédiaire ici : on lit directement renderTexture.
         // La correction d'orientation (s'il y en a besoin) est appliquée

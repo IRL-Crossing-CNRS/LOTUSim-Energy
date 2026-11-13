@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6209629660309381103}
   - component: {fileID: 5363668225092196103}
   - component: {fileID: 1149208786232045179}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2364,7 +2364,7 @@ GameObject:
   - component: {fileID: 3889132003645973373}
   - component: {fileID: 5149780259463800041}
   - component: {fileID: 1073533397707722309}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4774,7 +4774,7 @@ GameObject:
   - component: {fileID: 2789477471694420448}
   - component: {fileID: 3335617870022118877}
   - component: {fileID: 4470939647691627059}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

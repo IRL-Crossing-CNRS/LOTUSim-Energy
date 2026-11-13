@@ -211,8 +211,9 @@ namespace Lotusim
                 rosInterface.RegisterWindSubscription(topicName);
                 Debug.Log($"[WindSliderController] Registered WindMsg publisher/subscriber on {topicName}.");
 
-                // Send initial state
-                PublishWind(sliderX.value, sliderY.value, sliderZ.value);
+                // No initial publish: the sliders' start value (zero) would overwrite the wind
+                // already set by the scenario, and calm the sea that follows it. The sliders
+                // take the topic's wind as it arrives, and publish once moved.
 
                 prevX = sliderX.value;
                 prevY = sliderY.value;

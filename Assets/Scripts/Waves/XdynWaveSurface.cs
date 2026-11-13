@@ -28,13 +28,13 @@ namespace Lotusim
     public class XdynWaveSurface : MonoBehaviour
     {
         [Tooltip("Side of the square region drawn from the xdyn components (m). " +
-                 "Beyond it the ocean shows only the HDRP ripples. 2048 m covers a wind farm " +
-                 "around the camera; HDRP deforms the water through one decal region texture of " +
-                 "at most 2048 x 2048, so this also sets the size of a deformation texel.")]
+                 "Beyond it HDRP's own swell carries the same Hs, Tp and direction to the horizon. HDRP " +
+                 "deforms the water through one decal region texture of at most 2048 x 2048: " +
+                 "1024 texels over 2048 m, a 2 m texel.")]
         public float regionSize = 2048f;
 
         [Tooltip("Height map resolution over the region (and HDRP decal region resolution).")]
-        public int resolution = 2048;
+        public int resolution = 1024;
 
         [Tooltip("Components shorter than this many texels are left out of the height map, " +
                  "which could not represent them (aliasing). HeightAt keeps every component.")]
@@ -43,8 +43,33 @@ namespace Lotusim
         [Tooltip("Keep the HDRP ripples (small, short waves xdyn does not model) for surface detail.")]
         public bool keepRipples = true;
 
-        [Tooltip("Wind speed driving the HDRP ripples when they are kept (m/s).")]
+        [Tooltip("Wind speed driving the HDRP ripples when they are kept (km/h, HDRP's unit).")]
         public float ripplesWindSpeed = 2f;
+        WindSliderController m_wind;
+
+        [Tooltip("Width (m) of the band at the edge of the region over which the xdyn sea hands over to " +
+                 "HDRP's own swell, which carries the same Hs, Tp and direction to the horizon.")]
+        public float edgeFade = 300f;
+        [Tooltip("Scale on the HDRP swell wind speed derived from Hs, to match the far sea's height.")]
+        public float farSwellGain = 1f;
+        Texture2D m_mask;
+        float m_farWindKmh, m_farOrientation;
+        Camera m_view;
+        float m_viewCheckedAt = -1f;
+
+        // The camera on screen, which the region follows. The scene tags none MainCamera, so
+        // Camera.main was null and the region stayed at the ocean's origin.
+        Camera ViewCamera()
+        {
+            if (m_view != null && m_view.isActiveAndEnabled && Time.realtimeSinceStartup - m_viewCheckedAt < 1f)
+                return m_view;
+            m_viewCheckedAt = Time.realtimeSinceStartup;
+            m_view = null;
+            foreach (var cam in Camera.allCameras)
+                if (cam.targetTexture == null && (m_view == null || cam.depth > m_view.depth))
+                    m_view = cam;
+            return m_view;
+        }
 
         public ComputeShader heightCompute;
         public Material decalMaterial;
@@ -121,18 +146,56 @@ namespace Lotusim
             water.gameObject.AddComponent<XdynWaveSurface>();
         }
 
-        /// <summary>Simulation time to draw this frame, extrapolated between pose messages.</summary>
+        // Clock the waves are drawn at. Pose messages reach Unity irregularly (the bridge
+        // delivers them in bursts) and the simulation runs below real time, so jumping to
+        // "last stamp + time since" made the sea step forward and back every message.
+        // Instead the drawn time advances by the measured simulation rate and is pulled
+        // gently toward the stamps, never backward.
+        static double s_drawnTime = double.NaN;
+        static int s_drawnFrame = -1;
+        static double s_rate = 1.0;
+        static double s_rateRefTime = double.NaN;
+        static float s_rateRefAt;
+
+        /// <summary>Simulation time to draw this frame: smooth, monotonic, close to the pose stamps.</summary>
         public static double CurrentSimTime()
         {
             lock (s_lock)
             {
+                float now = Time.realtimeSinceStartup;
                 if (s_simTimeReceivedAt == -2f)
-                    s_simTimeReceivedAt = Time.realtimeSinceStartup;
+                {
+                    s_simTimeReceivedAt = now;
+                    // Simulation rate over at least 2 s of stamps, so bursts average out.
+                    if (double.IsNaN(s_rateRefTime) || s_simTime < s_rateRefTime)
+                    {
+                        s_rateRefTime = s_simTime; s_rateRefAt = now;
+                    }
+                    else if (now - s_rateRefAt >= 2f)
+                    {
+                        double sample = (s_simTime - s_rateRefTime) / (now - s_rateRefAt);
+                        s_rate = Math.Max(0.0, Math.Min(3.0, 0.7 * s_rate + 0.3 * sample));
+                        s_rateRefTime = s_simTime; s_rateRefAt = now;
+                    }
+                }
                 if (s_simTimeReceivedAt < 0f)
                     return 0.0;
-                // Poses arrive several times a second; never run far ahead of them.
-                double ahead = Math.Min(Time.realtimeSinceStartup - s_simTimeReceivedAt, 0.5);
-                return s_simTime + ahead;
+                if (s_drawnFrame == Time.frameCount)
+                    return s_drawnTime;
+
+                double target = s_simTime + s_rate * Math.Min(now - s_simTimeReceivedAt, 0.5);
+                if (double.IsNaN(s_drawnTime) || Math.Abs(target - s_drawnTime) > 1.0)
+                {
+                    s_drawnTime = target;
+                }
+                else
+                {
+                    double dt = Math.Min(Time.unscaledDeltaTime, 0.25);
+                    double next = s_drawnTime + s_rate * dt + (target - s_drawnTime) * Math.Min(1.0, dt / 0.5);
+                    if (next > s_drawnTime) s_drawnTime = next;
+                }
+                s_drawnFrame = Time.frameCount;
+                return s_drawnTime;
             }
         }
 
@@ -152,7 +215,10 @@ namespace Lotusim
             m_kernel = heightCompute.FindKernel("CSMain");
 
             // Player overrides, to compare region sizes on the same build:
-            // -xdynWaveRegion <m> -xdynWaveResolution <texels>
+            // -xdynWaveRegion <m> -xdynWaveResolution <texels>; -xdynWaveProbe <s> turns the probe on.
+            // The probe needs HDRP's CPU water simulation, which rebuilds its spectrum every frame
+            // (~100 ms with the demo running): off unless asked.
+            probePeriod = 0f;
             string[] args = Environment.GetCommandLineArgs();
             for (int i = 0; i + 1 < args.Length; ++i)
             {
@@ -161,6 +227,9 @@ namespace Lotusim
                     regionSize = r;
                 else if (args[i] == "-xdynWaveResolution" && int.TryParse(args[i + 1], out int n))
                     resolution = n;
+                else if (args[i] == "-xdynWaveProbe" && float.TryParse(args[i + 1],
+                        System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float p))
+                    probePeriod = p;
             }
         }
 
@@ -196,9 +265,12 @@ namespace Lotusim
             if (m_a == null)
                 return;
 
-            Transform anchor = Camera.main != null ? Camera.main.transform : transform;
+            FollowWindWithRipples();
+
+            Transform anchor = ViewCamera() != null ? m_view.transform : transform;
             Vector3 c = anchor.position;
             m_decal.transform.position = new Vector3(c.x, transform.position.y, c.z);
+            m_water.waterMaskOffset = new Vector2(c.x - transform.position.x, c.z - transform.position.z);
             m_decal.transform.rotation = Quaternion.identity;
 
             // Fold the time and the region centre into one phase per component,
@@ -231,7 +303,7 @@ namespace Lotusim
             List<(string name, double east, double north)> hulls;
             lock (s_lock) hulls = new List<(string, double, double)>(s_hulls);
             float half = regionSize / 2f;
-            hulls.RemoveAll(h => Math.Abs(h.east - centreX) > half - 2f || Math.Abs(h.north - centreZ) > half - 2f);
+            hulls.RemoveAll(h => Math.Abs(h.east - centreX) > half - edgeFade || Math.Abs(h.north - centreZ) > half - edgeFade);
             m_nextProbe = Time.realtimeSinceStartup + probePeriod;
             if (hulls.Count == 0)
                 return;
@@ -270,9 +342,58 @@ namespace Lotusim
                     worst = Math.Max(worst, Math.Abs(e));
                 }
                 int n = hulls.Count;
+                // What HDRP really displaces the ocean by there (decal included), against the map.
+                double hse = 0.0, hsz = 0.0; int hn = 0;
+                for (int h = 0; h < hulls.Count; ++h)
+                {
+                    var wsp = new WaterSearchParameters
+                    {
+                        targetPositionWS = new Vector3((float)hulls[h].east, transform.position.y, (float)hulls[h].north),
+                        startPositionWS = new Vector3((float)hulls[h].east, transform.position.y, (float)hulls[h].north),
+                        error = 0.01f, maxIterations = 8, includeDeformation = true,
+                    };
+                    if (!m_water.ProjectPointOnWaterSurface(wsp, out WaterSearchResult wsr)) continue;
+                    double hdrp = wsr.projectedPositionWS.y - transform.position.y;
+                    hse += (hdrp - physics[h]) * (hdrp - physics[h]); hsz += hdrp * hdrp; ++hn;
+                }
+                // The far sea, HDRP's swell, on a ring beyond the region, against the xdyn sea's Hs / 4.
+                double fsz = 0.0; int fn = 0;
+                for (int k = 0; k < 16; ++k)
+                {
+                    float ang = k * Mathf.PI / 8f, r = half + 800f;
+                    var p = new Vector3(centreX + r * Mathf.Cos(ang), transform.position.y, centreZ + r * Mathf.Sin(ang));
+                    var fsp = new WaterSearchParameters { targetPositionWS = p, startPositionWS = p, error = 0.01f, maxIterations = 8, includeDeformation = true };
+                    if (!m_water.ProjectPointOnWaterSurface(fsp, out WaterSearchResult fsr)) continue;
+                    double fh = fsr.projectedPositionWS.y - transform.position.y;
+                    fsz += fh * fh; ++fn;
+                }
+                Debug.Log($"[XdynWaveFar] t {t:F1} s: HDRP swell RMS {(fn > 0 ? Math.Sqrt(fsz / fn) : double.NaN):F3} m over {fn} points " +
+                          $"(wind {m_farWindKmh:F0} km/h), xdyn sea elevation RMS {Math.Sqrt(sz / n):F3} m");
                 Debug.Log($"[XdynWaveProbe] t {t:F1} s, {n} hull(s): drawn - physics RMS {Math.Sqrt(se / n):F3} m, " +
-                          $"max {worst:F3} m; elevation RMS {Math.Sqrt(sz / n):F3} m");
+                          $"max {worst:F3} m; elevation RMS {Math.Sqrt(sz / n):F3} m; HDRP surface ({hn} hulls) RMS " +
+                          $"{(hn > 0 ? Math.Sqrt(hsz / hn) : double.NaN):F3} m, - physics RMS {(hn > 0 ? Math.Sqrt(hse / hn) : double.NaN):F3} m");
             });
+        }
+
+        // HDRP's ripples travel with the wind of the sliders (their speed follows the Beaufort
+        // force in StormController).
+        void FollowWindWithRipples()
+        {
+            if (!keepRipples)
+                return;
+            if (m_wind == null)
+            {
+                if (Time.frameCount % 60 != 0) return;
+                m_wind = FindFirstObjectByType<WindSliderController>();
+                if (m_wind == null) return;
+            }
+            Vector3 w = m_wind.CurrentWindVector; // ENU
+            if (new Vector2(w.x, w.y).magnitude > 0.1f)
+            {
+                m_water.ripplesMotionMode = WaterPropertyOverrideMode.Custom;
+                // HDRP orientation: degrees from +x (east) towards +z (north).
+                m_water.ripplesOrientationValue = Mathf.Atan2(w.y, w.x) * Mathf.Rad2Deg;
+            }
         }
 
         /// <summary>Rendered height (m, up) at a Unity world position, same sum as the GPU.</summary>
@@ -368,6 +489,7 @@ namespace Lotusim
             heightCompute.SetInt("_Resolution", resolution);
             heightCompute.SetFloat("_RegionSize", regionSize);
             heightCompute.SetFloat("_InvAmplitude", 1f / m_amplitude);
+            heightCompute.SetFloat("_EdgeFade", edgeFade);
             // Wave numbers above this cannot be drawn by the height map without aliasing.
             // HDRP renders the decal into its water decal atlas at the decal's
             // resolution: a decal larger than the atlas is dropped with
@@ -401,18 +523,72 @@ namespace Lotusim
             m_decal.material.SetTexture("_XdynHeight", m_height);
 
             m_water.deformation = true;
+            m_water.scriptInteractions = probePeriod > 0f; // for the probe's HDRP height query
             m_water.deformationRes = resolution >= 2048 ? WaterSurface.WaterDecalRegionResolution.Resolution2048
                                    : resolution >= 1024 ? WaterSurface.WaterDecalRegionResolution.Resolution1024
                                    : WaterSurface.WaterDecalRegionResolution.Resolution512;
             m_water.decalRegionSize = new Vector2(regionSize, regionSize);
             m_water.decalRegionAnchor = null; // follows the camera, like the decal
-            m_water.largeBand0Multiplier = 0f;
-            m_water.largeBand1Multiplier = 0f;
+            // Beyond the region, HDRP's own swell, statistically the same sea: the mask keeps it out
+            // of the region, where the xdyn sea is drawn, with a cross-fade over edgeFade.
+            m_water.largeBand0Multiplier = 1f;
+            m_water.largeBand1Multiplier = 1f;
+            m_water.largeBand0FadeMode = WaterSurface.FadeMode.None;
+            m_water.largeBand1FadeMode = WaterSurface.FadeMode.None;
+            // HDRP fades its ripples out from 50 m: beyond the region the sea then turns into a
+            // mirror. Kept to the horizon, they give the far sea its texture.
+            m_water.ripplesFadeMode = WaterSurface.FadeMode.None;
+            // HDRP's water mask (R, G: swell bands, B: ripples) over the region, moved with it in Update.
+            // Its decal-mask path left the mask white in the player, so the swell stayed in the farm.
+            m_water.waterMask = EdgeMask();
+            m_water.waterMaskExtent = new Vector2(regionSize, regionSize);
+            m_water.waterMaskRemap = new Vector2(0f, 1f);
+            // Pierson-Moskowitz, Hs = 0.21 U^2 / g: the wind of a fully developed sea of that height.
+            m_farWindKmh = farSwellGain * 3.6f * Mathf.Sqrt((float)msg.significant_height_m * 9.81f / 0.21f);
+            // xdyn's direction is towards, clockwise from north; HDRP's angle is from east towards north.
+            m_farOrientation = 90f - (float)msg.direction_deg;
             m_water.ripples = keepRipples;
             m_water.ripplesWindSpeed = ripplesWindSpeed;
 
             Debug.Log($"[XdynWaveSurface] {n} wave components (Hs {msg.significant_height_m} m, " +
                       $"Tp {msg.peak_period_s} s, towards {msg.direction_deg} deg) over {regionSize} m.");
+        }
+
+        // StormController writes the HDRP swell every Update; the far sea must follow the xdyn sea.
+        void LateUpdate()
+        {
+            if (m_a == null || m_water == null)
+                return;
+            m_water.largeWindSpeed = m_farWindKmh;
+            m_water.largeOrientationValue = m_farOrientation;
+        }
+
+        // 1 where the xdyn sea is drawn, 0 at the region's edge, smooth in between; the mask lets HDRP's
+        // swell through as (1 - w), its short band at half height inside, the ripples everywhere.
+        float EdgeWeight(float u, float v)
+        {
+            float half = regionSize / 2f;
+            float d = Mathf.Min(half - Mathf.Abs(u), half - Mathf.Abs(v));
+            return Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(d / edgeFade));
+        }
+
+        Texture2D EdgeMask()
+        {
+            if (m_mask != null) return m_mask;
+            const int n = 256;
+            m_mask = new Texture2D(n, n, TextureFormat.RGBAFloat, false, true) { wrapMode = TextureWrapMode.Clamp };
+            var px = new Color[n * n];
+            for (int j = 0; j < n; ++j)
+                for (int i = 0; i < n; ++i)
+                {
+                    float far = 1f - EdgeWeight(((i + 0.5f) / n - 0.5f) * regionSize, ((j + 0.5f) / n - 0.5f) * regionSize);
+                    // HDRP's short band keeps half its height over the xdyn sea: without its chop the
+                    // region showed as a smooth square seen from above. Its swell band stays out.
+                    px[j * n + i] = new Color(far, Mathf.Lerp(0.5f, 1f, far), 1f, 1f);
+                }
+            m_mask.SetPixels(px);
+            m_mask.Apply();
+            return m_mask;
         }
 
         void ReleaseBuffers()

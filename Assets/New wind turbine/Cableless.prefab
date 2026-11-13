@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 2681940438910895474}
   - component: {fileID: 7665219833971065937}
   - component: {fileID: 6131479601446439539}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2034,7 +2034,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.2
+    minVertexDistance: 5
     textureMode: 0
     textureScale: {x: 1, y: 1}
     ribbonCount: 1
@@ -2658,7 +2658,7 @@ GameObject:
   - component: {fileID: 1087563669324578776}
   - component: {fileID: 1250139134472928002}
   - component: {fileID: 7484745362968839068}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4459,7 +4459,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.2
+    minVertexDistance: 5
     textureMode: 0
     textureScale: {x: 1, y: 1}
     ribbonCount: 1
@@ -4993,7 +4993,7 @@ GameObject:
   - component: {fileID: 8438678819256420081}
   - component: {fileID: 875258541609338126}
   - component: {fileID: 1109498037665211973}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: wakeParticles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6776,7 +6776,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minVertexDistance: 0.2
+    minVertexDistance: 5
     textureMode: 0
     textureScale: {x: 1, y: 1}
     ribbonCount: 1

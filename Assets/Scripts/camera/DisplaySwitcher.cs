@@ -171,10 +171,16 @@ namespace Lotusim
 
             // Park the previously active camera.
             if (m_activeCamera != null)
+            {
                 m_activeCamera.targetDisplay = m_parkDisplay;
+                // A vehicle camera off screen only renders on its own captures (see LotusimConnector).
+                if (m_activeCamera != cam && m_activeCamera.GetComponent<DroneCameraHUD>() != null)
+                    m_activeCamera.enabled = false;
+            }
 
             // Bring the new camera to the primary display.
             cam.targetDisplay = 0;
+            cam.enabled = true;
             m_activeCamera = cam;
             m_activeSlotIndex = index;
 
@@ -240,15 +246,16 @@ namespace Lotusim
             m_toastText.fontSize = 20f;
             m_toastText.fontStyle = FontStyles.Bold;
             m_toastText.color = new Color(1f, 1f, 1f, 0.9f);
-            m_toastText.alignment = TextAlignmentOptions.TopLeft;
+            m_toastText.alignment = TextAlignmentOptions.Top;
             m_toastText.raycastTarget = false;
 
+            // Top centre, under the wake label: the top-left corner holds the ROS IP field.
             var rt = m_toastText.rectTransform;
-            rt.anchorMin = new Vector2(0f, 1f);
-            rt.anchorMax = new Vector2(0f, 1f);
-            rt.pivot = new Vector2(0f, 1f);
-            rt.sizeDelta = new Vector2(400f, 36f);
-            rt.anchoredPosition = new Vector2(20f, -20f);
+            rt.anchorMin = new Vector2(0.5f, 1f);
+            rt.anchorMax = new Vector2(0.5f, 1f);
+            rt.pivot = new Vector2(0.5f, 1f);
+            rt.sizeDelta = new Vector2(600f, 36f);
+            rt.anchoredPosition = new Vector2(0f, -50f);
 
             go.SetActive(false);
         }

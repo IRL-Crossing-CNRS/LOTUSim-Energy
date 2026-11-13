@@ -250,7 +250,8 @@ The `XR-Controller` folder provides VR support, handling user input and interact
 Executable for _Linux_ and _Windows_ of **LOTUSim** are available in the `lotusim-generic-scenario` repository.
 It includes the Launcher scene already built and ready to run.
 
-Build details and usage instructions are in the README and wiki of the `lotusim-generic-scenario` repository.
+How to build a player from this project and ship it to the scenarios: [doc/BUILD_PLAYER.md](doc/BUILD_PLAYER.md).
+Two systems of the offshore scene have their own page: the [turbine wakes](Assets/Turbine_wake.md) and the [submarine cables](Assets/Submarine_Cables.md).
 
 >**Note:** If you wish to develop your own scenario or Unity scene, you can integrate it with LOTUSim-core (repo LOTUSim)using the same `lotusim-generic-scenario` framework.  
 Before doing so, make sure to **build your Unity scene** for the desired platform and follow the same **linking process** described in the `lotusim-generic-scenario` documentation to connect Unity with LOTUSim.

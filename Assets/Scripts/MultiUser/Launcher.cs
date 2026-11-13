@@ -107,6 +107,18 @@ namespace Com.MyCompany.MyGame
             PhotonNetwork.AutomaticallySyncScene = true;
         }
 
+        // -autojoin: Spectateur + Join without clicking, for unattended runs
+        void Start()
+        {
+            if (System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-autojoin") < 0)
+                return;
+
+            Debug.Log("Launcher: -autojoin, joining as spectator");
+            if (spectatorToggle != null)
+                spectatorToggle.isOn = true;
+            Connect();
+        }
+
         #endregion
 
         #region Public Methods

@@ -162,11 +162,12 @@ namespace Lotusim
             if (windController == null) return;
 
             Vector3 windVec = windController.CurrentWindVector;
-            float magnitude = new Vector3(windVec.x, 0f, windVec.z).magnitude;
+            // CurrentWindVector is ENU (x east, y north, z up); Unity is y-up, north on z.
+            float magnitude = new Vector3(windVec.x, 0f, windVec.y).magnitude;
             float t = Mathf.Clamp01(magnitude / maxWindSpeed);
 
             Vector3 windDir = magnitude > 0.01f
-                ? new Vector3(windVec.x, 0f, windVec.z).normalized
+                ? new Vector3(windVec.x, 0f, windVec.y).normalized
                 : Vector3.forward;
 
             float speed = Mathf.Lerp(particleSpeedMin, particleSpeedMax, t);

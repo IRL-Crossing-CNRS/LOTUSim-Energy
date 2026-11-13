@@ -110,6 +110,9 @@ namespace Lotusim
         [KeyDescription("Visualization", "Toggle Ocean Current Field")]
         public static KeyCode ToggleOceanCurrentField = KeyCode.Alpha6;
 
+        [KeyDescription("Visualization", "Show FPS")]
+        public static KeyCode ShowFps = KeyCode.F12;
+
         [KeyDescription("Visualization", "Toggle Ocean")]
         public static KeyCode ToggleOcean = KeyCode.F3;
 

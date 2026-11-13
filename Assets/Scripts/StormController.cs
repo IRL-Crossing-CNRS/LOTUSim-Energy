@@ -293,7 +293,7 @@ namespace Lotusim
         {
             if (windController == null || warningHUD == null) return;
 
-            var (force, _, _, _) = BeaufortScale.GetForce(windController.CurrentWindVector.magnitude);
+            var (force, _, _, _) = BeaufortScale.GetForce(new Vector2(windController.CurrentWindVector.x, windController.CurrentWindVector.y).magnitude);
             bool atForce12 = force >= 12;
 
             if (atForce12 && !wasForce12)
@@ -396,7 +396,8 @@ namespace Lotusim
             if (windController != null)
             {
                 Vector3 windVec = windController.CurrentWindVector;
-                windMagnitude = new Vector3(windVec.x, windVec.y, windVec.z).magnitude;
+                // Horizontal (ENU x, y), like the Beaufort gauge and the sea that follows the wind.
+                windMagnitude = new Vector2(windVec.x, windVec.y).magnitude;
                 var (force, _, _, multiplier) = BeaufortScale.GetForce(windMagnitude);
                 beaufortMultiplier = multiplier;
 
