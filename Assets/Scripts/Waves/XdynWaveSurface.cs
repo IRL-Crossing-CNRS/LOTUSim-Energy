@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.Collections;
 using RosMessageTypes.Lotusim;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -50,6 +52,8 @@ namespace Lotusim
         static readonly object s_lock = new object();
         static WaveSpectrumMsg s_pendingSpectrum;
         static double s_simTime;
+        // Horizontal positions (east, north) of the vessels at the surface, for the probe.
+        static readonly List<(string name, double east, double north)> s_hulls = new List<(string, double, double)>();
         static float s_simTimeReceivedAt = -1f;
 
         WaterSurface m_water;
@@ -62,6 +66,10 @@ namespace Lotusim
         double[] m_fadeInStart, m_fadeInDuration, m_fadeOutStart, m_fadeOutDuration;
         float m_amplitude;
         int m_kernel;
+        [Tooltip("Seconds between two probes of the drawn height map against the physics under the hulls (0: off).")]
+        public float probePeriod = 10f;
+        float m_nextProbe;
+        bool m_probePending;
         int m_frames;
         float m_fpsWindowStart = -1f, m_worstFrame;
 
@@ -69,6 +77,21 @@ namespace Lotusim
         public static void ReportSpectrum(WaveSpectrumMsg msg)
         {
             lock (s_lock) s_pendingSpectrum = msg;
+        }
+
+        /// <summary>
+        /// Where the surface vessels are (Gazebo ENU, the same origin as Unity), so the probe can
+        /// compare the drawn surface with the physics under each hull. Called on the ROS thread.
+        /// </summary>
+        public static void ReportHulls(IEnumerable<(string name, double east, double north, double up)> vessels)
+        {
+            lock (s_lock)
+            {
+                s_hulls.Clear();
+                foreach (var v in vessels)
+                    if (Math.Abs(v.up) < 3.0) // at the surface
+                        s_hulls.Add((v.name, v.east, v.north));
+            }
         }
 
         /// <summary>Simulation time stamped on the poses being rendered (s).</summary>
@@ -194,6 +217,62 @@ namespace Lotusim
             heightCompute.Dispatch(m_kernel, groups, groups, 1);
             m_decal.RequestUpdate();
             LogFrameRate();
+            if (probePeriod > 0f && !m_probePending && Time.realtimeSinceStartup >= m_nextProbe)
+                Probe(c.x, c.z, t);
+        }
+
+        /// <summary>
+        /// Reads back the height map just drawn and compares it, under every surface vessel inside the
+        /// region, with the elevation the hydrodynamics computes there (all components, same time).
+        /// Logs the RMS and largest difference, next to the RMS elevation itself.
+        /// </summary>
+        void Probe(float centreX, float centreZ, double t)
+        {
+            List<(string name, double east, double north)> hulls;
+            lock (s_lock) hulls = new List<(string, double, double)>(s_hulls);
+            float half = regionSize / 2f;
+            hulls.RemoveAll(h => Math.Abs(h.east - centreX) > half - 2f || Math.Abs(h.north - centreZ) > half - 2f);
+            m_nextProbe = Time.realtimeSinceStartup + probePeriod;
+            if (hulls.Count == 0)
+                return;
+            m_probePending = true;
+            float amplitude = m_amplitude;
+            int res = resolution;
+            double[] physics = new double[hulls.Count];
+            for (int h = 0; h < hulls.Count; ++h)
+            {
+                double x = hulls[h].north, y = hulls[h].east, sum = 0.0;
+                for (int i = 0; i < m_a.Length; ++i)
+                    sum += Gain(i, t) * m_a[i] * Math.Sin(m_k[i] * (x * m_cos[i] + y * m_sin[i]) - m_omega[i] * t + m_phase[i]);
+                physics[h] = sum;
+            }
+            AsyncGPUReadback.Request(m_height, 0, request =>
+            {
+                m_probePending = false;
+                if (request.hasError)
+                    return;
+                NativeArray<float> map = request.GetData<float>();
+                double se = 0.0, sz = 0.0, worst = 0.0;
+                for (int h = 0; h < hulls.Count; ++h)
+                {
+                    // Texel coordinates of the hull (texel centres at (i + 0.5) / res), bilinear.
+                    double u = (hulls[h].east - centreX) / regionSize * res + res / 2.0 - 0.5;
+                    double v = (hulls[h].north - centreZ) / regionSize * res + res / 2.0 - 0.5;
+                    int i0 = Math.Max(0, Math.Min(res - 2, (int)Math.Floor(u)));
+                    int j0 = Math.Max(0, Math.Min(res - 2, (int)Math.Floor(v)));
+                    double fu = u - i0, fv = v - j0;
+                    double drawn = amplitude * (
+                        (1 - fu) * (1 - fv) * map[j0 * res + i0] + fu * (1 - fv) * map[j0 * res + i0 + 1] +
+                        (1 - fu) * fv * map[(j0 + 1) * res + i0] + fu * fv * map[(j0 + 1) * res + i0 + 1]);
+                    double e = drawn - physics[h];
+                    se += e * e;
+                    sz += physics[h] * physics[h];
+                    worst = Math.Max(worst, Math.Abs(e));
+                }
+                int n = hulls.Count;
+                Debug.Log($"[XdynWaveProbe] t {t:F1} s, {n} hull(s): drawn - physics RMS {Math.Sqrt(se / n):F3} m, " +
+                          $"max {worst:F3} m; elevation RMS {Math.Sqrt(sz / n):F3} m");
+            });
         }
 
         /// <summary>Rendered height (m, up) at a Unity world position, same sum as the GPU.</summary>

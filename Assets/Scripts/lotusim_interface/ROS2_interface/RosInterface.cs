@@ -254,6 +254,10 @@ namespace Lotusim
 
             // The poses carry the simulation time the waves must be drawn at.
             XdynWaveSurface.ReportSimTime(poses.header.stamp.sec + poses.header.stamp.nanosec * 1e-9);
+            var hulls = new List<(string, double, double, double)>(poses.vessels.Length);
+            foreach (var v in poses.vessels)
+                hulls.Add((v.vessel_name, v.pose.position.x, v.pose.position.y, v.pose.position.z));
+            XdynWaveSurface.ReportHulls(hulls);
         }
 
         private volatile bool m_waveSpectrumPending = false;
