@@ -85,5 +85,11 @@ namespace Lotusim
         /// </summary>
         /// <returns>Simulation time ratio.</returns>
         public virtual float GetInterpolationRatio() => 1f;
+
+        /// <summary>
+        /// True when m_vesselPoses already hold the poses at the simulation time the frame is drawn
+        /// at (the time of the waves): the connector then places the vessels there as they are.
+        /// </summary>
+        public virtual bool PosesAtRenderTime => false;
     }
 }

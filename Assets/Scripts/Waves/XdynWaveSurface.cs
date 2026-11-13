@@ -16,9 +16,12 @@ namespace Lotusim
     /// uses (lotusim_msgs/WaveSpectrum). Every frame this evaluates the same sum
     /// as xdyn's Airy model over a square region around the camera, at the
     /// simulation time of the poses being shown, and feeds the height map to a
-    /// water decal that deforms the surface. The HDRP simulation's own swell is
-    /// turned off while the components are known, leaving only its small
-    /// ripples for surface detail.
+    /// water decal that deforms the surface. Inside that region the HDRP
+    /// simulation's own swell is masked out, leaving only its small ripples for
+    /// surface detail; beyond it, HDRP's swell carries the same Hs, Tp and
+    /// direction to the horizon. The vessels are drawn at the same simulation
+    /// time (RosInterface interpolates or extrapolates their poses to
+    /// CurrentSimTime), with no added display delay.
     ///
     /// Frames: xdyn works in NED (x north, y east, z down), Unity in (X east,
     /// Y up, Z north), with the same origin, so x_ned = Z, y_ned = X and the
@@ -77,8 +80,9 @@ namespace Lotusim
         static readonly object s_lock = new object();
         static WaveSpectrumMsg s_pendingSpectrum;
         static double s_simTime;
-        // Horizontal positions (east, north) of the vessels at the surface, for the probe.
-        static readonly List<(string name, double east, double north)> s_hulls = new List<(string, double, double)>();
+        // Positions (east, north, up) of the vessels at the surface at the drawn time, for the probes.
+        static readonly List<(string name, double east, double north, double up)> s_hulls =
+            new List<(string, double, double, double)>();
         static float s_simTimeReceivedAt = -1f;
 
         WaterSurface m_water;
@@ -95,6 +99,11 @@ namespace Lotusim
         public float probePeriod = 10f;
         float m_nextProbe;
         bool m_probePending;
+        [Tooltip("Seconds between two probes of the water under each hull, one log line per hull (0: off).")]
+        public float hullProbePeriod = 0f;
+        float m_nextHullProbe;
+        static bool s_hullProbeHeader;
+        static bool s_ensured;
         int m_frames;
         float m_fpsWindowStart = -1f, m_worstFrame;
 
@@ -105,8 +114,8 @@ namespace Lotusim
         }
 
         /// <summary>
-        /// Where the surface vessels are (Gazebo ENU, the same origin as Unity), so the probe can
-        /// compare the drawn surface with the physics under each hull. Called on the ROS thread.
+        /// Where the surface vessels are drawn (Gazebo ENU, the same origin as Unity), so the probes
+        /// can compare the drawn surface with the physics under each hull. Called on the main thread.
         /// </summary>
         public static void ReportHulls(IEnumerable<(string name, double east, double north, double up)> vessels)
         {
@@ -115,9 +124,17 @@ namespace Lotusim
                 s_hulls.Clear();
                 foreach (var v in vessels)
                     if (Math.Abs(v.up) < 3.0) // at the surface
-                        s_hulls.Add((v.name, v.east, v.north));
+                        s_hulls.Add((v.name, v.east, v.north, v.up));
+            }
+            // A run whose sea is not shared sends no components: the hull probe still needs the component.
+            if (!s_ensured && HullProbeOnCommandLine())
+            {
+                s_ensured = true;
+                EnsureInScene();
             }
         }
+
+        static bool HullProbeOnCommandLine() => Array.IndexOf(Environment.GetCommandLineArgs(), "-xdynHullProbe") >= 0;
 
         /// <summary>Simulation time stamped on the poses being rendered (s).</summary>
         public static void ReportSimTime(double t)
@@ -156,6 +173,12 @@ namespace Lotusim
         static double s_rate = 1.0;
         static double s_rateRefTime = double.NaN;
         static float s_rateRefAt;
+        /// <summary>
+        /// The frame is drawn at the current simulation time, estimated from the newest pose stamp and
+        /// the simulation rate, so nothing is shown late; this bounds how far past the newest stamp it
+        /// may go (s of simulation time) when poses stop coming. Player argument -xdynMaxExtrapolation.
+        /// </summary>
+        public static double maxExtrapolation = 0.5;
 
         /// <summary>Simulation time to draw this frame: smooth, monotonic, close to the pose stamps.</summary>
         public static double CurrentSimTime()
@@ -183,7 +206,7 @@ namespace Lotusim
                 if (s_drawnFrame == Time.frameCount)
                     return s_drawnTime;
 
-                double target = s_simTime + s_rate * Math.Min(now - s_simTimeReceivedAt, 0.5);
+                double target = s_simTime + s_rate * Math.Min(now - s_simTimeReceivedAt, maxExtrapolation);
                 if (double.IsNaN(s_drawnTime) || Math.Abs(target - s_drawnTime) > 1.0)
                 {
                     s_drawnTime = target;
@@ -194,6 +217,8 @@ namespace Lotusim
                     double next = s_drawnTime + s_rate * dt + (target - s_drawnTime) * Math.Min(1.0, dt / 0.5);
                     if (next > s_drawnTime) s_drawnTime = next;
                 }
+                // The vessels are extrapolated to this time: keep it close to the newest poses.
+                s_drawnTime = Math.Min(s_drawnTime, s_simTime + maxExtrapolation);
                 s_drawnFrame = Time.frameCount;
                 return s_drawnTime;
             }
@@ -230,6 +255,12 @@ namespace Lotusim
                 else if (args[i] == "-xdynWaveProbe" && float.TryParse(args[i + 1],
                         System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float p))
                     probePeriod = p;
+                else if (args[i] == "-xdynHullProbe" && float.TryParse(args[i + 1],
+                        System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float hp))
+                    hullProbePeriod = hp;
+                else if (args[i] == "-xdynMaxExtrapolation" && double.TryParse(args[i + 1],
+                        System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double me))
+                    maxExtrapolation = me;
             }
         }
 
@@ -262,6 +293,8 @@ namespace Lotusim
             }
             if (spectrum != null && !SameSpectrum(spectrum))
                 Apply(spectrum);
+            if (hullProbePeriod > 0f && Time.realtimeSinceStartup >= m_nextHullProbe)
+                ProbeHulls();
             if (m_a == null)
                 return;
 
@@ -300,8 +333,8 @@ namespace Lotusim
         /// </summary>
         void Probe(float centreX, float centreZ, double t)
         {
-            List<(string name, double east, double north)> hulls;
-            lock (s_lock) hulls = new List<(string, double, double)>(s_hulls);
+            List<(string name, double east, double north, double up)> hulls;
+            lock (s_lock) hulls = new List<(string, double, double, double)>(s_hulls);
             float half = regionSize / 2f;
             hulls.RemoveAll(h => Math.Abs(h.east - centreX) > half - edgeFade || Math.Abs(h.north - centreZ) > half - edgeFade);
             m_nextProbe = Time.realtimeSinceStartup + probePeriod;
@@ -312,12 +345,7 @@ namespace Lotusim
             int res = resolution;
             double[] physics = new double[hulls.Count];
             for (int h = 0; h < hulls.Count; ++h)
-            {
-                double x = hulls[h].north, y = hulls[h].east, sum = 0.0;
-                for (int i = 0; i < m_a.Length; ++i)
-                    sum += Gain(i, t) * m_a[i] * Math.Sin(m_k[i] * (x * m_cos[i] + y * m_sin[i]) - m_omega[i] * t + m_phase[i]);
-                physics[h] = sum;
-            }
+                physics[h] = ComponentsHeight(hulls[h].north, hulls[h].east, t);
             AsyncGPUReadback.Request(m_height, 0, request =>
             {
                 m_probePending = false;
@@ -401,17 +429,61 @@ namespace Lotusim
         {
             if (m_a == null)
                 return 0f;
-            double t = CurrentSimTime();
-            double x = worldPosition.z, y = worldPosition.x;
+            return (float)ComponentsHeight(worldPosition.z, worldPosition.x, CurrentSimTime());
+        }
+
+        /// <summary>Elevation (m, up) of every component at (x north, y east) and time t: -zeta of xdyn.</summary>
+        double ComponentsHeight(double x, double y, double t)
+        {
             double h = 0.0;
             for (int i = 0; i < m_a.Length; ++i)
                 h += Gain(i, t) * m_a[i] * Math.Sin(m_k[i] * (x * m_cos[i] + y * m_sin[i]) - m_omega[i] * t + m_phase[i]);
-            return (float)h;
+            return h;
         }
 
         /// <summary>
-        /// Fade of component i at time t: the old sea fades out while the new one
-        /// fades in, linearly, as the wave server does for xdyn.
+        /// One line per surface vessel: the height of its pose as drawn, the height of the ocean HDRP
+        /// draws under it (decal, masked swell and ripples included) and the elevation of the shared
+        /// components (NaN when the sea is not shared), all at the drawn simulation time.
+        /// </summary>
+        void ProbeHulls()
+        {
+            m_nextHullProbe = Time.realtimeSinceStartup + hullProbePeriod;
+            double t = CurrentSimTime();
+            if (t <= 0.0)
+                return;
+            // HDRP answers height queries only with script interactions, ripples only if evaluated on the CPU.
+            m_water.scriptInteractions = true;
+            m_water.cpuEvaluateRipples = true;
+            if (!s_hullProbeHeader)
+            {
+                s_hullProbeHeader = true;
+                Debug.Log($"[WaterHullProbe] probing the drawn water under the hulls every {hullProbePeriod} s " +
+                          "(t, name, east, north, hull_up, rendered_up, components_up)");
+            }
+            List<(string name, double east, double north, double up)> hulls;
+            lock (s_lock) hulls = new List<(string, double, double, double)>(s_hulls);
+            float y0 = transform.position.y;
+            foreach (var h in hulls)
+            {
+                var p = new Vector3((float)h.east, y0, (float)h.north);
+                var wsp = new WaterSearchParameters
+                {
+                    targetPositionWS = p, startPositionWS = p, error = 0.01f, maxIterations = 8, includeDeformation = true,
+                };
+                double rendered = m_water.ProjectPointOnWaterSurface(wsp, out WaterSearchResult r)
+                    ? r.projectedPositionWS.y - y0 : double.NaN;
+                double comps = m_a == null ? double.NaN : ComponentsHeight(h.north, h.east, t);
+                Debug.Log(FormattableString.Invariant(
+                    $"[WaterHullProbe] {t:F2},{h.name},{h.east:F2},{h.north:F2},{h.up:F4},{rendered:F4},{comps:F4}"));
+            }
+        }
+
+        /// <summary>
+        /// Gain of component i at time t while the sea state changes, the one xdyn
+        /// applies (FlatDiscreteDirectionalWaveSpectrum::gain): sqrt(u_in (1 - u_out)).
+        /// The square root keeps the variance of the surface moving linearly from the
+        /// old sea to the new one; the hulls ride these amplitudes, so the image must too.
         /// </summary>
         double Gain(int i, double t)
         {
@@ -422,7 +494,7 @@ namespace Lotusim
                        : Math.Min((t - m_fadeInStart[i]) / m_fadeInDuration[i], 1.0);
             double gOut = m_fadeOutDuration[i] <= 0.0 ? (t >= m_fadeOutStart[i] ? 0.0 : 1.0)
                         : 1.0 - Math.Min(Math.Max((t - m_fadeOutStart[i]) / m_fadeOutDuration[i], 0.0), 1.0);
-            return gIn * gOut;
+            return Math.Sqrt(gIn * gOut);
         }
 
         bool SameSpectrum(WaveSpectrumMsg msg)
@@ -523,7 +595,7 @@ namespace Lotusim
             m_decal.material.SetTexture("_XdynHeight", m_height);
 
             m_water.deformation = true;
-            m_water.scriptInteractions = probePeriod > 0f; // for the probe's HDRP height query
+            m_water.scriptInteractions = probePeriod > 0f || hullProbePeriod > 0f; // for the probes' HDRP height query
             m_water.deformationRes = resolution >= 2048 ? WaterSurface.WaterDecalRegionResolution.Resolution2048
                                    : resolution >= 1024 ? WaterSurface.WaterDecalRegionResolution.Resolution1024
                                    : WaterSurface.WaterDecalRegionResolution.Resolution512;
@@ -564,7 +636,7 @@ namespace Lotusim
         }
 
         // 1 where the xdyn sea is drawn, 0 at the region's edge, smooth in between; the mask lets HDRP's
-        // swell through as (1 - w), its short band at half height inside, the ripples everywhere.
+        // swell (both bands) through as (1 - w), and its ripples everywhere.
         float EdgeWeight(float u, float v)
         {
             float half = regionSize / 2f;
@@ -582,9 +654,9 @@ namespace Lotusim
                 for (int i = 0; i < n; ++i)
                 {
                     float far = 1f - EdgeWeight(((i + 0.5f) / n - 0.5f) * regionSize, ((j + 0.5f) / n - 0.5f) * regionSize);
-                    // HDRP's short band keeps half its height over the xdyn sea: without its chop the
-                    // region showed as a smooth square seen from above. Its swell band stays out.
-                    px[j * n + i] = new Color(far, Mathf.Lerp(0.5f, 1f, far), 1f, 1f);
+                    // Neither swell band inside: their crests are not in the physics, so a hull would
+                    // not ride them. Only the ripples (centimetres, B) are kept for surface detail.
+                    px[j * n + i] = new Color(far, far, 1f, 1f);
                 }
             m_mask.SetPixels(px);
             m_mask.Apply();

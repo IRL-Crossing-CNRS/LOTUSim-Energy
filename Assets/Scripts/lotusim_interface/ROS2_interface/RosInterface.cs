@@ -88,7 +88,8 @@ namespace Lotusim
 
         private VesselPositionArrayMsg m_vessel_array_msg;
         private Mutex m_vessel_array_mutex = new Mutex();
-        private VesselPositionArrayMsg m_prev_vessel_array_msg = null;
+        // Pose messages in order of simulation time, kept until the drawn time has passed them.
+        private readonly List<VesselPositionArrayMsg> m_pose_snapshots = new List<VesselPositionArrayMsg>();
 
         private readonly List<RendererCmdMsg> m_render_commands = new List<RendererCmdMsg>();
         private Mutex m_render_commands_mutex = new Mutex();
@@ -250,15 +251,19 @@ namespace Lotusim
         {
             m_vessel_array_mutex.WaitOne();
             m_vessel_array_msg = poses;
+            // A stamp older than the newest one means the simulation restarted.
+            if (m_pose_snapshots.Count > 0 && Stamp(poses) < Stamp(m_pose_snapshots[m_pose_snapshots.Count - 1]))
+                m_pose_snapshots.Clear();
+            m_pose_snapshots.Add(poses);
+            if (m_pose_snapshots.Count > 256)
+                m_pose_snapshots.RemoveAt(0);
             m_vessel_array_mutex.ReleaseMutex();
 
             // The poses carry the simulation time the waves must be drawn at.
-            XdynWaveSurface.ReportSimTime(poses.header.stamp.sec + poses.header.stamp.nanosec * 1e-9);
-            var hulls = new List<(string, double, double, double)>(poses.vessels.Length);
-            foreach (var v in poses.vessels)
-                hulls.Add((v.vessel_name, v.pose.position.x, v.pose.position.y, v.pose.position.z));
-            XdynWaveSurface.ReportHulls(hulls);
+            XdynWaveSurface.ReportSimTime(Stamp(poses));
         }
+
+        private static double Stamp(VesselPositionArrayMsg m) => m.header.stamp.sec + m.header.stamp.nanosec * 1e-9;
 
         private volatile bool m_waveSpectrumPending = false;
 
@@ -350,42 +355,55 @@ namespace Lotusim
             return ratio;
         }
 
+        public override bool PosesAtRenderTime => true;
+
+        /// <summary>
+        /// Every vessel at the simulation time the frame is drawn at (XdynWaveSurface.CurrentSimTime,
+        /// the current simulation time, so nothing is shown late): interpolated between the two pose
+        /// messages around it, or extrapolated from the two newest at their velocity when it is past
+        /// them, so that a hull and the water drawn under it show the same instant.
+        /// </summary>
         private void UpdateVesselPoses()
         {
             if (m_vessel_array_msg == null) return;
+            if (GetInterpolationRatio() <= 0) return;
 
-            float interpolationRatio = GetInterpolationRatio();
-            if (interpolationRatio <= 0) return;
+            double t = XdynWaveSurface.CurrentSimTime();
+            var hulls = new List<(string, double, double, double)>();
 
             m_vessel_array_mutex.WaitOne();
-
-            if (m_prev_vessel_array_msg == null)
-                m_prev_vessel_array_msg = m_vessel_array_msg;
-
-            Dictionary<string, Pose> currentFrame = new Dictionary<string, Pose>();
-            Dictionary<string, Pose> previousFrame = new Dictionary<string, Pose>();
-
-            foreach (var vessel in m_vessel_array_msg.vessels)
-                currentFrame[vessel.vessel_name] = PoseMsgToPose(vessel.pose);
-
-            foreach (var vessel in m_prev_vessel_array_msg.vessels)
-                previousFrame[vessel.vessel_name] = PoseMsgToPose(vessel.pose);
-
-            foreach (var kvp in currentFrame)
+            try
             {
-                string name = kvp.Key;
-                Pose currentPose = kvp.Value;
-                Pose previousPose = previousFrame.ContainsKey(name) ? previousFrame[name] : currentPose;
+                if (m_pose_snapshots.Count == 0) return;
+                // b: the first message at or after t, or the newest when t is past them all (then
+                // alpha > 1 extrapolates); a: the one before.
+                int b = m_pose_snapshots.FindIndex(m => Stamp(m) >= t);
+                if (b < 0) b = m_pose_snapshots.Count - 1;
+                int a = Math.Max(0, b - 1);
+                double ta = Stamp(m_pose_snapshots[a]), tb = Stamp(m_pose_snapshots[b]);
+                float alpha = tb > ta ? (float)Math.Max(0.0, (t - ta) / (tb - ta)) : 1f;
 
-                Vector3 pos = Vector3.Lerp(previousPose.position, currentPose.position, interpolationRatio);
-                Quaternion rot = Quaternion.Slerp(previousPose.rotation, currentPose.rotation, interpolationRatio);
+                var before = new Dictionary<string, Pose>();
+                foreach (var vessel in m_pose_snapshots[a].vessels)
+                    before[vessel.vessel_name] = PoseMsgToPose(vessel.pose);
 
-                m_vesselPoses[name] = new Pose(pos, rot);
+                foreach (var vessel in m_pose_snapshots[b].vessels)
+                {
+                    Pose next = PoseMsgToPose(vessel.pose);
+                    Pose prev = before.TryGetValue(vessel.vessel_name, out var p) ? p : next;
+                    var pose = new Pose(Vector3.LerpUnclamped(prev.position, next.position, alpha),
+                                        Quaternion.SlerpUnclamped(prev.rotation, next.rotation, alpha));
+                    m_vesselPoses[vessel.vessel_name] = pose;
+                    hulls.Add((vessel.vessel_name, pose.position.x, pose.position.y, pose.position.z));
+                }
+                m_pose_snapshots.RemoveRange(0, a);
             }
-
-            m_prev_vessel_array_msg = m_vessel_array_msg;
-
-            m_vessel_array_mutex.ReleaseMutex();
+            finally
+            {
+                m_vessel_array_mutex.ReleaseMutex();
+            }
+            // Gazebo ENU (east, north, up): where the water is probed, at the drawn time.
+            XdynWaveSurface.ReportHulls(hulls);
         }
 
         private Pose PoseMsgToPose(PoseMsg msg)
@@ -507,7 +525,7 @@ namespace Lotusim
         /// The publisher and a reusable message object are registered lazily on first use.
         /// Call from the main thread (publishing is not thread-safe in ROS TCP Connector).
         /// </summary>
-        public void PublishInspectionImage(string agentName, byte[] jpgBytes)
+        public void PublishInspectionImage(string agentName, byte[] jpgBytes, double simTime = double.NaN)
         {
             m_inspection_mutex.WaitOne();
             if (!m_inspectionImageMsgs.TryGetValue(agentName, out CompressedImageMsg msg))
@@ -525,6 +543,12 @@ namespace Lotusim
             m_inspection_mutex.ReleaseMutex();
 
             msg.data = jpgBytes;
+            if (!double.IsNaN(simTime))
+            {
+                // Stamped with the simulation time the frame was rendered at (the world's clock).
+                double sec = Math.Floor(simTime);
+                msg.header.stamp = new RosMessageTypes.BuiltinInterfaces.TimeMsg((int)sec, (uint)((simTime - sec) * 1e9));
+            }
             m_rosConnection.Publish($"{RosNamespace}/{agentName}/inspection/image", msg);
         }
 

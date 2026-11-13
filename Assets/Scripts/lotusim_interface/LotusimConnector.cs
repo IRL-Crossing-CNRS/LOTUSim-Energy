@@ -337,7 +337,8 @@ namespace Lotusim
                     if (transform.GetComponent<RendererPosesWaypointFollower>() == null)
                     {
                         Pose poseUnityFrame = CoordinateSystemUtils.GzPoseToUnityPose(pose);
-                        InterpolateVesselPosition(transform, poseUnityFrame, interpolationRatio);
+                        InterpolateVesselPosition(transform, poseUnityFrame,
+                            m_interface.PosesAtRenderTime ? 1f : interpolationRatio);
                     }
                 }
             }

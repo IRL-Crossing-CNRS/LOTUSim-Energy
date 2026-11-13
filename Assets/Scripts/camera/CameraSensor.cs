@@ -16,6 +16,7 @@
 //  Designed for integration with Unity Robotics Hub and Lotusim's simulation framework.
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -72,7 +73,8 @@ namespace Lotusim
         // Les images pretes reviennent par cette file, vidée depuis Update :
         // rien de cette chaine ne doit faire attendre LOTUSim, sinon les FPS
         // tombent et la simulation n'est plus temps reel.
-        private readonly ConcurrentQueue<byte[]> pendingFrames = new ConcurrentQueue<byte[]>();
+        // Each image with the simulation time it was rendered at, so recorded data share the world's clock.
+        private readonly ConcurrentQueue<(double simTime, byte[] data)> pendingFrames = new ConcurrentQueue<(double, byte[])>();
         private float timeElapsed;
         private string vesselName;
         private string topicName;
@@ -205,16 +207,17 @@ namespace Lotusim
                 renderTex.Create();
             }
 
+            double simTime = XdynWaveSurface.CurrentSimTime();
             RenderTexture prevTarget = snapCam.targetTexture;
             snapCam.targetTexture = renderTex;
             snapCam.Render();
             snapCam.targetTexture = prevTarget;
 
             // Lecture asynchrone : aucune attente du GPU.
-            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, OnCaptureReadback);
+            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, r => OnCaptureReadback(r, simTime));
         }
 
-        private void OnCaptureReadback(AsyncGPUReadbackRequest request)
+        private void OnCaptureReadback(AsyncGPUReadbackRequest request, double simTime)
         {
             captureInFlight = false;
 
@@ -224,19 +227,19 @@ namespace Lotusim
                 return;
             }
 
-            pendingFrames.Enqueue(request.GetData<byte>().ToArray());
+            pendingFrames.Enqueue((simTime, request.GetData<byte>().ToArray()));
         }
 
         // Envoi ROS : au main thread, mais sans jamais attendre.
         private void DrainPendingFrames()
         {
-            while (pendingFrames.TryDequeue(out byte[] imageData))
+            while (pendingFrames.TryDequeue(out var frame))
             {
                 ImageMsg imgMsg = new ImageMsg
                 {
                     header = new HeaderMsg
                     {
-                        stamp = new TimeMsg(0, 0),
+                        stamp = new TimeMsg((int)Math.Floor(frame.simTime), (uint)((frame.simTime - Math.Floor(frame.simTime)) * 1e9)),
                         frame_id = $"{vesselName}/camera"
                     },
                     height = (uint)imageHeight,
@@ -244,7 +247,7 @@ namespace Lotusim
                     encoding = "rgb8",
                     is_bigendian = 0,
                     step = (uint)(imageWidth * 3),
-                    data = imageData
+                    data = frame.data
                 };
 
                 rosConnection?.Publish(topicName, imgMsg);

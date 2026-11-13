@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using Unity.Robotics.ROSTCPConnector;
 using RosMessageTypes.Sensor;
+using RosMessageTypes.BuiltinInterfaces;
 
 public class CameraPublisher : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class CameraPublisher : MonoBehaviour
     // doit faire attendre LOTUSim, sinon les FPS tombent et la simulation
     // n'est plus temps reel. Le resultat revient par cette file, vidée depuis
     // la boucle de publication puisque l'envoi ROS reste au main thread.
-    private readonly ConcurrentQueue<byte[]> pendingJpegs = new ConcurrentQueue<byte[]>();
+    private readonly ConcurrentQueue<(double simTime, byte[] jpg)> pendingJpegs = new ConcurrentQueue<(double, byte[])>();
     private bool initialised;
 
     private int camW;
@@ -142,6 +143,8 @@ public class CameraPublisher : MonoBehaviour
     {
         readbackInProgress = true;
 
+        // Images carry the simulation time they show, so recorded data share the world's clock.
+        double simTime = Lotusim.XdynWaveSurface.CurrentSimTime();
         RenderTexture previous = cam.targetTexture;
 
         int previousMask = cam.cullingMask;
@@ -159,12 +162,13 @@ public class CameraPublisher : MonoBehaviour
             renderTexture,
             0,
             TextureFormat.RGB24,
-            OnCompleteReadback
+            r => OnCompleteReadback(r, simTime)
         );
     }
 
     void OnCompleteReadback(
-        AsyncGPUReadbackRequest request
+        AsyncGPUReadbackRequest request,
+        double simTime
     )
     {
         readbackInProgress = false;
@@ -183,12 +187,12 @@ public class CameraPublisher : MonoBehaviour
             data = FlipVertical(data, camW, camH, 3);
 
         if (publishRawImage)
-            PublishRaw(data);
+            PublishRaw(data, simTime);
 
         if (publishCompressedImage)
-            PublishCompressed(data);
+            PublishCompressed(data, simTime);
 
-        PublishCameraInfo();
+        PublishCameraInfo(simTime);
     }
 
     // Inverse l'ordre des lignes d'une image RGB24 stockée en row-major.
@@ -209,12 +213,19 @@ public class CameraPublisher : MonoBehaviour
         return dst;
     }
 
-    void PublishRaw(byte[] data)
+    static TimeMsg Stamp(double t)
+    {
+        double sec = Math.Floor(t);
+        return new TimeMsg((int)sec, (uint)((t - sec) * 1e9));
+    }
+
+    void PublishRaw(byte[] data, double simTime)
     {
         ImageMsg msg = new ImageMsg();
 
         msg.header =
             new RosMessageTypes.Std.HeaderMsg();
+        msg.header.stamp = Stamp(simTime);
 
         msg.header.frame_id =
             "camera_frame";
@@ -243,14 +254,14 @@ public class CameraPublisher : MonoBehaviour
         );
     }
 
-    void PublishCompressed(byte[] data)
+    void PublishCompressed(byte[] data, double simTime)
     {
         int w = camW, h = camH, q = jpegQuality;
         Task.Run(() =>
         {
             byte[] jpg = ImageConversion.EncodeArrayToJPG(
                 data, GraphicsFormat.R8G8B8_UNorm, (uint)w, (uint)h, 0, q);
-            pendingJpegs.Enqueue(jpg);
+            pendingJpegs.Enqueue((simTime, jpg));
         });
     }
 
@@ -258,24 +269,26 @@ public class CameraPublisher : MonoBehaviour
     // pret a cette frame partira a la suivante.
     void DrainPendingJpegs()
     {
-        while (pendingJpegs.TryDequeue(out byte[] jpg))
+        while (pendingJpegs.TryDequeue(out var frame))
         {
             CompressedImageMsg msg = new CompressedImageMsg();
             msg.header = new RosMessageTypes.Std.HeaderMsg();
+            msg.header.stamp = Stamp(frame.simTime);
             msg.header.frame_id = "camera_frame";
             msg.format = "jpeg";
-            msg.data = jpg;
+            msg.data = frame.jpg;
             ros.Publish(topicCompressed, msg);
         }
     }
 
-    void PublishCameraInfo()
+    void PublishCameraInfo(double simTime)
     {
         CameraInfoMsg msg =
             new CameraInfoMsg();
 
         msg.header =
             new RosMessageTypes.Std.HeaderMsg();
+        msg.header.stamp = Stamp(simTime);
 
         msg.header.frame_id =
             "camera_frame";

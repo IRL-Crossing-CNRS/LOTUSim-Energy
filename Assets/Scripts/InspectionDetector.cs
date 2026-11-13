@@ -100,7 +100,7 @@ namespace Lotusim
         // ne doit faire attendre LOTUSim, sinon les FPS tombent et la
         // simulation n'est plus temps reel. Le resultat revient par cette file,
         // vidée depuis Update() puisque la publication ROS reste au main thread.
-        private readonly ConcurrentQueue<byte[]> pendingJpegs = new ConcurrentQueue<byte[]>();
+        private readonly ConcurrentQueue<(double simTime, byte[] jpg)> pendingJpegs = new ConcurrentQueue<(double, byte[])>();
         private RenderTexture renderTex;
 
         // UI Fields
@@ -478,6 +478,8 @@ namespace Lotusim
             if (hud >= 0) snapCam.cullingMask &= ~(1 << hud);
             int far = FarSceneryLayer;
             if (far >= 0) snapCam.cullingMask &= ~(1 << far);
+            // The frame shows the world at this simulation time; it travels with the image.
+            double simTime = XdynWaveSurface.CurrentSimTime();
             snapCam.targetTexture = renderTex;
             snapCam.Render();
             snapCam.targetTexture = prevTarget;
@@ -495,10 +497,10 @@ namespace Lotusim
             //    and the comment above records that switching async->sync alone
             //    never fixed it. WaitForEndOfFrame is what fixed it, and the
             //    request below is still issued from there.
-            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, OnCaptureReadback);
+            AsyncGPUReadback.Request(renderTex, 0, TextureFormat.RGB24, r => OnCaptureReadback(r, simTime));
         }
 
-        private void OnCaptureReadback(AsyncGPUReadbackRequest request)
+        private void OnCaptureReadback(AsyncGPUReadbackRequest request, double simTime)
         {
             isProcessing = false;
 
@@ -515,7 +517,7 @@ namespace Lotusim
             {
                 byte[] jpg = ImageConversion.EncodeArrayToJPG(
                     raw, GraphicsFormat.R8G8B8_UNorm, (uint)w, (uint)h, 0, 75);
-                pendingJpegs.Enqueue(jpg);
+                pendingJpegs.Enqueue((simTime, jpg));
             });
         }
 
@@ -523,11 +525,11 @@ namespace Lotusim
         // n'est pas pret a cette frame partira a la suivante.
         private void DrainPendingJpegs()
         {
-            while (pendingJpegs.TryDequeue(out byte[] jpg))
+            while (pendingJpegs.TryDequeue(out var frame))
             {
                 if (RosInterface.Instance.IsConnected)
                 {
-                    RosInterface.Instance.PublishInspectionImage(resolvedAgentName, jpg);
+                    RosInterface.Instance.PublishInspectionImage(resolvedAgentName, frame.jpg, frame.simTime);
                     awaitingDetection = true;
                     awaitingSince = Time.time;
                 }
