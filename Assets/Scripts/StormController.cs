@@ -117,12 +117,9 @@ namespace Lotusim
                 profile.TryGet(out exposure);
             }
 
+            // The fog toggle drives the same volume as the storm unless another one is set.
             if (volume == null)
-            {
-                Debug.LogError("Volume reference is missing.");
-                enabled = false;
-                return;
-            }
+                volume = skyAndFogVolume;
 
             if (warningHUD == null)
             warningHUD = FindFirstObjectByType<EnvironmentalWarningHUD>();
@@ -246,6 +243,8 @@ namespace Lotusim
 
         void ToggleFog()
         {
+            if (volume == null) return;
+
             if (volume.profile.TryGet<Fog>(out var fog))
             {
                 fogEnabled = !fogEnabled;
@@ -279,7 +278,7 @@ namespace Lotusim
         {
             if (fog == null) return;
 
-            if (!fogEnabled)
+            if (stormIntensity <= 0f)
             {
                 fog.meanFreePath.overrideState = false;
                 fog.depthExtent.overrideState = false;
