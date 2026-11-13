@@ -35,7 +35,7 @@ The core simulation control module interfaces with three primary client modules:
 
 ## Requirements
 
-- **Unity** `6000.6.6f1` (Unity 6.6, HDRP 17.6) on the `unity6` branch
+- **Unity** `6000.6.6f1` (Unity 6.6, HDRP 17.6)
 - **Multi-user**: `PUN2 - Photon Unity Networking 2` (already in the repository)
 - **Leap Motion** (optional, Linux and Windows): an `Ultraleap Hand Tracking Camera`
 - **Eye tracker** (optional, Windows only): a `Tobii Eye Tracker 5`
