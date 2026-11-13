@@ -164,7 +164,7 @@ namespace Lotusim
             // Message
             TMP_Text msgText = CreateText("Message", panelGO.transform, "Strong underwater current detected on BlueROV fleet. Battery consumption exceeding safety limits.", 11, FontStyles.Normal, TextAlignmentOptions.TopLeft);
             msgText.color = Color.white;
-            msgText.enableWordWrapping = true;
+            msgText.textWrappingMode = TextWrappingModes.Normal;
             RectTransform msgRT = msgText.rectTransform;
             msgRT.anchorMin = new Vector2(0, 0);
             msgRT.anchorMax = new Vector2(1, 1);

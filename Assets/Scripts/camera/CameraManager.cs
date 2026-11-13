@@ -18,7 +18,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using UnityEngine;
-using Cinemachine;
+
 
 /// <summary>
 /// Manages switching between multiple sets of Cinemachine virtual cameras.
@@ -29,13 +29,13 @@ public class CameraManager : MonoBehaviour
 {
     [Header("Camera Groups")]
     [Tooltip("Front-facing virtual cameras for each scene target.")]
-    public CinemachineVirtualCamera[] virtualCamerasFront;
+    public Unity.Cinemachine.CinemachineVirtualCamera[] virtualCamerasFront;
 
     [Tooltip("Right-facing virtual cameras for each scene target.")]
-    public CinemachineVirtualCamera[] virtualCamerasRight;
+    public Unity.Cinemachine.CinemachineVirtualCamera[] virtualCamerasRight;
 
     [Tooltip("Left-facing virtual cameras for each scene target.")]
-    public CinemachineVirtualCamera[] virtualCamerasLeft;
+    public Unity.Cinemachine.CinemachineVirtualCamera[] virtualCamerasLeft;
 
     [Header("State")]
     [Tooltip("Current index of the active camera set.")]
@@ -112,7 +112,7 @@ public class CameraManager : MonoBehaviour
         return true;
     }
 
-    private bool IsValidIndex(CinemachineVirtualCamera[] array, int index)
+    private bool IsValidIndex(Unity.Cinemachine.CinemachineVirtualCamera[] array, int index)
     {
         return array != null && index >= 0 && index < array.Length && array[index] != null;
     }

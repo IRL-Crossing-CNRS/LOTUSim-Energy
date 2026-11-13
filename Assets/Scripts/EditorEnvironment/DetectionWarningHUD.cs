@@ -120,7 +120,7 @@ namespace Lotusim
 
             TMP_Text msgText = CreateText("Message", panelGO.transform, "Fault detected below confidence threshold. Manual verification required.", 10, FontStyles.Normal, TextAlignmentOptions.TopLeft);
             msgText.color = Color.white;
-            msgText.enableWordWrapping = true;
+            msgText.textWrappingMode = TextWrappingModes.Normal;
             RectTransform msgRT = msgText.rectTransform;
             msgRT.anchorMin = Vector2.zero;
             msgRT.anchorMax = Vector2.one;

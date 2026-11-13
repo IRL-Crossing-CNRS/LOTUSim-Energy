@@ -46,8 +46,8 @@ public class WamvWaypointFollower : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = false;
 
-        if (rb.angularDrag < 1f) rb.angularDrag = 3f;
-        if (rb.drag < 0.05f) rb.drag = cruiseDrag;
+        if (rb.angularDamping < 1f) rb.angularDamping = 3f;
+        if (rb.linearDamping < 0.05f) rb.linearDamping = cruiseDrag;
     }
 
     // Returns the boat's "true forward" direction, accounting for model alignment.
@@ -79,7 +79,7 @@ public class WamvWaypointFollower : MonoBehaviour
             bool atLast = (!loop && index >= waypoints.Count - 1);
             if (atLast && stopAtFinalWaypoint)
             {
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
                 return;
             }
@@ -94,7 +94,7 @@ public class WamvWaypointFollower : MonoBehaviour
         Vector3 right = BoatRight();
 
         float angle = Vector3.SignedAngle(fwd, desiredDir, Vector3.up);
-        float forwardSpeed = Vector3.Dot(rb.velocity, fwd);
+        float forwardSpeed = Vector3.Dot(rb.linearVelocity, fwd);
 
         // TURN
         float turn = Mathf.Clamp(angle / Mathf.Max(1f, turnSensitivityAngle), -1f, 1f);
@@ -106,7 +106,7 @@ public class WamvWaypointFollower : MonoBehaviour
         rb.AddTorque(Vector3.up * (-yawRate) * yawDamping, ForceMode.Acceleration);
 
         // Lateral damping (hull resistance)
-        Vector3 lateralVel = Vector3.Project(rb.velocity, right);
+        Vector3 lateralVel = Vector3.Project(rb.linearVelocity, right);
         rb.AddForce(-lateralVel * lateralDamping, ForceMode.Acceleration);
 
         // SPEED / DRAG
@@ -114,11 +114,11 @@ public class WamvWaypointFollower : MonoBehaviour
         if (dist < arrivalSlowdownDist)
         {
             desiredSpeed = Mathf.Lerp(0.8f, maxSpeed, dist / Mathf.Max(0.01f, arrivalSlowdownDist));
-            rb.drag = brakingDrag;
+            rb.linearDamping = brakingDrag;
         }
         else
         {
-            rb.drag = cruiseDrag;
+            rb.linearDamping = cruiseDrag;
         }
 
         // THRUST
@@ -131,12 +131,12 @@ public class WamvWaypointFollower : MonoBehaviour
         }
 
         // Clamp max horizontal speed
-        Vector3 v = rb.velocity;
+        Vector3 v = rb.linearVelocity;
         Vector3 flat = new Vector3(v.x, 0f, v.z);
         if (flat.magnitude > maxSpeed)
         {
             Vector3 flatClamped = flat.normalized * maxSpeed;
-            rb.velocity = new Vector3(flatClamped.x, v.y, flatClamped.z);
+            rb.linearVelocity = new Vector3(flatClamped.x, v.y, flatClamped.z);
         }
     }
 

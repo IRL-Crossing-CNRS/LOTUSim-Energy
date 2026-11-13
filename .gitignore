@@ -79,3 +79,4 @@ crashlytics-build.properties
 # path of the machine that compiled it.
 __pycache__/
 *.pyc
+*.slnx

@@ -341,3 +341,4 @@ Material:
     - _UnlitColor: {r: 0.07915139, g: 0.8301887, b: 0, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

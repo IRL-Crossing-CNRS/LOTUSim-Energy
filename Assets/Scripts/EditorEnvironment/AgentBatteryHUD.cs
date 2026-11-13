@@ -598,7 +598,7 @@ namespace Lotusim
             entry.labelText.fontStyle = FontStyles.Bold;
             entry.labelText.color     = Color.white;
             entry.labelText.alignment = TextAlignmentOptions.MidlineLeft;
-            entry.labelText.enableWordWrapping = false;
+            entry.labelText.textWrappingMode = TextWrappingModes.NoWrap;
             RectTransform labRT = entry.labelText.rectTransform;
             labRT.anchorMin        = new Vector2(0f, 1f);
             labRT.anchorMax        = new Vector2(0.55f, 1f);
@@ -612,7 +612,7 @@ namespace Lotusim
             topicLabel.fontSize  = 10f;
             topicLabel.color     = new Color(0.45f, 0.55f, 0.65f);
             topicLabel.alignment = TextAlignmentOptions.BottomLeft;
-            topicLabel.enableWordWrapping = false;
+            topicLabel.textWrappingMode = TextWrappingModes.NoWrap;
             RectTransform topicRT = topicLabel.rectTransform;
             topicRT.anchorMin        = new Vector2(0f, 0f);
             topicRT.anchorMax        = new Vector2(1f, 0f);
@@ -625,7 +625,7 @@ namespace Lotusim
             entry.valueText.richText  = true;
             entry.valueText.color     = new Color(0.85f, 0.90f, 1f);
             entry.valueText.alignment = TextAlignmentOptions.MidlineRight;
-            entry.valueText.enableWordWrapping = false;
+            entry.valueText.textWrappingMode = TextWrappingModes.NoWrap;
             RectTransform valRT = entry.valueText.rectTransform;
             valRT.anchorMin        = new Vector2(0.45f, 1f);
             valRT.anchorMax        = new Vector2(1f, 1f);

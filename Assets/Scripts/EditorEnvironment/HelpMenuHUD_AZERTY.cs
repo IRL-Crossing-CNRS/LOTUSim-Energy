@@ -294,7 +294,7 @@ namespace Lotusim
             t.alignment = align;
             t.color = Color.white;
             t.richText = true;
-            t.enableWordWrapping = true;
+            t.textWrappingMode = TextWrappingModes.Normal;
             t.overflowMode = TextOverflowModes.Overflow;
             return t;
         }

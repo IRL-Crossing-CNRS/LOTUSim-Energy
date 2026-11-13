@@ -34,7 +34,8 @@ public class GazeboWaveInterface : MonoBehaviour
     NativeArray<float3> targetPositionBuffer;
 
     // Output job parameters
-    NativeArray<float> heightBuffer;
+    // HDRP 17 returns the projected surface point; its y is the height.
+    NativeArray<float3> projectedPositionBuffer;
     NativeArray<float> errorBuffer;
     NativeArray<float3> candidatePositionBuffer;
     NativeArray<int> stepCountBuffer;
@@ -45,7 +46,7 @@ public class GazeboWaveInterface : MonoBehaviour
     {
         // Allocate the buffers
         targetPositionBuffer = new NativeArray<float3>(x_points * y_points, Allocator.Persistent);
-        heightBuffer = new NativeArray<float>(x_points * y_points, Allocator.Persistent);
+        projectedPositionBuffer = new NativeArray<float3>(x_points * y_points, Allocator.Persistent);
         errorBuffer = new NativeArray<float>(x_points * y_points, Allocator.Persistent);
         candidatePositionBuffer = new NativeArray<float3>(x_points * y_points, Allocator.Persistent);
         stepCountBuffer = new NativeArray<int>(x_points * y_points, Allocator.Persistent);
@@ -96,14 +97,14 @@ public class GazeboWaveInterface : MonoBehaviour
         searchJob.simSearchData = simData;
 
         // Fill the input data
-        searchJob.targetPositionBuffer = targetPositionBuffer;
-        searchJob.startPositionBuffer = targetPositionBuffer;
+        searchJob.targetPositionWSBuffer = targetPositionBuffer;
+        searchJob.startPositionWSBuffer = targetPositionBuffer;
         searchJob.maxIterations = 8;
         searchJob.error = 0.01f;
 
-        searchJob.heightBuffer = heightBuffer;
+        searchJob.projectedPositionWSBuffer = projectedPositionBuffer;
         searchJob.errorBuffer = errorBuffer;
-        searchJob.candidateLocationBuffer = candidatePositionBuffer;
+        searchJob.candidateLocationWSBuffer = candidatePositionBuffer;
         searchJob.stepCountBuffer = stepCountBuffer;
 
         // Schedule the job with one Execute per index in the results array and only 1 item per processing batch
@@ -116,9 +117,9 @@ public class GazeboWaveInterface : MonoBehaviour
         for (int i = 0; i < numElements; ++i)
         {
             // Debug.Log(i +" "+ cubes[i].transform.position.z);
-            data.position.Add(new Vector3(targetPositionBuffer[i].x, targetPositionBuffer[i].z, heightBuffer[i]));
+            data.position.Add(new Vector3(targetPositionBuffer[i].x, targetPositionBuffer[i].z, projectedPositionBuffer[i].y));
             // data.position.Add(new Vector3(cubes[i].transform.position.x, cubes[i].transform.position.z, heightBuffer[i]));
-            max_height=Math.Max(max_height, Math.Abs(heightBuffer[i]));
+            max_height=Math.Max(max_height, Math.Abs(projectedPositionBuffer[i].y));
         }
         // Debug.Log(max_height);
         
@@ -131,7 +132,7 @@ public class GazeboWaveInterface : MonoBehaviour
     private void OnDestroy()
     {
         targetPositionBuffer.Dispose();
-        heightBuffer.Dispose();
+        projectedPositionBuffer.Dispose();
         errorBuffer.Dispose();
         candidatePositionBuffer.Dispose();
         stepCountBuffer.Dispose();

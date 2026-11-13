@@ -33,20 +33,16 @@ EditorBuildSettings:
     path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Launcher.unity
     guid: bff77b01b50254edbb6edeeaba5ae8b3
   - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 1.unity
+    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room for 1.unity
     guid: 9b8561c6e396849a5ba48c3eb9524049
   - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 2.unity
+    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room for 2.unity
     guid: 764428c63577f4580af4ce54ca9f4b1b
   - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 3.unity
+    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room for 3.unity
     guid: e07afcca5bf1a41f5bd28f498656b7b8
   - enabled: 0
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
-      for 4.unity
+    path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room for 4.unity
     guid: e7a7f9734636d415ca84ef3aaf7680f6
   - enabled: 0
     path: Assets/Scenes/MultiUser/Launcher.unity
@@ -64,13 +60,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Energy/demo_facet.unity
     guid: e34169635e7d64a449c78e988c577987
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4591d6174912e2244a7f5599199d5209,
-      type: 2}
-    com.unity.addressableassets: {fileID: 11400000, guid: 750f01d5bb4614457aaae6a15827c284,
-      type: 2}
-    com.unity.input.settings: {fileID: 11400000, guid: ea09aa75d9686eb4db50d6fa690673f0,
-      type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9c3c88f7bbb2b31408c5099bd96c29b0,
-      type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: aeca08bc5375f93428bf1da2c4cd2f60,
-      type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4591d6174912e2244a7f5599199d5209, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 750f01d5bb4614457aaae6a15827c284, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: ea09aa75d9686eb4db50d6fa690673f0, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9c3c88f7bbb2b31408c5099bd96c29b0, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: aeca08bc5375f93428bf1da2c4cd2f60, type: 2}

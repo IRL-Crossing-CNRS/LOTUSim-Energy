@@ -144,7 +144,7 @@ namespace Lotusim
             tmp.fontSize = defaultTextSize;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.color = new Color(1f, 0.95f, 0.8f, 0.5f);
-            tmp.enableWordWrapping = false;
+            tmp.textWrappingMode = TextWrappingModes.NoWrap;
             tmp.raycastTarget = false;
             if (textMeshProFont != null)
                 tmp.font = textMeshProFont;

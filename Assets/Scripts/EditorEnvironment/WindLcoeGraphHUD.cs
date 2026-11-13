@@ -570,7 +570,7 @@ namespace Lotusim
             m_toastText.alignment = TextAlignmentOptions.Center;
             m_toastText.color = new Color(1f, 1f, 1f, 0.28f);
             m_toastText.richText = true;
-            m_toastText.enableWordWrapping = false;
+            m_toastText.textWrappingMode = TextWrappingModes.NoWrap;
         }
 
         public bool IsOpen => m_window != null && m_window.activeSelf;

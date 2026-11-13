@@ -395,7 +395,7 @@ namespace Lotusim
             tmp.fontSize = labelFontSize;
             tmp.text = id;
             tmp.color = Color.Lerp(color, Color.white, 0.55f); // brighten for legibility against the background
-            tmp.enableWordWrapping = false;
+            tmp.textWrappingMode = TextWrappingModes.NoWrap;
             tmp.outlineWidth = 0.15f;
             tmp.outlineColor = new Color(0f, 0f, 0f, 0.6f);
             return tmp;

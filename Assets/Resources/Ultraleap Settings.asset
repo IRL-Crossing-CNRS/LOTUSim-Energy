@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf870742f26b18b49850c5330ca056a7, type: 3}
   m_Name: Ultraleap Settings
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Ultraleap.Tracking.Core::Leap.UltraleapSettings
   leapSubsystemEnabled: 0
   updateLeapInputSystem: 0
   updateMetaInputSystem: 0

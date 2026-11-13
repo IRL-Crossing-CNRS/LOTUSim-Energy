@@ -40,7 +40,7 @@ public class ObjectLabelDisplay : MonoBehaviour
             tmp.fontSize = entry.textSize;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.color = new Color(1f, 0.95f, 0.8f, 0.50f);;
-            tmp.enableWordWrapping = false;
+            tmp.textWrappingMode = TextWrappingModes.NoWrap;
             tmp.raycastTarget = false;
             tmp.rectTransform.pivot = new Vector2(0.5f, 0.5f);
 

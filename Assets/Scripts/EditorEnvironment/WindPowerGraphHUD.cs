@@ -701,7 +701,7 @@ namespace Lotusim
             m_legendText.alignment = TextAlignmentOptions.TopLeft;
             m_legendText.color = Color.white;
             m_legendText.richText = true;
-            m_legendText.enableWordWrapping = false;
+            m_legendText.textWrappingMode = TextWrappingModes.NoWrap;
 
             // Hints / toast strip — bottom of widget
             m_toastText = CreateTMP("Hints", m_window.transform);
@@ -714,7 +714,7 @@ namespace Lotusim
             m_toastText.alignment = TextAlignmentOptions.Center;
             m_toastText.color = new Color(1f, 1f, 1f, 0.28f);
             m_toastText.richText = true;
-            m_toastText.enableWordWrapping = false;
+            m_toastText.textWrappingMode = TextWrappingModes.NoWrap;
         }
 
         public bool IsOpen => m_window != null && m_window.activeSelf;

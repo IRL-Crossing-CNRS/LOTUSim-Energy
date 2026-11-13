@@ -14557,7 +14557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surfaceType: 0
-  geometryType: 2
+  geometryType: 3
   mesh: {fileID: 0}
   cpuSimulation: 1
   cpuFullResolution: 1

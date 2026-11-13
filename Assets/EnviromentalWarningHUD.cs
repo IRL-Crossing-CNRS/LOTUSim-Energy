@@ -162,7 +162,7 @@ namespace Lotusim
             iconText.fontStyle = FontStyles.Bold;
             iconText.color = iconColor;
             iconText.alignment = TextAlignmentOptions.Center;
-            iconText.enableWordWrapping = false;
+            iconText.textWrappingMode = TextWrappingModes.NoWrap;
             RectTransform iRT = iconText.rectTransform;
             iRT.anchorMin = Vector2.zero;
             iRT.anchorMax = new Vector2(0f, 1f);
@@ -175,7 +175,7 @@ namespace Lotusim
             m_messageText.fontSize = 14f;
             m_messageText.color = messageColor;
             m_messageText.alignment = TextAlignmentOptions.MidlineLeft;
-            m_messageText.enableWordWrapping = true;
+            m_messageText.textWrappingMode = TextWrappingModes.Normal;
             RectTransform mRT = m_messageText.rectTransform;
             mRT.anchorMin = Vector2.zero;
             mRT.anchorMax = Vector2.one;
@@ -190,7 +190,7 @@ namespace Lotusim
                 hint.fontStyle = FontStyles.Italic;
                 hint.color = hintColor;
                 hint.alignment = TextAlignmentOptions.BottomRight;
-                hint.enableWordWrapping = false;
+                hint.textWrappingMode = TextWrappingModes.NoWrap;
                 RectTransform hRT = hint.rectTransform;
                 hRT.anchorMin = new Vector2(0f, 0f);
                 hRT.anchorMax = new Vector2(1f, 0f);
