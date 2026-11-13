@@ -8441,7 +8441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &432432460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11550,7 +11550,7 @@ MonoBehaviour:
     patchMaterial: {fileID: 2100000, guid: 40ba082aa874275439ab9c22763265d8, type: 2}
     strandMaterial: {fileID: 0}
     damageLayerName: 
-  generateOnStart: 0
+  generateOnStart: 1
 --- !u!4 &814557975
 Transform:
   m_ObjectHideFlags: 0
@@ -18302,7 +18302,7 @@ GameObject:
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2039377672
 Transform:
   m_ObjectHideFlags: 0

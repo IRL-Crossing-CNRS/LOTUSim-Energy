@@ -62,6 +62,7 @@ Material:
     - _Smoothness: 0
     m_Colors: []
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &4492639487271876843
 MonoBehaviour:
   m_ObjectHideFlags: 11
