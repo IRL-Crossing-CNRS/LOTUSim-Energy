@@ -1,0 +1,51 @@
+// Surface elevation of the xdyn wave components over a square region, written
+// as a height map for the water decal that deforms the HDRP ocean.
+//
+// xdyn (NED, z down):  zeta = - sum_i a_i sin(k_i (x cos psi_i + y sin psi_i) - omega_i t + phase_i)
+// Unity (X east, Y up, Z north): x_ned = Z, y_ned = X, height = -zeta.
+//
+// The time and the region centre are folded into one phase per component on
+// the CPU, in double precision (see XdynWaveSurface.cs), so the GPU only adds
+// the small local offset of each texel and float precision is enough.
+
+#pragma kernel CSMain
+
+RWTexture2D<float> _Height;
+
+// (a, k, cos psi, sin psi), and (folded phase, fade gain), one entry per component.
+StructuredBuffer<float4> _Rays;
+StructuredBuffer<float2> _Phases;
+int _RayCount;
+
+int _Resolution;
+float _RegionSize;
+// Height is divided by this so the texture stays within [-1, 1]; the decal's
+// amplitude multiplies it back.
+float _InvAmplitude;
+// Components with a larger wave number are skipped: the height map cannot draw them.
+float _MaxK;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    if ((int)id.x >= _Resolution || (int)id.y >= _Resolution)
+        return;
+
+    // Texel centre relative to the region centre. u follows Unity X, v Unity Z,
+    // as the water decal maps its UVs.
+    float dX = ((id.x + 0.5) / _Resolution - 0.5) * _RegionSize;
+    float dZ = ((id.y + 0.5) / _Resolution - 0.5) * _RegionSize;
+    float dxNed = dZ;
+    float dyNed = dX;
+
+    float height = 0.0;
+    for (int i = 0; i < _RayCount; ++i)
+    {
+        float4 r = _Rays[i];
+        if (r.y > _MaxK)
+            continue;
+        float2 p = _Phases[i];
+        height += r.x * p.y * sin(r.y * (dxNed * r.z + dyNed * r.w) + p.x);
+    }
+    _Height[id.xy] = height * _InvAmplitude;
+}

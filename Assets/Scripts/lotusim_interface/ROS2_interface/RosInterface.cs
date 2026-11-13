@@ -219,6 +219,12 @@ namespace Lotusim
                 OnOceanCurrentReceived
             );
 
+            // Wave components xdyn simulates, so the ocean can draw the same waves.
+            m_rosConnection.Subscribe<WaveSpectrumMsg>(
+                $"{_namespace}/wave_spectrum",
+                OnWaveSpectrumReceived
+            );
+
             Debug.Log("[RosInterface] Subscribed to all ROS topics.");
         }
 
@@ -233,6 +239,7 @@ namespace Lotusim
             ProcessWind();
             ProcessWindRegions();
             ProcessOceanCurrent();
+            ProcessWaveSpectrum();
         }
 
         #endregion
@@ -244,6 +251,28 @@ namespace Lotusim
             m_vessel_array_mutex.WaitOne();
             m_vessel_array_msg = poses;
             m_vessel_array_mutex.ReleaseMutex();
+
+            // The poses carry the simulation time the waves must be drawn at.
+            XdynWaveSurface.ReportSimTime(poses.header.stamp.sec + poses.header.stamp.nanosec * 1e-9);
+        }
+
+        private volatile bool m_waveSpectrumPending = false;
+
+        private void OnWaveSpectrumReceived(WaveSpectrumMsg msg)
+        {
+            XdynWaveSurface.ReportSpectrum(msg);
+            m_waveSpectrumPending = true;
+        }
+
+        /// <summary>
+        /// Puts an XdynWaveSurface on the scene's ocean once wave components arrive
+        /// (main thread, unlike the ROS callback).
+        /// </summary>
+        private void ProcessWaveSpectrum()
+        {
+            if (!m_waveSpectrumPending) return;
+            m_waveSpectrumPending = false;
+            XdynWaveSurface.EnsureInScene();
         }
 
         private void OnRendererCommandReceived(RendererCmdMsg command)
