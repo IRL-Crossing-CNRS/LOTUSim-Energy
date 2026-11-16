@@ -7,6 +7,16 @@ LOTUSim-Energy leverages the core simulation framework (https://github.com/naval
   <img src="Media/bluerov_lrauv.png" alt="bluerov_lrauv" width="44%">
 </div>
 
+<!-- docs-site-banner -->
+## Documentation site
+
+<p align="center"><a href="https://irl-crossing-cnrs.github.io/LOTUSim/"><img src="https://raw.githubusercontent.com/IRL-Crossing-CNRS/LOTUSim/main/docs/documentation_site.png" alt="The home page of the documentation site" width="800"></a></p>
+
+<p align="center"><a href="https://irl-crossing-cnrs.github.io/LOTUSim/"><img src="https://raw.githubusercontent.com/IRL-Crossing-CNRS/LOTUSim/main/docs/documentation_banner.svg" alt="Documentation: irl-crossing-cnrs.github.io/LOTUSim" width="800"></a></p>
+
+<p align="center"><b><a href="https://irl-crossing-cnrs.github.io/LOTUSim/">Click here to open the documentation</a></b></p>
+<!-- /docs-site-banner -->
+
 ## Overview
 
 LOTUSim-Energy is a distributed server-client simulation framework for multi-domain robotics. Gazebo is the central orchestrator for asset management and simulation timing (deterministic step scheduler); separate client modules run the individual simulation tasks.
